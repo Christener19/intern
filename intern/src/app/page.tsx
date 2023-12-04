@@ -3,6 +3,6 @@
 export default function Home() {
   return (
    <div>
-    <h1>Hello World! Knock knock</h1>
+    <h1>Hello World! We got this!</h1>
    </div>
   )}
