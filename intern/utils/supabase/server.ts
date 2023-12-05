@@ -3,7 +3,6 @@ import { cookies } from 'next/headers'
 
 export const createClient = (cookieStore: ReturnType<typeof cookies>) => {
   return createServerClient(
-    ///////// PROCESS.ENV DOESNT WORK, FORCED TO HARD CODE //////////////
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
     process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
     {
