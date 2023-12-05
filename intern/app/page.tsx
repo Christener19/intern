@@ -3,6 +3,7 @@
 import {createServerComponentClient} from '@supabase/auth-helpers-nextjs'
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
+import NamePicker  from "../components/randomNamePicker"
 // utitly function for authentication check
 
 export default async function Index() {
@@ -21,7 +22,7 @@ export default async function Index() {
         {/* < AttendanceTracker /> */}
         {/* < EngagementLogger /> */}
         {/* < ZoomPolls /> */}
-        {/* < RandomNamePicker /> */}
+        < NamePicker /> 
     
     </section>
   );
