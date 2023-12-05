@@ -3,6 +3,7 @@
 import {createServerComponentClient} from '@supabase/auth-helpers-nextjs'
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
+import { AttendanceTracker } from "./components/attendance";
 // utitly function for authentication check
 
 export default async function Index() {
@@ -18,7 +19,7 @@ export default async function Index() {
   return (
     // adding redirects to either dashboard or login page depending on user status
     <section className="flex-1 w-full flex flex-col gap-20 items-center">
-        {/* < AttendanceTracker /> */}
+        < AttendanceTracker/>
         {/* < EngagementLogger /> */}
         {/* < ZoomPolls /> */}
         {/* < RandomNamePicker /> */}
