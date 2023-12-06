@@ -21,7 +21,7 @@ export default async function Index() {
 
   return (
     // adding redirects to either dashboard or login page depending on user status
-    <section className="flex-1 w-full flex flex-col gap-20 items-center">
+    <section >
         < AttendanceTracker attendanceAlert={testAttendanceData} />
         {/* < EngagementLogger /> */}
         {/* < ZoomPolls /> */}
@@ -30,3 +30,5 @@ export default async function Index() {
     </section>
   );
 }
+
+// Removed from line 24 className="flex-1 w-full flex flex-col gap-20 items-center"

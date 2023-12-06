@@ -34,10 +34,10 @@ import AlertBox from './alertBox'
 
         const attendancePercent = {attPercent}
             return (
-            <div className= " w-full justify-center  ml-auto mr-auto text-center grid-rows-2 grid-flow-col gap-4">
-                <h1 className= " text-3xl  text-cyan-500 row-span-2 bg-pink-500" > Attendance tracking</h1> 
+            <div className= " text-center justify-start grid grid-rows-2 grid-flow-col gap-4 ">
+                <h1 className= "col-span-2 text-3xl  text-cyan-500 bg-pink-500" > Attendance tracking</h1> 
                  {/* // title */}
-                <div className= "border-2 rounded-md bg-yellow-500"> 
+                <div className= "col-span-1 border-2 rounded-md bg-yellow-500"> 
             
                     <h2 className= " text-2xl "> Todays attendance</h2>
                     <div> <p>{attendancePercent.attPercent}</p></div>
@@ -48,7 +48,7 @@ import AlertBox from './alertBox'
                 // attendance percentage/chart
                 // button download csv */}
 
-                <div className= "bg-green-500" >
+                <div className= " col-span-1 bg-green-500" >
                 {/* // div for alerts */}
                     <div>
                         <h2 className=" text-2xl"> Alerts</h2>
@@ -63,3 +63,4 @@ import AlertBox from './alertBox'
     }
             
                         
+    // This was from line 37 w-full justify-center  ml-auto mr-auto text-center

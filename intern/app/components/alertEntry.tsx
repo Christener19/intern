@@ -32,7 +32,7 @@ export default function AlertEntry({ infoalert }) {
 
     return (
         <>
-            <div className="flex flex-row text-lg">
+            <div >
                 {/* boot camper name */}
                 <p>{name}</p>
                 {/* alert level */}
@@ -41,3 +41,5 @@ export default function AlertEntry({ infoalert }) {
         </>
     );
 }
+
+// Removed form line 35 className="flex flex-row text-lg"
