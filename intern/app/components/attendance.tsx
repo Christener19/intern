@@ -23,8 +23,14 @@ import AlertBox from './alertBox'
             
     // div to hold everything
     export default function AttendanceTracker({attendanceAlert}) {
+    console.log(`got to attendance tracker`)
+    console.log(attendanceAlert)
 
     const {attPercent, alerts} = attendanceAlert
+
+    console.log(`attPercent: ${attPercent}`)
+    console.log(`alerts: ${alerts}`)
+
 
         const attendancePercent = {attPercent}
             return (

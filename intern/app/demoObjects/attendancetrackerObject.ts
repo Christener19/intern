@@ -6,7 +6,7 @@
 
 // alert entry has 2 values, the name and the alert level (num), it uses these to render the components
 
-export const testAttendanceData = {
+const testAttendanceData = {
     attPercent: '55%',
     alerts: [
         {
