@@ -28,3 +28,6 @@ export default function RootLayout({
     </html>
   );
 }
+
+
+//Removed this from line 24 className="min-h-screen flex flex-col items-center"
