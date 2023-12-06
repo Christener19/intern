@@ -1,11 +1,13 @@
 export default function AlertEntry(alert) {
     // destructure for use in component
-    const {name, alertlevel} = alert
-
+    console.log(`alert`),
+    console.log(alert)
+    const {name, alertLevel} = alert
+console.log(`alertlevel: ${alert.alertLevel}`)
     // set alert level
     let alertEmoji = null;
 
-    switch(alertlevel) {
+    switch(alert.alertLevel) {
         case 0:
             // no alert
             break;
