@@ -1,6 +1,7 @@
 //import block
 import Image from 'next/image'
 import AlertBox from './alertBox'
+import React from 'react';
 
 ///////////////Attendance tracking page//////////////
 
