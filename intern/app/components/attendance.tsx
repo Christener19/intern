@@ -34,8 +34,8 @@ import AlertBox from './alertBox'
 
         const attendancePercent = {attPercent}
             return (
-            <div className= " text-center justify-start grid grid-rows-2 grid-flow-col gap-4 ">
-                <h1 className= "col-span-2 text-3xl  text-cyan-500 bg-pink-500" > Attendance tracking</h1> 
+            <div className= " text-center w-full grid grid-rows-2 grid-flow-col gap-4  rounded-lg p-1">
+                <h1 className= "col-span-2 text-3xl  text-cyan-500 bg-pink-500 rounded-md h-fit" > Attendance tracking</h1> 
                  {/* // title */}
                 <div className= "col-span-1 border-2 rounded-md bg-yellow-500"> 
             
@@ -48,7 +48,7 @@ import AlertBox from './alertBox'
                 // attendance percentage/chart
                 // button download csv */}
 
-                <div className= " col-span-1 bg-green-500" >
+                <div className= " col-span-1 bg-green-500 rounded-md" >
                 {/* // div for alerts */}
                     <div>
                         <h2 className=" text-2xl"> Alerts</h2>
