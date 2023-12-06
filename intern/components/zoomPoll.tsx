@@ -55,6 +55,11 @@ type ZoomPollsProps = {
   // Define props here if necessary
 };
 
+const chartData = {
+  labels: Object.keys(data),
+  datasets: [{ label: "Thermometer", data: Object.values(data) }],
+};
+
 // const chartData = {
 //   labels: dummyData.map((data: DataItem) => data.name), // Labels are names from dummyData
 //   datasets: [
