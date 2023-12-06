@@ -13,7 +13,6 @@ import {
 ChartJS.register(CategoryScale, LinearScale, BarElement);
 
 // console.log(zoomPollData[0].questions[0].question_details[0].answer);
-console.log(zoomPollData.length);
 
 let good = 0;
 let neutral = 0;
@@ -41,7 +40,6 @@ function countPollAnswers(zoomPollData: any) {
   return { good, neutral, bad };
 }
 
-console.log(countPollAnswers(zoomPollData));
 let thermometerData: data = countPollAnswers(zoomPollData);
 interface data {
   good: number;
