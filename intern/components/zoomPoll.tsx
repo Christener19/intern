@@ -49,9 +49,22 @@ interface data {
   bad: number;
 }
 
+console.log(Object.values(data));
+
 type ZoomPollsProps = {
   // Define props here if necessary
 };
+
+// const chartData = {
+//   labels: dummyData.map((data: DataItem) => data.name), // Labels are names from dummyData
+//   datasets: [
+//     {
+//       label: data.keys(),
+//       data: Object.values(data),
+//       backgroundColor: "rgba(255, 99, 132, 0.5)", // Color for age bars
+//     },
+//   ],
+// };
 
 function ZoomPolls(props: ZoomPollsProps) {
   const barStyle = (color: string, height: string) =>
@@ -63,7 +76,7 @@ function ZoomPolls(props: ZoomPollsProps) {
         <h2>ZOOM POLLS</h2>
       </div>
       <div className="bg-gray-200 p-4 flex justify-around items-end h-40 rounded-xl">
-        <Bar />
+        <Bar data={chartData} />
       </div>
       <div className="flex justify-center mt-4">
         <button className="bg-green-500 text-white py-2 px-4 border-none cursor-pointer rounded-xl shadow-sm uppercase font-bold">
