@@ -1,6 +1,7 @@
 "use client";
 import React from "react";
 import { zoomPollData } from "@/app/dummData/zoomPollData";
+import { Bar } from "react-chartjs-2";
 
 // console.log(zoomPollData[0].questions[0].question_details[0].answer);
 console.log(zoomPollData.length);
@@ -47,9 +48,7 @@ function ZoomPolls(props: ZoomPollsProps) {
         <h2>ZOOM POLLS</h2>
       </div>
       <div className="bg-gray-200 p-4 flex justify-around items-end h-40 rounded-xl">
-        <div className={barStyle("green", "full")}></div> {/* Green bar */}
-        <div className={barStyle("orange", "1/2")}></div> {/* Orange bar */}
-        <div className={barStyle("blue", "3/4")}></div> {/* Blue bar */}
+        <Bar />
       </div>
       <div className="flex justify-center mt-4">
         <button className="bg-green-500 text-white py-2 px-4 border-none cursor-pointer rounded-xl shadow-sm uppercase font-bold">
