@@ -3,6 +3,10 @@
 import {createServerComponentClient} from '@supabase/auth-helpers-nextjs'
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
+import NamePicker  from "../components/randomNamePicker"
+import { Montserrat } from "next/font/google"
+
+const montserrat = Montserrat({subsets: ["latin"], variable: "--font-montserrat",})
 // utitly function for authentication check
 
 export default async function Index() {
@@ -21,7 +25,7 @@ export default async function Index() {
         {/* < AttendanceTracker /> */}
         {/* < EngagementLogger /> */}
         {/* < ZoomPolls /> */}
-        {/* < RandomNamePicker /> */}
+        < NamePicker /> 
     
     </section>
   );
