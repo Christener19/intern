@@ -23,7 +23,10 @@ import AlertBox from './alertBox'
             
     // div to hold everything
     export default function AttendanceTracker({attendanceAlert}) {
-        const attendancePercent = "92%"
+
+    const {attPercent, alerts} = attendanceAlert
+
+        const attendancePercent = {attPercent}
             return (
             <div className= " w-full justify-center flex flex-col ml-auto mr-auto text-center">
                 <h1 className= " text-3xl  text-cyan-500" > Attendance tracking</h1> 
@@ -47,7 +50,7 @@ import AlertBox from './alertBox'
                     </div>
                 {/* //div for title
                 // div */}
-                       <AlertBox  alertInformation={attendanceAlert}/> 
+                       <AlertBox  alertInformation={alerts}/> 
                     </div>
             </div> 
         )
