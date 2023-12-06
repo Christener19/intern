@@ -23,7 +23,7 @@ import React from 'react';
         // alert box    
             
     // div to hold everything
-    export default function AttendanceTracker({attendanceAlert}) {
+    export default function AttendanceTracker({attendanceAlert} : any) {
     console.log(`got to attendance tracker`)
     console.log(attendanceAlert)
 
@@ -51,9 +51,14 @@ import React from 'react';
 
                 <div className= " col-span-1 border-2 border-cyan-600 rounded-md" >
                 {/* // div for alerts */}
-                    <div>
-                        <h2 className=" text-2xl text-cyan-600"> Alerts</h2>
-                        <Image />
+                    <div className='flex flex-row justify-center'>
+                        <h2 className=" text-2xl text-cyan-600 pr-2"> Alerts</h2>
+                        <Image
+                        src='/public/Alarm.png'
+                        width={24}
+                        height={24}
+                        alt='Alert icon'
+                        />
                     </div>
                 {/* //div for title
                 // div */}
