@@ -42,34 +42,23 @@ function countPollAnswers(zoomPollData: any) {
 }
 
 console.log(countPollAnswers(zoomPollData));
-let data: data = countPollAnswers(zoomPollData);
+let thermometerData: data = countPollAnswers(zoomPollData);
 interface data {
   good: number;
   neutral: number;
   bad: number;
 }
 
-console.log(Object.values(data));
+console.log(Object.values(thermometerData));
 
 type ZoomPollsProps = {
   // Define props here if necessary
 };
 
 const chartData = {
-  labels: Object.keys(data),
-  datasets: [{ label: "Thermometer", data: Object.values(data) }],
+  labels: Object.keys(thermometerData),
+  datasets: [{ label: "Thermometer", data: Object.values(thermometerData) }],
 };
-
-// const chartData = {
-//   labels: dummyData.map((data: DataItem) => data.name), // Labels are names from dummyData
-//   datasets: [
-//     {
-//       label: data.keys(),
-//       data: Object.values(data),
-//       backgroundColor: "rgba(255, 99, 132, 0.5)", // Color for age bars
-//     },
-//   ],
-// };
 
 function ZoomPolls(props: ZoomPollsProps) {
   const barStyle = (color: string, height: string) =>
