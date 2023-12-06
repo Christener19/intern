@@ -54,7 +54,7 @@ import React from 'react';
                     <div className='flex flex-row justify-center'>
                         <h2 className=" text-2xl text-cyan-600 pr-2"> Alerts</h2>
                         <Image
-                        src='/public/Alarm.png'
+                        src='/alarmbell.svg'
                         width={24}
                         height={24}
                         alt='Alert icon'
