@@ -39,20 +39,20 @@ const NamePicker: React.FC = () => {
   return (
     <div className="border-2 rounded-2xl border-blue-500 w-80">
     <div className="flex flex-col items-center p-4">
-      <div><h1 className="text-xl text-blue-500 font-bold">Name Picker</h1></div>
+      <div><h1 className="text-xl text-blue-500 font-bold mb-4">Name Picker</h1></div>
       <div className="bg-blue-500 text-white w-11/12 h-36 flex justify-center items-center text-2xl rounded-2xl">
         {selectedName}
       </div>
       <div className="flex justify-between mt-8 w-11/12 gap-2">
       <button
         onClick={pickRandomName}
-        className="bg-green-500 text-white py-2 px-4 border-none cursor-pointer text-center w-3/6 rounded-xl"
+        className="bg-green-700 text-white py-2 px-4 border-none cursor-pointer text-center w-3/6 rounded-xl drop-shadow-2xl"
       >
         Pick
       </button>
       <button
         onClick={resetNames}
-        className=" bg-green-500 text-white py-2 px-4 border-none cursor-pointer text-center w-3/6 rounded-xl"
+        className=" bg-green-700 text-white py-2 px-4 border-none cursor-pointer text-center w-3/6 rounded-xl drop-shadow-2xl"
       >
         Reset list
       </button>
