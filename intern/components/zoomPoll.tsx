@@ -2,6 +2,15 @@
 import React from "react";
 import { zoomPollData } from "@/app/dummData/zoomPollData";
 import { Bar } from "react-chartjs-2";
+import {
+  Chart as ChartJS,
+  CategoryScale,
+  LinearScale,
+  BarElement,
+} from "chart.js";
+
+// Register the category scale
+ChartJS.register(CategoryScale, LinearScale, BarElement);
 
 // console.log(zoomPollData[0].questions[0].question_details[0].answer);
 console.log(zoomPollData.length);
@@ -33,6 +42,12 @@ function countPollAnswers(zoomPollData: any) {
 }
 
 console.log(countPollAnswers(zoomPollData));
+let data: data = countPollAnswers(zoomPollData);
+interface data {
+  good: number;
+  neutral: number;
+  bad: number;
+}
 
 type ZoomPollsProps = {
   // Define props here if necessary
