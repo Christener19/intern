@@ -32,7 +32,7 @@ export default function AlertEntry({ infoalert }) {
 
     return (
         <>
-            <div >
+            <div className="flex flex-row justify-between">
                 {/* boot camper name */}
                 <p>{name}</p>
                 {/* alert level */}

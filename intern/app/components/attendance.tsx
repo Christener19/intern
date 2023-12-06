@@ -34,30 +34,30 @@ import AlertBox from './alertBox'
 
         const attendancePercent = {attPercent}
             return (
-            <div className= " text-center w-full grid grid-rows-[auto,1fr] grid-flow-col gap-4  rounded-lg p-1">
-                <h1 className= "col-span-2 text-3xl  text-cyan-500 bg-pink-500 rounded-md h-fit" > Attendance tracking</h1> 
+            <div className= "text-center w-full grid grid-rows-[auto,1fr] grid-flow-col gap-4  rounded-lg border-2 border-cyan-600 p-4 m-1 ">
+                <h1 className= "col-span-2 text-3xl  text-cyan-600 rounded-md h-fit" > Attendance tracking</h1> 
                  {/* // title */}
-                <div className= "col-span-1 border-2 rounded-md bg-yellow-500"> 
+                <div className= "col-span-1 border-2 rounded-md border-cyan-600"> 
             
-                    <h2 className= " text-2xl "> Todays attendance</h2>
-                    <div> <p>{attendancePercent.attPercent}</p></div>
-                    <button>Download CSV</button>
+                    <h2 className= " text-2xl text-cyan-600"> Todays attendance</h2>
+                    <div id='attendance figure' className='rounded-md ml-4 mr-4 mb-b bg-cyan-600'> <p className='text-white text-9xl'>{attendancePercent.attPercent}</p></div>
+                    <button className='bg-green-500 rounded-md p-2 m-2 text-white'>Download CSV</button>
                 </div>
             {/* // div for attendance
                 // title
                 // attendance percentage/chart
                 // button download csv */}
 
-                <div className= " col-span-1 bg-green-500 rounded-md" >
+                <div className= " col-span-1 border-2 border-cyan-600 rounded-md" >
                 {/* // div for alerts */}
                     <div>
-                        <h2 className=" text-2xl"> Alerts</h2>
+                        <h2 className=" text-2xl text-cyan-600"> Alerts</h2>
                         <Image />
                     </div>
                 {/* //div for title
                 // div */}
                        <AlertBox  alertInformation={alerts}/> 
-                    </div>
+                </div>
             </div> 
         )
     }
