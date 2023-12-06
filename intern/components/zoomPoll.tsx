@@ -1,5 +1,37 @@
 "use client";
 import React from "react";
+import { zoomPollData } from "@/app/dummData/zoomPollData";
+
+// console.log(zoomPollData[0].questions[0].question_details[0].answer);
+console.log(zoomPollData.length);
+
+let good = 0;
+let neutral = 0;
+let bad = 0;
+
+// function countPollAnswers(answer) {
+//   zoomPollData.map((answer)=> (zoomPollData[0].questions[0].question_details[0].answer))
+// }
+
+function countPollAnswers(zoomPollData: any) {
+  let good = 0;
+  let neutral = 0;
+  let bad = 0;
+  for (let i = 0; i < zoomPollData.length; i++) {
+    if (zoomPollData[i].questions[0].question_details[0].answer === "Good") {
+      good++;
+    }
+    if (zoomPollData[i].questions[0].question_details[0].answer === "Bad") {
+      bad++;
+    }
+    if (zoomPollData[i].questions[0].question_details[0].answer === "Neutral") {
+      neutral++;
+    }
+  }
+  return { good, neutral, bad };
+}
+
+console.log(countPollAnswers(zoomPollData));
 
 type ZoomPollsProps = {
   // Define props here if necessary
