@@ -26,7 +26,7 @@ import AlertBox from './alertBox'
     console.log(`got to attendance tracker`)
     console.log(attendanceAlert)
 
-    const {attPercent, alerts} = attendanceAlert
+    const {attPercent, alerts} = attendanceAlert 
 
     console.log(`attPercent: ${attPercent}`)
     console.log(`alerts: ${alerts}`)
@@ -40,7 +40,7 @@ import AlertBox from './alertBox'
                 <div className= "border-2 rounded-md"> 
             
                     <h2 className= " text-2xl"> Todays attendance</h2>
-                    <div> <p>{attendancePercent}</p></div>
+                    <div> <p>{attendancePercent.attPercent}</p></div>
                     <button> Download CSV</button>
                 </div>
             {/* // div for attendance
