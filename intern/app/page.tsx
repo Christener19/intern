@@ -26,11 +26,14 @@ export default async function Index() {
 
   return (
     // adding redirects to either dashboard or login page depending on user status
-    <section className="flex-1 w-full flex flex-col gap-20 items-center">
-      {/* < AttendanceTracker /> */}
-      {/* < EngagementLogger /> */}
-      {/* < ZoomPolls /> */}
-      <NamePicker />
+    <section className="border-double grid grid-cols-3 grid-rows-2 gap-2">
+      <div className=""> {/*< AttendanceTracker /> */}</div>
+      <div> {/* < EngagementLogger /> */}</div>
+      <div> {/* < ZoomPolls /> */}</div>
+      <div>
+        {" "}
+        <NamePicker />
+      </div>
     </section>
   );
 }
