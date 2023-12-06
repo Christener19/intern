@@ -1,5 +1,6 @@
 //import block
 import Image from 'next/image'
+import AlertBox from './alertBox'
 
 ///////////////Attendance tracking page//////////////
 
@@ -21,7 +22,8 @@ import Image from 'next/image'
         // alert box    
             
     // div to hold everything
-    export default function AttendanceTracker() {
+    export default function AttendanceTracker({attendanceAlert}) {
+        const attendancePercent = "92%"
             return (
             <div className= " w-full justify-center flex flex-col ml-auto mr-auto text-center">
                 <h1 className= " text-3xl  text-cyan-500" > Attendance tracking</h1> 
@@ -29,7 +31,7 @@ import Image from 'next/image'
                 <div className= "border-2 rounded-md"> 
             
                     <h2 className= " text-2xl"> Todays attendance</h2>
-                    <div> <p>22%</p></div>
+                    <div> <p>{attendancePercent}</p></div>
                     <button> Download CSV</button>
                 </div>
             {/* // div for attendance
@@ -45,11 +47,8 @@ import Image from 'next/image'
                     </div>
                 {/* //div for title
                 // div */}
-                <div id="alertbox">
-
-                </div>
-                    
-                    </div> 
+                       <AlertBox  alertInformation={attendanceAlert}/> 
+                    </div>
             </div> 
         )
     }
