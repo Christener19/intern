@@ -6,6 +6,9 @@ module.exports = {
   ],
   theme: {
     extend: {
+      screens: {
+        'trueHD': '1920px'
+      },
       fontFamily: {
         sans: ["var(--font-montserrat)"],
       },

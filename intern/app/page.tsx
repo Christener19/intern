@@ -37,20 +37,20 @@ export default async function Index() {
 
   return (
     // adding redirects to either dashboard or login page depending on user status
-    <section className="border-red-500 border-2 grid grid-cols-3 grid-rows-2 gap-2">
-      <div className="border-green-900 border-2 col-span-2">
+    <section className="grid grid-cols-3 grid-rows-2 gap-2 w-full max-w-screen-trueHD ml-auto mr-auto">
+      <div className="col-span-2">
         {" "}
         <AttendanceTracker attendanceAlert={testAttendanceData} />
       </div>
-      <div className="border-yellow-700 border-2 row-span-2 col-start-3 row-start-1">
+      <div className="row-span-2 col-start-3 row-start-1">
         {" "}
         <EngagementLogger engagementData={testEngagementData} />
       </div>
-      <div className="border-blue-950 border-2 col-start-1 row-start-2">
+      <div className="col-start-1 row-start-2">
         {" "}
         <ZoomPolls />
       </div>
-      <div className="border-pink-950 border-2 col-start-2 row-start-2">
+      <div className="col-start-2 row-start-2">
         {" "}
         <NamePicker />
       </div>
