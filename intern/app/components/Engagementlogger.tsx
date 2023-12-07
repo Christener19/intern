@@ -8,6 +8,7 @@
 //full data = objects -history
 //pass to sub show status
 import { useState, useEffect } from "react";
+import Image from "next/image";
 
 export default function EngagementLoggerCard({ cardObject }: any) {
   console.log("rendering card");
