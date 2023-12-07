@@ -7,19 +7,19 @@ export const testEngagementData = [
   {
     name: "Chirstner",
     avgEngagement: "good",
-    image: "url",
+    image: null,
     fullData: {},
   },
   {
     name: "Kit",
     avgEngagement: "average",
-    image: "url",
+    image: null,
     fullData: {},
   },
   {
     name: "Dave",
     avgEngagement: "poor",
-    image: "url",
+    image: null,
     fullData: {},
   },
 ];

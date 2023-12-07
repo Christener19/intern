@@ -32,11 +32,20 @@ export default function EngagementLoggerCard({ cardObject }: any) {
     }
   }, [avgEngagement]);
   
+  // conditionally render image
+  const imageNotNullChecker = () => 
+  {
+    if (image) {
+      return <Image src={image} height={64} width={64} alt={`profile image for ${name}`}/>
+    } else {
+      return <Image src='/defaultUserimage.svg' height={64} width={64}  alt="default profile image"/>
+    }
+  };
 
   return (
     <div className={bgColor}>
       <div className="CardContent">
-        <Image src={`${image}`} height={64} width={64} alt={`profile picture for ${name}`} />
+       {imageNotNullChecker()}
         <div className="cardTextContent">
           <p>{name}</p>
           <p>Average Engagement: {avgEngagement}</p>
