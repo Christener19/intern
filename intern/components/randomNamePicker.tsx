@@ -38,7 +38,7 @@ const NamePicker: React.FC = () => {
 
   return (
     <section className="flex justify-center">
-      <div className="border-2 rounded-2xl border-blue-500 w-full h-full">
+      <div className="border-2 rounded-2xl border-blue-500 w-full h-full ml-4 mt-1">
         <div className="flex flex-col items-center p-4">
           <div>
             <h2 className="text-center text-xl text-blue-500 font-bold mb-4">
@@ -51,13 +51,13 @@ const NamePicker: React.FC = () => {
           <div className="flex justify-between mt-8 w-11/12 gap-6">
             <button
               onClick={pickRandomName}
-              className="bg-green-500 uppercase font-bold text-white py-2 px-4 border-none cursor-pointer text-center w-3/6 rounded-xl drop-shadow-2xl"
+              className="bg-green-500 hover:bg-green-600 uppercase font-bold text-white py-2 px-4 border-none cursor-pointer text-center w-3/6 rounded-xl drop-shadow-2xl"
             >
               Pick
             </button>
             <button
               onClick={resetNames}
-              className=" bg-green-500 uppercase font-bold text-white py-2 px-4 border-none cursor-pointer text-center w-3/6 rounded-xl drop-shadow-2xl"
+              className=" bg-green-500 hover:bg-green-600 uppercase font-bold text-white py-2 px-4 border-none cursor-pointer text-center w-3/6 rounded-xl drop-shadow-2xl"
             >
               Reset list
             </button>

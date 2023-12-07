@@ -55,14 +55,20 @@ type ZoomPollsProps = {
 
 const chartData = {
   labels: Object.keys(thermometerData),
-  datasets: [{ label: "Thermometer", data: Object.values(thermometerData) }],
+  datasets: [
+    {
+      label: "Thermometer",
+      data: Object.values(thermometerData),
+      backgroundColor: ["green", "blue", "red"],
+    },
+  ],
 };
 
 const ZoomPolls: React.FC<ZoomPollsProps> = (props) => {
   const [showResults, setShowResults] = useState(false);
 
   return (
-    <div className="border-2 border-blue-500 p-4 rounded-xl shadow-sm w-full h-full">
+    <div className="border-2 border-blue-500 p-4 rounded-xl shadow-sm w-full h-full m-1">
       <div className="text-center text-xl text-blue-500 font-bold mb-4">
         <h2>ZOOM POLLS</h2>
       </div>
@@ -70,12 +76,14 @@ const ZoomPolls: React.FC<ZoomPollsProps> = (props) => {
         {showResults ? (
           <Bar data={chartData} />
         ) : (
-          <div className="text-center w-full">No results</div>
+          <div className="text-center w-full text-black mb-20 uppercase font-semibold">
+            No results
+          </div>
         )}
       </div>
       <div className="flex justify-center mt-4">
         <button
-          className="bg-green-500 text-white py-2 px-4 border-none cursor-pointer rounded-xl shadow-sm uppercase font-bold"
+          className="bg-green-500 hover:bg-green-600 text-white py-2 px-4 border-none cursor-pointer rounded-xl shadow-sm uppercase font-bold"
           onClick={() => setShowResults(!showResults)} // Toggle the showResults state
         >
           Thermometer

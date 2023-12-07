@@ -48,12 +48,12 @@ export default function AttendanceTracker({ attendanceAlert }: any) {
         </h2>
         <div
           id="attendance figure"
-          className="rounded-md ml-4 mr-4 mb-b bg-cyan-600"
+          className="rounded-xl ml-4 mr-4 mb-b bg-blue-500"
         >
           {" "}
           <p className="text-white text-9xl">{attendancePercent.attPercent}</p>
         </div>
-        <button className="bg-green-500 rounded-md p-2 m-2 text-white">
+        <button className="bg-green-500 hover:bg-green-600 rounded-xl uppercase font-bold py-2 px-4 m-6 text-white">
           Download CSV
         </button>
       </div>
@@ -65,7 +65,7 @@ export default function AttendanceTracker({ attendanceAlert }: any) {
       <div className=" col-span-1 border-2 border-blue-500 rounded-xl">
         {/* // div for alerts */}
         <div className="flex flex-row justify-center">
-          <h2 className="text-xl text-blue-500 mb-4 pr-2 font-semibold uppercase items-center">
+          <h2 className="text-xl text-blue-500 mb-4 m-3 font-semibold uppercase ">
             {" "}
             Alerts
           </h2>
