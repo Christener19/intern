@@ -1,13 +1,19 @@
-export default function AlertEntry({ infoalert }: any) {
-  // destructure for use in component
-  console.log("infoalert", infoalert);
-  const { name, alertLevel } = infoalert;
+
+import React from 'react';
+
+export default function AlertEntry({ infoalert } : any) {
+    // destructure for use in component
+    console.log('infoalert', infoalert);  
+    const { name, alertLevel } = infoalert;
+
 
   console.log(`alertlevel: ${alertLevel}`);
 
-  // set alert level
-  let alertEmoji: string | null;
-  alertEmoji = null;
+
+    // set alert level
+    let alertEmoji : string | null;
+    alertEmoji = null;
+
 
   switch (alertLevel) {
     case 0:

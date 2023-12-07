@@ -1,6 +1,9 @@
 //import block
-import Image from "next/image";
-import AlertBox from "./alertBox";
+
+import Image from 'next/image'
+import AlertBox from './alertBox'
+import React from 'react';
+
 
 ///////////////Attendance tracking page//////////////
 
@@ -13,12 +16,18 @@ import AlertBox from "./alertBox";
 // button download csv
 
 // div for alerts
-//div for title
-//div for alerts
-// div
-//title
-//alert icon
-// alert box
+
+    //div for title
+    //div for alerts
+        // div
+            //title
+            //alert icon
+        // alert box    
+            
+    // div to hold everything
+    export default function AttendanceTracker({attendanceAlert} : any) {
+    console.log(`got to attendance tracker`)
+    console.log(attendanceAlert)
 
 // div to hold everything
 export default function AttendanceTracker({ attendanceAlert }: any) {
@@ -56,16 +65,26 @@ export default function AttendanceTracker({ attendanceAlert }: any) {
                 // attendance percentage/chart
                 // button download csv */}
 
-      <div className=" col-span-1 border-2 border-cyan-600 rounded-md">
-        {/* // div for alerts */}
-        <div>
-          <h2 className=" text-2xl text-cyan-600"> Alerts</h2>
-          <Image src="/alarmbell.svg" width={24} height={24} alt="Alert icon" />
-        </div>
-        <AlertBox alertInformation={alerts} />
-      </div>
-    </div>
-  );
-}
 
-// This was from line 37 w-full justify-center  ml-auto mr-auto text-center
+                <div className= " col-span-1 border-2 border-cyan-600 rounded-md" >
+                {/* // div for alerts */}
+                    <div className='flex flex-row justify-center'>
+                        <h2 className=" text-2xl text-cyan-600 pr-2"> Alerts</h2>
+                        <Image
+                        src='/alarmbell.svg'
+                        width={24}
+                        height={24}
+                        alt='Alert icon'
+                        />
+                    </div>
+                {/* //div for title
+                // div */}
+                       <AlertBox  alertInformation={alerts}/> 
+                </div>
+            </div> 
+        )
+    }
+            
+                        
+    // This was from line 37 w-full justify-center  ml-auto mr-auto text-center
+
