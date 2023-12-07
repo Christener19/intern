@@ -9,11 +9,11 @@
 //pass to sub show status
 import { useState } from "react";
 
-export default function EngagementLoggerCard({ cardObject }) {
+export default function EngagementLoggerCard({ cardObject }: any) {
   console.log("rendering card");
   console.log(cardObject);
 
-  const [bgColor, setbgColor] = useState("white");
+  const [bgColor, setbgColor] = useState("bg-white");
 
   const { name, avgEngagement, image, fullData } = cardObject;
 
@@ -35,7 +35,7 @@ export default function EngagementLoggerCard({ cardObject }) {
         {/* <Image src={image} height={64} width={64} alt={`profile picture for ${name}`} /> */}
         <div className="cardTextContent">
           <p>{name}</p>
-          <p>Average Engagement: {avgEngagement}</p>
+          <p>Average Engagement: Good</p>
         </div>
       </div>
     </div>
