@@ -9,15 +9,18 @@
 import React from "react";
 import EngagementLoggerBox from "./eloggerBox";
 
-export default function EngagementLogger({ EngagementData }: any) {
+export default function EngagementLogger({ engagementData }: any) {
+  console.log('rendering EngagementLogger')
+  console.log(engagementData)
   return (
     <div>
       <h1>Engagement Logger</h1>
       <div>
-        <input>Search</input>
+        <label>Search</label>
+        <input></input>
       </div>
       <div>
-        <EngagementLoggerBox EngagementInfo={EngagementData} />
+        <EngagementLoggerBox EngagementInfo={engagementData} />
       </div>
       <div>
         <button>Download CSV</button>

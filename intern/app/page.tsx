@@ -40,7 +40,7 @@ export default async function Index() {
       </div>
       <div className="border-yellow-700 border-2 row-span-2 col-start-3 row-start-1">
         {" "}
-        <EngagementLogger eData={testEngagementData} />
+        <EngagementLogger engagementData={testEngagementData} />
       </div>
       <div className="border-blue-950 border-2 col-start-1 row-start-2">
         {" "}

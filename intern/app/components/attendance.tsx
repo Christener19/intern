@@ -24,13 +24,13 @@ import React from 'react';
             
     // div to hold everything
     export default function AttendanceTracker({attendanceAlert} : any) {
-    console.log(`got to attendance tracker`)
-    console.log(attendanceAlert)
+    //console.log(`got to attendance tracker`) // debug logger
+    //console.log(attendanceAlert) // debug logger
 
     const {attPercent, alerts} = attendanceAlert 
 
-    console.log(`attPercent: ${attPercent}`)
-    console.log(`alerts: ${alerts}`)
+    //console.log(`attPercent: ${attPercent}`) // debug logger
+    //console.log(`alerts: ${alerts}`) // debug logger
 
 
         const attendancePercent = {attPercent}

@@ -2,10 +2,10 @@ import React from 'react';
 
 export default function AlertEntry({ infoalert } : any) {
     // destructure for use in component
-    console.log('infoalert', infoalert);  
+    // console.log('infoalert', infoalert);  // debug logger
     const { name, alertLevel } = infoalert;
 
-    console.log(`alertlevel: ${alertLevel}`);
+    // console.log(`alertlevel: ${alertLevel}`); // debug logger
 
     // set alert level
     let alertEmoji : string | null;
