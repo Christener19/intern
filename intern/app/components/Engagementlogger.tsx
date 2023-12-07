@@ -6,16 +6,19 @@
 //name
 //image/avatar
 //full data = objects -history
-//pass to sub show statusimport React, { useState, useEffect } from "react";
-import {useState, useEffect} from "react";
+//pass to sub show status
+import { useState, useEffect } from "react";
+
 export default function EngagementLoggerCard({ cardObject }: any) {
   console.log("rendering card");
   console.log(cardObject);
 
   const [bgColor, setbgColor] = useState("bg-white-400");
 
+  const { name, avgEngagement, image, fullData } = cardObject;
+
   useEffect(() => {
-    switch (cardObject.avgEngagement) {
+    switch (avgEngagement) {
       case "good":
         setbgColor("bg-green-400");
         break;
@@ -26,9 +29,8 @@ export default function EngagementLoggerCard({ cardObject }: any) {
         setbgColor("bg-yellow-400");
         break;
     }
-  }, [cardObject.avgEngagement]);
-
-  const { name } = cardObject;
+  }, [avgEngagement]);
+  
 
   return (
     <div className={bgColor}>
@@ -36,7 +38,7 @@ export default function EngagementLoggerCard({ cardObject }: any) {
         {/* <Image src={image} height={64} width={64} alt={`profile picture for ${name}`} /> */}
         <div className="cardTextContent">
           <p>{name}</p>
-          <p>Average Engagement: {cardObject.avgEngagement}</p>
+          <p>Average Engagement: {avgEngagement}</p>
         </div>
       </div>
     </div>
