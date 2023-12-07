@@ -4,6 +4,9 @@ import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import AttendanceTracker from "./components/attendance";
+
+import EngagementLogger from "./components/elogger";
+
 import NamePicker from "../components/randomNamePicker";
 import { Montserrat } from "next/font/google";
 import ZoomPolls from "../components/zoomPoll";
@@ -17,6 +20,8 @@ const montserrat = Montserrat({
 
 // test import for comp data
 import { testAttendanceData } from "./demoObjects/attendancetrackerObject";
+import { testEngagementData } from "./demoObjects/engagementLoggerData";
+
 
 export default async function Index() {
   // checking if the user is logged in
@@ -39,7 +44,7 @@ export default async function Index() {
       </div>
       <div className="border-yellow-700 border-2 row-span-2 col-start-3 row-start-1">
         {" "}
-        {/* < EngagementLogger /> */}
+        <EngagementLogger engagementData={testEngagementData} />
       </div>
       <div className="border-blue-950 border-2 col-start-1 row-start-2">
         {" "}

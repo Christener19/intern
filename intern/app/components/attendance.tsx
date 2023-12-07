@@ -13,25 +13,14 @@ import React from "react";
 // title
 // attendance percentage/chart
 // button download csv
-
-// div for alerts
-
-//div for title
-//div for alerts
-// div
-//title
-//alert icon
-// alert box
+   
 
 // div to hold everything
 export default function AttendanceTracker({ attendanceAlert }: any) {
-  console.log(`got to attendance tracker`);
-  console.log(attendanceAlert);
-
+ 
+//console.log(`attPercent: ${attPercent}`) // debug logger
+    //console.log(`alerts: ${alerts}`) // debug logger
   const { attPercent, alerts } = attendanceAlert;
-
-  console.log(`attPercent: ${attPercent}`);
-  console.log(`alerts: ${alerts}`);
 
   const attendancePercent = { attPercent };
   return (
