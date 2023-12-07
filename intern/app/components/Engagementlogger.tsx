@@ -35,7 +35,7 @@ export default function EngagementLoggerCard({ cardObject }: any) {
   return (
     <div className={bgColor}>
       <div className="CardContent">
-        {/* <Image src={image} height={64} width={64} alt={`profile picture for ${name}`} /> */}
+        <Image src={`${image}`} height={64} width={64} alt={`profile picture for ${name}`} />
         <div className="cardTextContent">
           <p>{name}</p>
           <p>Average Engagement: {avgEngagement}</p>
