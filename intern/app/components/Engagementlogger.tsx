@@ -10,7 +10,6 @@
 import { useState } from "react";
 
 export default function EngagementLoggerCard({ cardObject }: any) {
-export default function EngagementLoggerCard({ cardObject }: any) {
   console.log("rendering card");
   console.log(cardObject);
 
