@@ -72,7 +72,7 @@ const ZoomPolls: React.FC<ZoomPollsProps> = (props) => {
       <div className="text-center text-xl text-blue-500 font-bold mb-4">
         <h2>ZOOM POLLS</h2>
       </div>
-      <div className="bg-gray-200 p-4 flex justify-around items-end h-56 rounded-xl">
+      <div className="bg-gray-200 p-4 flex justify-around items-end h-52 rounded-xl">
         {showResults ? (
           <Bar data={chartData} />
         ) : (

@@ -65,11 +65,13 @@ export default function AttendanceTracker({ attendanceAlert }: any) {
       <div className=" col-span-1 border-2 border-blue-500 rounded-xl">
         {/* // div for alerts */}
         <div className="flex flex-row justify-center">
-          <h2 className="text-xl text-blue-500 mb-4 m-3 font-semibold uppercase ">
+          <h2 className="text-xl text-blue-500 mb-3 mt-2 mr-2 font-bold uppercase ">
             {" "}
             Alerts
           </h2>
-          <Image src="/alarmbell.svg" width={24} height={24} alt="Alert icon" />
+          <div className="mb-3 mt-3">
+          <Image src="/alarmbell.svg" width={20} height={20} alt="Alert icon" />
+          </div>
         </div>
         {/* //div for title
                 // div */}
