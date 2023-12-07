@@ -35,14 +35,17 @@ export default function AttendanceTracker({ attendanceAlert }: any) {
 
   const attendancePercent = { attPercent };
   return (
-    <div className="text-center w-full grid grid-rows-[auto,1fr] grid-flow-col gap-4  rounded-lg border-2 border-cyan-600 p-4 m-1 ">
-      <h1 className="col-span-2 text-3xl  text-cyan-600 rounded-md h-fit">
+    <div className="text-center w-full grid grid-rows-[auto,1fr] grid-flow-col gap-4 h-full rounded-xl border-2 border-blue-500 p-4 m-1 ">
+      <h1 className="col-span-2 text-2xl  text-blue-500 text-center uppercase font-bold rounded-md h-fit">
         {" "}
         Attendance tracking
       </h1>
       {/* // title */}
-      <div className="col-span-1 border-2 rounded-md border-cyan-600">
-        <h2 className=" text-2xl text-cyan-600"> Todays attendance</h2>
+      <div className="col-span-1 border-2 rounded-xl border-blue-500">
+        <h2 className=" text-xl text-blue-500 uppercase font-bold m-3">
+          {" "}
+          Todays attendance
+        </h2>
         <div
           id="attendance figure"
           className="rounded-md ml-4 mr-4 mb-b bg-cyan-600"
@@ -59,10 +62,13 @@ export default function AttendanceTracker({ attendanceAlert }: any) {
                 // attendance percentage/chart
                 // button download csv */}
 
-      <div className=" col-span-1 border-2 border-cyan-600 rounded-md">
+      <div className=" col-span-1 border-2 border-blue-500 rounded-xl">
         {/* // div for alerts */}
         <div className="flex flex-row justify-center">
-          <h2 className=" text-2xl text-cyan-600 pr-2"> Alerts</h2>
+          <h2 className="text-xl text-blue-500 mb-4 pr-2 font-semibold uppercase items-center">
+            {" "}
+            Alerts
+          </h2>
           <Image src="/alarmbell.svg" width={24} height={24} alt="Alert icon" />
         </div>
         {/* //div for title
