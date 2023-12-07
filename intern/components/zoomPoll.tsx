@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import { zoomPollData } from "@/app/dummData/zoomPollData";
 import { Bar } from "react-chartjs-2";
 import {
@@ -58,9 +58,8 @@ const chartData = {
   datasets: [{ label: "Thermometer", data: Object.values(thermometerData) }],
 };
 
-function ZoomPolls(props: ZoomPollsProps) {
-  const barStyle = (color: string, height: string) =>
-    `w-1/5 h-${height} bg-${color} transition-height duration-300 ease-in-out`;
+const ZoomPolls: React.FC<ZoomPollsProps> = (props) => {
+  const [showResults, setShowResults] = useState(false);
 
   return (
     <div className="border-2 border-blue-500 p-4 bg-white rounded-xl max-w-xs mx-auto shadow-sm">
@@ -68,15 +67,22 @@ function ZoomPolls(props: ZoomPollsProps) {
         <h2>ZOOM POLLS</h2>
       </div>
       <div className="bg-gray-200 p-4 flex justify-around items-end h-40 rounded-xl">
-        <Bar data={chartData} />
+        {showResults ? (
+          <Bar data={chartData} />
+        ) : (
+          <div className="text-center w-full">No results</div>
+        )}
       </div>
       <div className="flex justify-center mt-4">
-        <button className="bg-green-500 text-white py-2 px-4 border-none cursor-pointer rounded-xl shadow-sm uppercase font-bold">
+        <button
+          className="bg-green-500 text-white py-2 px-4 border-none cursor-pointer rounded-xl shadow-sm uppercase font-bold"
+          onClick={() => setShowResults(!showResults)} // Toggle the showResults state
+        >
           Thermometer
         </button>
       </div>
     </div>
   );
-}
+};
 
 export default ZoomPolls;

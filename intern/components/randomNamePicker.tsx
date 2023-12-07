@@ -45,7 +45,7 @@ const NamePicker: React.FC = () => {
               Name Picker
             </h1>
           </div>
-          <div className="bg-blue-500 text-white w-11/12 h-36 flex justify-center items-center text-2xl rounded-2xl">
+          <div className="bg-blue-500 text-white w-11/12 h-36 flex justify-center items-center rounded-2xl text-5xl">
             {selectedName}
           </div>
           <div className="flex justify-between mt-8 w-11/12 gap-2">
