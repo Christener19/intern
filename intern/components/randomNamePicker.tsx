@@ -38,7 +38,7 @@ const NamePicker: React.FC = () => {
 
   return (
     <section className="flex justify-center">
-      <div className="border-2 rounded-2xl border-blue-500 w-full h-full ml-4 mt-1">
+      <div className="border-2 rounded-2xl border-blue-500 w-full h-full ml-2 mt-1">
         <div className="flex flex-col items-center p-4">
           <div>
             <h2 className="text-center text-xl text-blue-500 font-bold mb-4">

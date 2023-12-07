@@ -68,7 +68,7 @@ const ZoomPolls: React.FC<ZoomPollsProps> = (props) => {
   const [showResults, setShowResults] = useState(false);
 
   return (
-    <div className="border-2 border-blue-500 p-4 rounded-xl shadow-sm w-full h-full m-1">
+    <div className="border-2 border-blue-500 p-4 rounded-xl shadow-sm w-full h-full mt-1 mr-2">
       <div className="text-center text-xl text-blue-500 font-bold mb-4">
         <h2>ZOOM POLLS</h2>
       </div>
