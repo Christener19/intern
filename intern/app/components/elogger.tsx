@@ -18,7 +18,7 @@ export default function EngagementLogger() {
         <input>Search</input>
     </div>
 <div>
-<EngagementLoggerBox  EngagementInfo={EngagemnetData}/> 
+<EngagementLoggerBox  EngagementInfo={EngagementData}/> 
 </div>
 <div>
     <button>Download CSV</button>
