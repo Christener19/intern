@@ -16,8 +16,7 @@ export default function EngagementLogger({ engagementData }: any) {
     <div>
       <h1>Engagement Logger</h1>
       <div>
-        <label>Search</label>
-        <input></input>
+        <input placeholder="Search" />
       </div>
       <div>
         <EngagementLoggerBox EngagementInfo={engagementData} />
