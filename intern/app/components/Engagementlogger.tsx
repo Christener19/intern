@@ -44,9 +44,9 @@ export default function EngagementLoggerCard({ cardObject }: any) {
 
   return (
     <div className={bgColor}>
-      <div className="CardContent">
+      <div className="CardContent flex p-2">
        {imageNotNullChecker()}
-        <div className="cardTextContent">
+        <div className="cardTextContent flex flex-col justify-between pl-4">
           <p>{name}</p>
           <p>Average Engagement: {avgEngagement}</p>
         </div>
