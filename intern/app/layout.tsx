@@ -21,13 +21,10 @@ export default function RootLayout({
   return (
     <html lang="en" className={GeistSans.className}>
       <body className="bg-background text-foreground">
-        <main className="border-red-500 border-2 max-w-full max-h-screen">
-          {children}
-        </main>
+        <main className="max-w-full max-h-full">{children}</main>
       </body>
     </html>
   );
 }
-
 
 //Removed this from line 24 className="min-h-screen flex flex-col items-center"

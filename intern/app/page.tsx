@@ -32,7 +32,7 @@ export default async function Index() {
 
   return (
     // adding redirects to either dashboard or login page depending on user status
-    <section className="border-red-500 border-2 grid grid-cols-3 grid-rows-2 gap-2">
+    <section className="grid grid-cols-3 grid-rows-2 gap-2">
       <div className="border-green-900 border-2 col-span-2">
         {" "}
         <AttendanceTracker attendanceAlert={testAttendanceData} />
