@@ -27,12 +27,12 @@ export default function EngagementLogger({ engagementData }: any) {
 
   // Return the JSX for the component
   return (
-    <div>
+    <div className="p-4 ">
       {/* Heading */}
-      <h1>Engagement Logger</h1>
+      <h1 className=" text-lg text-center w-full">Engagement Logger</h1>
 
       {/* Search input */}
-      <div>
+      <div className="w-full border-2 border-blue-400 rounded-lg mt-2 mb-2">
         <input
           type="text"
           placeholder="Search"
@@ -47,8 +47,8 @@ export default function EngagementLogger({ engagementData }: any) {
       </div>
 
       {/* Download CSV button */}
-      <div>
-        <button>Download CSV</button>
+      <div className="w-full flex justify-items-center ">
+        <button className="bg-green-500 rounded-lg text-white p-4 mt-2 mr-auto ml-auto ">Download CSV</button>
       </div>
     </div>
   );
