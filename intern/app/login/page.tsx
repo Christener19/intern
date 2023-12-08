@@ -56,7 +56,7 @@ export default function Login({
   return (
     <div className="mt-28">
     <div className="border-2 rounded-3xl border-blue-500 bg-blue-500 m-auto h-3/6 w-2/6">
-    <div className="flex justify-center mt-3">
+    <div className="flex justify-center mt-3 pt-3">
           <Image src="/InternLogo.svg" width={250} height={100} alt="Intern" />
           </div>
           <div className="text-white flex justify-center mt-10 opacity-70 text-xl"><h2>Improve efficiency by ultilsing your intern</h2></div>
