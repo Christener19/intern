@@ -2,6 +2,7 @@ import Link from 'next/link'
 import { headers, cookies } from 'next/headers'
 import { createClient } from '@/utils/supabase/server'
 import { redirect } from 'next/navigation'
+import Image from "next/image"
 
 export default function Login({
   searchParams,
@@ -53,7 +54,13 @@ export default function Login({
   }
 
   return (
-    <div className="flex-1 flex flex-col w-full px-8 sm:max-w-md justify-center gap-2">
+    <div className="mt-28">
+    <div className="border-2 rounded-3xl border-blue-500 bg-blue-500 m-auto h-3/6 w-2/6">
+    <div className="flex justify-center mt-3 pt-3">
+          <Image src="/InternLogo.svg" width={250} height={100} alt="Intern" />
+          </div>
+          <div className="text-white flex justify-center mt-10 opacity-70 text-xl"><h2>Improve efficiency by ultilsing your intern</h2></div>
+    <div className="flex-1 flex flex-col w-full px-8 sm:max-w-md justify-center gap-2 m-auto mt-10 mb-10">
       <Link
         href="/"
         className="absolute left-8 top-8 py-2 px-4 rounded-md no-underline text-foreground bg-btn-background hover:bg-btn-background-hover flex items-center group text-sm"
@@ -79,31 +86,31 @@ export default function Login({
         className="animate-in flex-1 flex flex-col w-full justify-center gap-2 text-foreground"
         action={signIn}
       >
-        <label className="text-md" htmlFor="email">
+        <label className="text-md text-white" htmlFor="email">
           Email
         </label>
         <input
-          className="rounded-md px-4 py-2 bg-inherit border mb-6"
+          className="rounded-xl px-4 py-2 bg-inherit border mb-6 bg-white"
           name="email"
           placeholder="you@example.com"
           required
         />
-        <label className="text-md" htmlFor="password">
+        <label className="text-md text-white" htmlFor="password">
           Password
         </label>
         <input
-          className="rounded-md px-4 py-2 bg-inherit border mb-6"
+          className="rounded-xl px-4 py-2 bg-inherit border mb-6 bg-white"
           type="password"
           name="password"
           placeholder="••••••••"
           required
         />
-        <button className="bg-green-700 rounded-md px-4 py-2 text-foreground mb-2">
-          Sign In
+        <button className="bg-green-700 rounded-md px-4 py-2 text-foreground mb-2 text-white hover:bg-green-600">
+          Login
         </button>
         <button
           formAction={signUp}
-          className="border border-foreground/20 rounded-md px-4 py-2 text-foreground mb-2"
+          className="border-2 border-foreground/20 rounded-md px-4 py-2 text-foreground mb-2 bg-gray-300 hover:bg-gray-400"
         >
           Sign Up
         </button>
@@ -113,6 +120,8 @@ export default function Login({
           </p>
         )}
       </form>
+    </div>
+    </div>
     </div>
   )
 }

@@ -9,6 +9,7 @@
 // if card clicked profile appersimport React, { useState } from "react";
 import EngagementLoggerBox from "./eloggerBox";
 import { useState } from "react";
+import Image from "next/image";
 
 // Define the EngagementLogger component
 export default function EngagementLogger({ engagementData }: any) {
@@ -32,8 +33,9 @@ export default function EngagementLogger({ engagementData }: any) {
       <h1 className=" text-lg text-center w-full">Engagement Logger</h1>
 
       {/* Search input */}
-      <div className="w-full border-2 border-blue-400 rounded-lg mt-2 mb-2">
+      <div>
         <input
+        className="w-full border-2 border-blue-400 rounded-lg mt-2 mb-2"
           type="text"
           placeholder="Search"
           value={searchTerm}
