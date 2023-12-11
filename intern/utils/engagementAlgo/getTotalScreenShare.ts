@@ -12,15 +12,17 @@ import findBreakPoints from "./findBreakPoints";
 
 // return score (1-3)
 
-function getTotalScreenShare(zoomID: number) {
+export default function getTotalScreenShare(zoomID: number) {
   console.log(`Getting Total Screen Share for ${zoomID}`);
   let score = 0;
   // Get call to look up Total Screen Share time
   // Get call to look up cohort Screen Share time
 
+  // hard code testing vals
   let totalScreenShareTime = 20;
   let cohortScreenShareArr = [2, 4, 5, 6];
 
+  // calc median and breakpoints
   let median = findMedian(cohortScreenShareArr)
   let breakPoints = findBreakPoints(.15, 0.3, median);
 
