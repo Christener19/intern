@@ -14,12 +14,13 @@ export default function getAllEngagementGrades(weekNumber: number) {
   const zoomIDs = [23, 24, 56, 67];
 
   // start for loop
-  for (let bootcamper of zoomIDs) {
-    let bootcamperScore = getScoreForBootcamper(bootcamper);
-    // patch record in database
-  }
   // Get score for ID
   // check if there is any data
   // if data doesn't exist -> throw error
   // if data does exist -> patch
+
+  for (let bootcamper of zoomIDs) {
+    let bootcamperScore = getScoreForBootcamper(bootcamper);
+    // patch record in database by zoomID and weekNumber
+  }
 }
