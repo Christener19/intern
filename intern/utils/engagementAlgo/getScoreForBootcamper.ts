@@ -30,7 +30,7 @@ import getPolls from "./getPolls";
 import getTotalScreenShare from "./getTotalScreenShare";
 import getFreqScreenSwitch from "./getFreqScreenSwitch";
 
-function getScoreForBootcamper(zoomID) {
+function getScoreForBootcamper(zoomID : number) : string {
   let total =
     getPolls(zoomID) +
     getFreqScreenSwitch(zoomID) +
