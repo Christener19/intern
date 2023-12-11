@@ -35,4 +35,22 @@ function getScoreForBootcamper(zoomID : number) : string {
     getPolls(zoomID) +
     getFreqScreenSwitch(zoomID) +
     getTotalScreenShare(zoomID);
+let grade = ''
+
+    switch(true) {
+        // good
+        case (total >= 8):
+            grade = 'good';
+            break;
+        // average
+        case (total < 8 && total >= 6):
+            grade = 'average';
+            break;
+        // poor
+        default:
+            grade = 'poor';
+            break;
+    }
+
+    return grade
 }
