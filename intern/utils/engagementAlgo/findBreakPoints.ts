@@ -7,8 +7,8 @@ export default function findBreakPoints(
   // Average break point = median * average = 4.5 * 0.70 = 3.15
   // Poor (default).
   return {
-    goodBP: median * (1 - good),
-    averageBP: median * (1 - average),
+    goodBP: (median * (1 - good)).toFixed(3),
+    averageBP: (median * (1 - average)).toFixed(3),
   };
 }
 
