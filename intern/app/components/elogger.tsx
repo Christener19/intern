@@ -36,6 +36,8 @@ export default function EngagementLogger({ engagementData }: any) {
       <div className="mt-3">
         <input
         className=" w-full border-2 border-blue-400 rounded-lg mt-2 mb-2"
+
+     
           type="text"
           placeholder=" Search"
           value={searchTerm}
