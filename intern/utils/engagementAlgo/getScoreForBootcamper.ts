@@ -1,3 +1,4 @@
+// Plan
 // getScoreForBootcamper  function to manage all scoring and returning of engagement data
 
 // getScoreForBootcamper func take ? argument (ZoomID)
@@ -21,3 +22,13 @@
 
 // else (score is lower than 6)
 // return Poor
+
+// Function code
+
+//import block
+import {getPolls} from "./getPolls";
+
+function getScoreForBootcamper() {
+
+    getPolls(44);
+}
