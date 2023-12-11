@@ -30,14 +30,16 @@ export default function EngagementLogger({ engagementData }: any) {
   return (
     <div className="p-4 ">
       {/* Heading */}
-      <h1 className=" text-lg text-center w-full">Engagement Logger</h1>
+      <h1 className=" text-xl text-center w-full font-bold text-blue-500">ENGAGEMENT LOGGER</h1>
 
       {/* Search input */}
-      <div>
+      <div className="mt-3">
         <input
-        className="w-full border-2 border-blue-400 rounded-lg mt-2 mb-2"
+        className=" w-full border-2 border-blue-400 rounded-lg mt-2 mb-2"
+
+     
           type="text"
-          placeholder="Search"
+          placeholder=" Search"
           value={searchTerm}
           onChange={handleSearchChange}
         />
@@ -50,7 +52,7 @@ export default function EngagementLogger({ engagementData }: any) {
 
       {/* Download CSV button */}
       <div className="w-full flex justify-items-center ">
-        <button className="bg-green-500 rounded-lg text-white p-4 mt-2 mr-auto ml-auto ">Download CSV</button>
+        <button className="bg-green-500 rounded-lg text-white p-4 mt-2 mr-auto ml-auto hover:bg-green-600">Download CSV</button>
       </div>
     </div>
   );
