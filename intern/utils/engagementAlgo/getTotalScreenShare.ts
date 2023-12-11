@@ -8,6 +8,7 @@
 // media -31% = 1pt
 
 // return score (1-3)
+import findMedian from "./findMedian";
 
 function getTotalScreenShare(zoomID: number) {
   console.log(`Getting Total Screen Share for ${zoomID}`);
@@ -18,21 +19,7 @@ function getTotalScreenShare(zoomID: number) {
   let totalScreenShareTime = 0;
   let cohortScreenShareArr = [2, 4, 5, 6];
 
-  function findMedian(cohortScreenShareArr: number[]) {
-    cohortScreenShareArr.sort((a, b) => a - b);
-    const middleIndex = Math.floor(cohortScreenShareArr.length / 2);
-
-    if (cohortScreenShareArr.length % 2 === 0) {
-      return (
-        (cohortScreenShareArr[middleIndex - 1] +
-          cohortScreenShareArr[middleIndex]) /
-        2
-      );
-    } else {
-      return cohortScreenShareArr[middleIndex];
-    }
-  }
-  console.log(cohortScreenShareArr);
+  let median = findMedian(cohortScreenShareArr);
 }
 
 getTotalScreenShare(34);
