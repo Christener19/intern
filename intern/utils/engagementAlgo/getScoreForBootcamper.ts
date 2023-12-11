@@ -30,27 +30,27 @@ import getPolls from "./getPolls";
 import getTotalScreenShare from "./getTotalScreenShare";
 import getFreqScreenSwitch from "./getFreqScreenSwitch";
 
-function getScoreForBootcamper(zoomID : number) : string {
+export default function getScoreForBootcamper(zoomID: number): string {
   let total =
     getPolls(zoomID) +
     getFreqScreenSwitch(zoomID) +
     getTotalScreenShare(zoomID);
-let grade = ''
+  let grade = "";
 
-    switch(true) {
-        // good
-        case (total >= 8):
-            grade = 'good';
-            break;
-        // average
-        case (total < 8 && total >= 6):
-            grade = 'average';
-            break;
-        // poor
-        default:
-            grade = 'poor';
-            break;
-    }
+  switch (true) {
+    // good
+    case total >= 8:
+      grade = "good";
+      break;
+    // average
+    case total < 8 && total >= 6:
+      grade = "average";
+      break;
+    // poor
+    default:
+      grade = "poor";
+      break;
+  }
 
-    return grade
+  return grade;
 }
