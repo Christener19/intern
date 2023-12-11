@@ -26,9 +26,13 @@
 // Function code
 
 //import block
-import {getPolls} from "./getPolls";
+import getPolls from "./getPolls";
+import getTotalScreenShare from "./getTotalScreenShare";
+import getFreqScreenSwitch from "./getFreqScreenSwitch";
 
-function getScoreForBootcamper() {
-
-    getPolls(44);
+function getScoreForBootcamper(zoomID) {
+  let total =
+    getPolls(zoomID) +
+    getFreqScreenSwitch(zoomID) +
+    getTotalScreenShare(zoomID);
 }

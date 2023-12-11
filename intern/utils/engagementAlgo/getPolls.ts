@@ -8,32 +8,32 @@
 // >=75-89 = 2 pts
 // <=74 = 1 pt
 
-
 // Function code
-function getPolls(zoomID : number) {
-console.log(`Getting poll score for ${zoomID}`)
-let score = 0;
-// Get call to look at Zoom poll completion rate (poll-completion rate)
-    // fetch
+export default function getPolls(zoomID: number): number {
+  console.log(`Getting poll score for ${zoomID}`);
+  let score = 0;
+  // Get call to look at Zoom poll completion rate (poll-completion rate)
+  // fetch
 
-let completetionPercentage = .74
+  let completetionPercentage = 0.74;
 
-    switch(true) {
-        case completetionPercentage >= .9:
-            score = 3
-            break;
-        case completetionPercentage <= .89 && completetionPercentage >= .75:
-            score = 2;
-            break;
-        default:
-            score = 1;
-    } 
+  switch (true) {
+    case completetionPercentage >= 0.9:
+      score = 3;
+      break;
+    case completetionPercentage <= 0.89 && completetionPercentage >= 0.75:
+      score = 2;
+      break;
+    default:
+      score = 1;
+  }
 
-console.log(`${zoomID} poll score = ${score}`)
-// Switch:
-// >90% = 3 pts
-// >=75-89 = 2 pts
-// <=74 = 1 pt
+  console.log(`${zoomID} poll score = ${score}`);
+  // Switch:
+  // >90% = 3 pts
+  // >=75-89 = 2 pts
+  // <=74 = 1 pt
+  return score;
 }
 
 // getPolls(698); // manual test statment
