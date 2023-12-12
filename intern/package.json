@@ -9,6 +9,8 @@
     "@supabase/auth-helpers-nextjs": "^0.8.7",
     "@supabase/ssr": "latest",
     "@supabase/supabase-js": "^2.39.0",
+    "@types/dotenv": "^8.2.0",
+    "@types/pg": "^8.10.9",
     "autoprefixer": "10.4.15",
     "axios": "^1.6.2",
     "chart.js": "^4.4.1",
