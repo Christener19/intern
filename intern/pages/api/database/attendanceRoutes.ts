@@ -57,3 +57,9 @@ async function handlePatchRequest(req: any, res: NextApiResponse) {
     res.status(500).json({ status: 'error', message: 'Internal Server Error' });
   }
 }
+
+// test
+
+// http://localhost:3000/api/database/attendanceRoutes
+
+// need to break this into seperate files to use the routing function
