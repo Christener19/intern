@@ -14,7 +14,7 @@ async function TestSeedDatabase() {
     try {
         console.log("engagement logger table seeded")
         await pool.query(`
-            INSERT INTO test_engagement_logger (recordid, zoomid, name, poll_completion_rate, screen_share_time, screen_share_switch_freq, average_engagement_grade, week_number)
+            INSERT INTO test_engagement_logger (zoomid, name, poll_completion_rate, screen_share_time, screen_share_switch_freq, average_engagement_grade, week_number)
             VALUES
             (123, 'John Doe', 0.75, 20.5, 5, 'Good', 1),
             (456, 'Jane Smith', 0.85, 15.2, 8, 'Excellent', 2),
@@ -36,3 +36,5 @@ async function TestSeedDatabase() {
   await pool.end();
 }
 }
+
+(async () => { await TestSeedDatabase(); })()

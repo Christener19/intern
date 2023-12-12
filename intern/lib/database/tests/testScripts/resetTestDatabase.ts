@@ -27,8 +27,7 @@ async function resetDatabase() {
             DROP TABLE IF EXISTS test_attendance CASCADE;
             DROP TABLE IF EXISTS test_zoom_polls CASCADE;
             DROP TABLE IF EXISTS test_name_picker CASCADE;
-            DROP TABLE IF EXISTS test_bootcampers CASCADE;
-            
+            DROP TABLE IF EXISTS test_bootcampers CASCADE
         `);
         console.log("creating engagement_logger table")
         // Create the engagement_logger table
@@ -56,6 +55,7 @@ async function resetDatabase() {
             total_attendance_hours REAL,
             total_days_attended INT,
             missing_streak REAL
+            );
         `);
 
         console.log("creating zoom polls table")
@@ -72,6 +72,7 @@ async function resetDatabase() {
             response_rate REAL,
             respondants INT[],
             non_respondants INT[]
+            );
         `);
 
         console.log("creating name_picker table")
@@ -81,7 +82,7 @@ async function resetDatabase() {
               recordid INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
               zoomid INT,
               name VARCHAR(255) NOT NULL
-
+            );
         `)
 
         console.log("creating bootcampers table")
@@ -91,8 +92,11 @@ async function resetDatabase() {
               recordid INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
               zoomid INT,
               name VARCHAR(255) NOT NULL
+              );
         `)  
-console.log("all tables created db reset complete")
+
+
+        console.log("all tables created db reset complete")
     } catch (error) {
         console.error("Database reset failed: ", error);
     } finally {

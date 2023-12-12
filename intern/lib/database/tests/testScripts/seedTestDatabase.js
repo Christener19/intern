@@ -50,7 +50,7 @@ function TestSeedDatabase() {
                 case 0:
                     _a.trys.push([0, 2, 3, 5]);
                     console.log("engagement logger table seeded");
-                    return [4 /*yield*/, dbIndex_1.default.query("\n            INSERT INTO test_engagement_logger (recordid, zoomid, name, poll_completion_rate, screen_share_time, screen_share_switch_freq, average_engagement_grade, week_number)\n            VALUES\n            (123, 'John Doe', 0.75, 20.5, 5, 'Good', 1),\n            (456, 'Jane Smith', 0.85, 15.2, 8, 'Excellent', 2),\n            (789, 'Bob Johnson', 0.62, 30.0, 3, 'Fair', 3),\n            (987, 'Alice Williams', 0.92, 18.3, 6, 'Excellent', 4),\n            (654, 'Charlie Brown', 0.78, 25.7, 4, 'Good', 5),\n            (321, 'Eva Davis', 0.69, 22.1, 7, 'Fair', 6),\n            (555, 'Sam Taylor', 0.88, 12.6, 9, 'Excellent', 7),\n            (777, 'Olivia White', 0.71, 28.4, 2, 'Good', 8),\n            (888, 'Michael Lee', 0.80, 16.8, 5, 'Fair', 9),\n            (999, 'Sophia Harris', 0.95, 14.2, 8, 'Excellent', 10);\n        ")];
+                    return [4 /*yield*/, dbIndex_1.default.query("\n            INSERT INTO test_engagement_logger (zoomid, name, poll_completion_rate, screen_share_time, screen_share_switch_freq, average_engagement_grade, week_number)\n            VALUES\n            (123, 'John Doe', 0.75, 20.5, 5, 'Good', 1),\n            (456, 'Jane Smith', 0.85, 15.2, 8, 'Excellent', 2),\n            (789, 'Bob Johnson', 0.62, 30.0, 3, 'Fair', 3),\n            (987, 'Alice Williams', 0.92, 18.3, 6, 'Excellent', 4),\n            (654, 'Charlie Brown', 0.78, 25.7, 4, 'Good', 5),\n            (321, 'Eva Davis', 0.69, 22.1, 7, 'Fair', 6),\n            (555, 'Sam Taylor', 0.88, 12.6, 9, 'Excellent', 7),\n            (777, 'Olivia White', 0.71, 28.4, 2, 'Good', 8),\n            (888, 'Michael Lee', 0.80, 16.8, 5, 'Fair', 9),\n            (999, 'Sophia Harris', 0.95, 14.2, 8, 'Excellent', 10);\n        ")];
                 case 1:
                     _a.sent();
                     console.log("Test database seeded with data");
@@ -71,3 +71,11 @@ function TestSeedDatabase() {
         });
     });
 }
+(function () { return __awaiter(void 0, void 0, void 0, function () { return __generator(this, function (_a) {
+    switch (_a.label) {
+        case 0: return [4 /*yield*/, TestSeedDatabase()];
+        case 1:
+            _a.sent();
+            return [2 /*return*/];
+    }
+}); }); })();
