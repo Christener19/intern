@@ -78,4 +78,4 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   }
 
 
-//http://localhost:3000/api/oauth/callback?code=
+//http://localhost:3000/api/oauth/meetingId?code=
