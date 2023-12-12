@@ -2,10 +2,11 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 // import pg (node-postgres) lin
 var pg = require("pg");
-// import * as dotenv from 'dotenv'
-// dotenv.config();
+var dotenv = require("dotenv");
+dotenv.config({ path: './.env.local' });
 // Get the db connection string from env file
 var connectionString = process.env.DATABASE_URL;
+//console.log(`connections string = ${connectionString}`)
 // check if the connection is okay, if not, throw error
 if (!connectionString) {
     throw new Error('No database connection, check if your env loads in correctly');

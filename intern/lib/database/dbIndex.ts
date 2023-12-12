@@ -1,11 +1,13 @@
 // import pg (node-postgres) lin
 import * as pg from 'pg'
-// import * as dotenv from 'dotenv'
+import * as dotenv from 'dotenv'
 
-// dotenv.config();
+dotenv.config({path: './.env.local'});
 
 // Get the db connection string from env file
-const connectionString : string | undefined  = process.env.DATABASE_URL ;
+const connectionString = process.env.DATABASE_URL!;
+
+//console.log(`connections string = ${connectionString}`)
 
 // check if the connection is okay, if not, throw error
 if (!connectionString) {

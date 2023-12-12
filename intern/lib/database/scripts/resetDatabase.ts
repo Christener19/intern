@@ -105,4 +105,4 @@ console.log("all tables created db reset complete")
     
 }
 
-(async () => { await resetDatabase(); })
+(async () => { await resetDatabase(); })()

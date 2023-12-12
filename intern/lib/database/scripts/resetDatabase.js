@@ -116,4 +116,4 @@ function resetDatabase() {
             _a.sent();
             return [2 /*return*/];
     }
-}); }); });
+}); }); })();
