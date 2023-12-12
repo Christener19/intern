@@ -41,9 +41,9 @@ export async function getAbsentBootcampers() {
 }
 
 // POST attendance data for a bootcamper
-export async function registerBootcamperAttendance(zoomId : number, updates : any) {
+export async function registerBootcamperAttendance(zoomId : string | null, updates : any) {
     const queryText = `
-        UPDATE test_attendance (
+        UPDATE test_attendance
             SET
             todays_attendance_hours = COALESCE ($1, todays_attendance_hours),
             total_attendance_hours = COALESCE ($2, total_attendance_hours),
@@ -51,7 +51,6 @@ export async function registerBootcamperAttendance(zoomId : number, updates : an
             missing_streak = COALESCE ($4, missing_streak)
             WHERE zoomId = $5
             RETURNING *;
-        )
     `
     try {
     const result = await pool.query(queryText, [
@@ -65,7 +64,7 @@ export async function registerBootcamperAttendance(zoomId : number, updates : an
         return result.rows[0] || null;
 
     }  catch (error) {
-        console.error('Error patching record', error);
+        console.error('Error updating record', error);
         throw error;
     }
 }

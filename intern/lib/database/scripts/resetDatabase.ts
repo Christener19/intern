@@ -1,4 +1,4 @@
-import pool from "../dbIndex";
+import pool from "../../../pages/api/database/dbIndex";
 
 // Table List
 
