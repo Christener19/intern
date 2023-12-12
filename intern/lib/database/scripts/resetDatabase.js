@@ -57,7 +57,7 @@ function resetDatabase() {
                     _a.trys.push([0, 7, 8, 10]);
                     console.log("delete tables if they exist");
                     // Drop existing tables if they exist
-                    return [4 /*yield*/, dbIndex_1.default.query("\n            DROP TABLE IF EXISTS engagement_logger CASCADE;\n            DROP TABLE IF EXISTS attendance CASCADE;\n            DROP TABLE IF EXISTS zoom_polls CASCADE;\n            DROP TABLE IF EXISTS name_picker CASCADE;\n            DROP TABLE IF EXISTS bootcampers CASCADE;\n            \n        ")];
+                    return [4 /*yield*/, dbIndex_1.default.query("\n            DROP TABLE IF EXISTS engagement_logger CASCADE;\n            DROP TABLE IF EXISTS attendance CASCADE;\n            DROP TABLE IF EXISTS zoom_polls CASCADE;\n            DROP TABLE IF EXISTS name_picker CASCADE;\n            DROP TABLE IF EXISTS bootcampers CASCADE;\n        ")];
                 case 1:
                     // Drop existing tables if they exist
                     _a.sent();
@@ -69,25 +69,25 @@ function resetDatabase() {
                     _a.sent();
                     console.log("creating attendance table");
                     // Create the Attendance table
-                    return [4 /*yield*/, dbIndex_1.default.query("\n        CREATE TABLE attendance (\n            recordid INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,\n            zoomid INT,\n            name VARCHAR(255) NOT NULL,\n            todays_attendance_hours REAL,\n            total_attendance_hours REAL,\n            total_days_attended INT,\n            missing_streak REAL\n        ")];
+                    return [4 /*yield*/, dbIndex_1.default.query("\n        CREATE TABLE attendance (\n            recordid INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,\n            zoomid INT,\n            name VARCHAR(255) NOT NULL,\n            todays_attendance_hours REAL,\n            total_attendance_hours REAL,\n            total_days_attended INT,\n            missing_streak REAL\n            );\n        ")];
                 case 3:
                     // Create the Attendance table
                     _a.sent();
                     console.log("creating zoom polls table");
                     // Create the zoom polls table
-                    return [4 /*yield*/, dbIndex_1.default.query("\n        CREATE TABLE zoom_polls (\n            recordid INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,\n            zoom_poll_id INT,\n            zoom_poll_date DATE,\n            zoom_poll_time REAL,\n            poor INT,\n            average INT,\n            good INT,\n            response_rate REAL,\n            respondants INT[],\n            non_respondants INT[]\n        ")];
+                    return [4 /*yield*/, dbIndex_1.default.query("\n        CREATE TABLE zoom_polls (\n            recordid INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,\n            zoom_poll_id INT,\n            zoom_poll_date DATE,\n            zoom_poll_time REAL,\n            poor INT,\n            average INT,\n            good INT,\n            response_rate REAL,\n            respondants INT[],\n            non_respondants INT[]\n            );\n        ")];
                 case 4:
                     // Create the zoom polls table
                     _a.sent();
                     console.log("creating name_picker table");
                     // Create the name picker table
-                    return [4 /*yield*/, dbIndex_1.default.query("\n            CREATE TABLE name_picker (\n              recordid INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,\n              zoomid INT,\n              name VARCHAR(255) NOT NULL\n\n        ")];
+                    return [4 /*yield*/, dbIndex_1.default.query("\n            CREATE TABLE name_picker (\n              recordid INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,\n              zoomid INT,\n              name VARCHAR(255) NOT NULL\n              );\n\n        ")];
                 case 5:
                     // Create the name picker table
                     _a.sent();
                     console.log("creating bootcampers table");
                     // Create the name bootcampers
-                    return [4 /*yield*/, dbIndex_1.default.query("\n            CREATE TABLE bootcampers (\n              recordid INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,\n              zoomid INT,\n              name VARCHAR(255) NOT NULL\n        ")];
+                    return [4 /*yield*/, dbIndex_1.default.query("\n            CREATE TABLE bootcampers (\n              recordid INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,\n              zoomid INT,\n              name VARCHAR(255) NOT NULL\n              );\n        ")];
                 case 6:
                     // Create the name bootcampers
                     _a.sent();
@@ -116,4 +116,4 @@ function resetDatabase() {
             _a.sent();
             return [2 /*return*/];
     }
-}); }); })();
+}); }); });

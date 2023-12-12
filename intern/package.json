@@ -4,7 +4,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "reset": "node intern/lib/database/scripts/resetDatabase.js"
+    "reset": "ts-node lib/database/scripts/resetDatabase.ts"
   },
   "dependencies": {
     "@supabase/auth-helpers-nextjs": "^0.8.7",
