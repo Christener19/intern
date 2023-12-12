@@ -1,4 +1,4 @@
-import { pool } from "../dbIndex";
+import pool from "../dbIndex";
 
 // Table List
 
@@ -102,4 +102,4 @@ console.log("all tables created db reset complete")
     
 }
 
-await resetDatabase();
+(async () => { await resetDatabase(); })

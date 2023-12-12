@@ -3,7 +3,8 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "reset": "node intern/lib/database/scripts/resetDatabase.js"
   },
   "dependencies": {
     "@supabase/auth-helpers-nextjs": "^0.8.7",
@@ -16,6 +17,7 @@
     "chart.js": "^4.4.1",
     "geist": "^1.0.0",
     "next": "latest",
+    "pg": "^8.11.3",
     "postcss": "8.4.29",
     "react": "18.2.0",
     "react-chartjs-2": "^5.2.0",

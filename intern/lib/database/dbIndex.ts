@@ -1,6 +1,6 @@
 // import pg (node-postgres) lin
-import pg from 'pg'
-import dotenv from 'dotenv'
+import * as pg from 'pg'
+import * as dotenv from 'dotenv'
 
 dotenv.config();
 
@@ -15,9 +15,11 @@ if (!connectionString) {
 }
 
 // export new instance of PG pool to be used to interact with the db
-export const pool = new pg.Pool({  
+const pool = new pg.Pool({  
     // pass the connection string
     connectionString,
     // set the max connections to prevent tripping out the database (max 5)
     max: 4,
 })
+
+export default pool;
