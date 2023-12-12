@@ -71,7 +71,7 @@ async function resetDatabase() {
             good INT,
             response_rate REAL,
             respondants INT[],
-            non_respondants INT[]
+            non_respondants INT[] DEFAULT '{}'
             );
         `);
 
