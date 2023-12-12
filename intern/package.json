@@ -3,17 +3,21 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "reset": "ts-node lib/database/scripts/resetDatabase.ts"
   },
   "dependencies": {
     "@supabase/auth-helpers-nextjs": "^0.8.7",
     "@supabase/ssr": "latest",
     "@supabase/supabase-js": "^2.39.0",
+    "@types/dotenv": "^8.2.0",
+    "@types/pg": "^8.10.9",
     "autoprefixer": "10.4.15",
     "axios": "^1.6.2",
     "chart.js": "^4.4.1",
     "geist": "^1.0.0",
     "next": "latest",
+    "pg": "^8.11.3",
     "postcss": "8.4.29",
     "react": "18.2.0",
     "react-chartjs-2": "^5.2.0",
