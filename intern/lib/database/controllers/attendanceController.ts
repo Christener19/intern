@@ -11,7 +11,7 @@ export async function getBootcampers(req : any , res : any) {
 // GET absent 
 export async function getAbsentBootcampers(req : any, res : any) {
     const todaysAbsentees = await attendanceModel.getAbsentBootcampers();
-    res.status(200..json({ status: "success", data: todaysAbsentees})
+    res.status(200).json({ status: "success", data: todaysAbsentees})
 }
 
 // PATCH register
@@ -23,7 +23,7 @@ export async function registerBootcamperAttendance(req : any, res : any) {
     if (!register) {
         return res.status(404).json({status: 'fail', data: {msg: 'ZoomId not found'}})
     }
-    res.status(200.).json({ status: "success", data: register});
+    res.status(200).json({ status: "success", data: register});
 }
 
 
