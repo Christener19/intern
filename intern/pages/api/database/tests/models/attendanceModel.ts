@@ -68,3 +68,9 @@ export async function registerBootcamperAttendance(zoomId : number, updates : an
         throw error;
     }
 }
+
+
+// GET CSV from Postgres
+
+// 1. Create a file
+// 2. Copy CSV data to file
