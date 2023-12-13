@@ -1,6 +1,6 @@
 // import block
 import { NextApiRequest, NextApiResponse } from "next";
-import * as attendanceController from "../../controllers/attendanceController";
+import * as engagementController from "../../controllers/engagementController";
 
 // Main API route handler
 export default async function handler(
@@ -22,7 +22,6 @@ export default async function handler(
 // Function to handle PATCH request
 async function handlePatchRequest(req: NextApiRequest, res: NextApiResponse) {
   try {
-
     // check if it's a test (default to true)
     const testQuery: boolean = req.query.testCheck !== null && req.query.testCheck !== undefined;
 
@@ -35,9 +34,10 @@ async function handlePatchRequest(req: NextApiRequest, res: NextApiResponse) {
     console.log(`Router: data = ${data}`)
 
     // Call the registerBootcamperAttendance function from the controller
-    const register = await attendanceController.registerBootcamperAttendance(
+    const register = await engagementController.patchEngagmentGrade(
       zoomId,
-      data,
+      data.week_number,
+      data.average_engagement_grade,
       testQuery
     );
 

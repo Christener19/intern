@@ -19,13 +19,18 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 // Function to handle GET request
 async function handleGetRequest(req: NextApiRequest, res: NextApiResponse) {
   try {
+
+    // check if it's a test (default to true)
+    const testQuery: boolean = req.query.testCheck !== null && req.query.testCheck !== undefined;
+    
     // Call the getBootcampers function from the controller
-    const todaysAttendance = await attendanceController.getBootcampers();
+    const todaysAttendance = await attendanceController.getBootcampers(testQuery);
     res.status(200).json({ status: 'success', data: todaysAttendance });
   } catch (error) {
     console.error('Error in getBootcampers:', error);
     res.status(500).json({ status: 'error', message: 'Internal Server Error' });
   }
+
 }
 
 

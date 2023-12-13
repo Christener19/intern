@@ -1,6 +1,6 @@
 // import block
 import { NextApiRequest, NextApiResponse } from 'next';
-import * as attendanceController from '../../controllers/attendanceController';
+import * as engagementController from '../../controllers/engagementController';
 
 // Main API route handler
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
@@ -20,23 +20,18 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 // Function to handle GET request
 async function handleGetRequest(req: NextApiRequest, res: NextApiResponse) {
   try {
-
+    const zoomId = Number(req.query.zoomId)
+    
     // check if it's a test (default to true)
     const testQuery: boolean = req.query.testCheck !== null && req.query.testCheck !== undefined;
-
-    // Call the getAbsentBootcampers function from the controller
-    const todaysRegister = await attendanceController.getAbsentBootcampers(testQuery);
-    res.status(200).json({ status: 'success', data: todaysRegister });
+    
+    // Call the getBootcampers function from the controller
+    const engagementCardData = await engagementController.getEngagementCardData(zoomId, testQuery);
+    res.status(200).json({ status: 'success', data: engagementCardData });
     } catch (error) {
-    console.error('Error in getAbsentBootcampers:', error);
+
+    // Handle errors here
+    console.error('Error:', error);
     res.status(500).json({ status: 'error', message: 'Internal Server Error' });
+    }
   }
-}
-
-
-
-// test
-
-// http://localhost:3000/api/database/attendanceRoutes
-
-// need to break this into seperate files to use the routing function
