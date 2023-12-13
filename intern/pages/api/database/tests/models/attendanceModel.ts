@@ -1,5 +1,5 @@
 // import block
-import pool from "../dbIndex";
+import pool from "../../dbIndex";
 
 // file to manage all of the API calls to the database for the attendance table
 
@@ -41,7 +41,7 @@ export async function getAbsentBootcampers() {
 }
 
 // POST attendance data for a bootcamper
-export async function registerBootcamperAttendance(zoomId : string | null, updates : any) {
+export async function registerBootcamperAttendance(zoomId : number, updates : any) {
     const queryText = `
         UPDATE test_attendance
             SET
@@ -68,3 +68,9 @@ export async function registerBootcamperAttendance(zoomId : string | null, updat
         throw error;
     }
 }
+
+
+// GET CSV from Postgres
+
+// 1. Create a file
+// 2. Copy CSV data to file
