@@ -74,13 +74,13 @@ export default async function handler(
     // console.log("Meeting Participants:", participantsData.participants);
 
     const registrantIDs = participantsData.participants.map(
-      (participant) => participant.registrant_id
+      (participant : any) => participant.registrant_id
     );
 
     const uniqueRegistrantIDs = registrantIDs.filter(function (
-      value,
-      index,
-      self
+      value: any,
+      index: any,
+      self: any
     ) {
       return self.indexOf(value) === index && value !== undefined;
     });
