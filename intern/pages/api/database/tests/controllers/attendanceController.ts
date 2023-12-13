@@ -25,14 +25,16 @@ export async function getAbsentBootcampers() {
 
 // PATCH register
 export async function registerBootcamperAttendance(
-  req: any,
-  res: NextApiRequest
+    zoomId : number,
+    data : object,
 ) {
   console.log("Calling registerBootcamperAttendance controller");
-  try {
-    // const zoomId = req.query.zoomId;
-    const data = req.body;
 
+    // console log to check
+    // console.log(`Controller: zoomid = ${zoomId}`)
+    // console.log(`Controller: data = ${data}`)
+
+  try {
     // console.log("zoomId", zoomId);
     console.log(data);
     // call registerBootcamperAttendance from model

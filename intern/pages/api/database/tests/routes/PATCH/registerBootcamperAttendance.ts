@@ -20,11 +20,15 @@ export default async function handler(
 }
 
 // Function to handle PATCH request
-async function handlePatchRequest(req: any, res: NextApiResponse) {
+async function handlePatchRequest(req: NextApiRequest, res: NextApiResponse) {
   try {
     // Extract parameters from the request
-    const zoomId = req.query.id;
+    const zoomId = Number(req.query.zoomId);
     const data = req.body;
+
+    // console log to check
+    console.log(`Router: zoomid = ${zoomId}`)
+    console.log(`Router: data = ${data}`)
 
     // Call the registerBootcamperAttendance function from the controller
     const register = await attendanceController.registerBootcamperAttendance(

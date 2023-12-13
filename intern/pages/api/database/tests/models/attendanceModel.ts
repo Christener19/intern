@@ -41,7 +41,7 @@ export async function getAbsentBootcampers() {
 }
 
 // POST attendance data for a bootcamper
-export async function registerBootcamperAttendance(zoomId : string | null, updates : any) {
+export async function registerBootcamperAttendance(zoomId : number, updates : any) {
     const queryText = `
         UPDATE test_attendance
             SET
