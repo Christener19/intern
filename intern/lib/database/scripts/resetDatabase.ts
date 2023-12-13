@@ -1,4 +1,4 @@
-import pool from "../dbIndex";
+import pool from "../../../pages/api/database/dbIndex";
 
 // Table List
 
@@ -20,6 +20,8 @@ import pool from "../dbIndex";
 
 async function resetDatabase() {
     try {
+        // table dropping
+
         console.log("delete tables if they exist")
         // Drop existing tables if they exist
         await pool.query(`
@@ -29,6 +31,9 @@ async function resetDatabase() {
             DROP TABLE IF EXISTS name_picker CASCADE;
             DROP TABLE IF EXISTS bootcampers CASCADE;
         `);
+
+
+        // table creation
         console.log("creating engagement_logger table")
         // Create the engagement_logger table
         await pool.query(`
@@ -71,7 +76,7 @@ async function resetDatabase() {
             good INT,
             response_rate REAL,
             respondants INT[],
-            non_respondants INT[]
+            non_respondants INT[] DEFAULT '{}'
             );
         `);
 
@@ -96,6 +101,8 @@ async function resetDatabase() {
               );
         `)  
 console.log("all tables created db reset complete")
+
+
     } catch (error) {
         console.error("Database reset failed: ", error);
     } finally {
