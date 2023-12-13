@@ -1,6 +1,6 @@
 // Import block
 import { NextApiRequest, NextApiResponse } from "next";
-import pool from "../../../dbIndex";
+import pool from "../../dbIndex";
 import { parse } from 'json2csv';
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {

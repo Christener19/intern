@@ -1,5 +1,5 @@
 // import block
-import pool from "../../dbIndex";
+import pool from "../dbIndex";
 
 // file to manage all of the API calls to the database for the zoom_polls table
 
