@@ -1,5 +1,4 @@
 // import block
-import { NextApiRequest } from "next";
 import * as engagementModel from "../models/engagementModel";
 
 // api request handlers
@@ -7,28 +6,28 @@ import * as engagementModel from "../models/engagementModel";
 // GET Poll completion
 export async function getPollCompletionRate(zoomID : number) {
   try {
-    const pollCompRate = await engagementModel.getPollCompletionRate(zoomID : number)
-    return todaysAttendance;
+    const pollCompRate = await engagementModel.getPollCompletionRate(zoomID)
+    return pollCompRate;
   } catch (error) {
-    console.error("Error in getBootcampers controller", error);
+    console.error("Error in getPollCompletionRate controller", error);
   }
 }
 
 // GET screenshare time
 export async function getScreenShareTime(zoomID : number) {
   try {
-    const todaysAbsentees = await attendanceModel.getAbsentBootcampers();
-    return todaysAbsentees;
+    const screenShareTime = await engagementModel.getScreenShareTime(zoomID)
+    return screenShareTime;
   } catch (error) {
-    console.error("Error in getAbsentBootcampers controller", error);
+    console.error("Error in getScreenShareFreq controller", error);
   }
 }
 
 // GET screenshare freq
-export async function getScreenShareTime(zoomID : number) {
+export async function getScreenShareFreq(zoomID : number) {
   try {
-    const todaysAbsentees = await attendanceModel.getAbsentBootcampers();
-    return todaysAbsentees;
+    const screenShareFreq = await  engagementModel.getScreenShareFreq(zoomID);
+    return screenShareFreq;
   } catch (error) {
     console.error("Error in getAbsentBootcampers controller", error);
   }
@@ -37,39 +36,38 @@ export async function getScreenShareTime(zoomID : number) {
 // GET engagment card props
 export async function getEngagementCardData(zoomID : number) {
   try {
-    const todaysAbsentees = await attendanceModel.getAbsentBootcampers();
-    return todaysAbsentees;
+    const engagementCardData = await engagementModel.getEngagementCardData(zoomID);
+    return engagementCardData;
   } catch (error) {
-    console.error("Error in getAbsentBootcampers controller", error);
+    console.error("Error in getEngagementCardData controller", error);
   }
 }
 
 // PATCH avegage engagement data for a bootcamper
 export async function patchEngagmentGrade(zoomId : number, week_number : number, average_enagement_grade : string) {
-  console.log("Calling registerBootcamperAttendance controller");
 
     // console log to check
-    // console.log(`Controller: zoomid = ${zoomId}`)
-    // console.log(`Controller: data = ${data}`)
+    console.log(`Controller: zoomid = ${zoomId}`)
+    console.log(`Controller: week_number = ${week_number}`)
+    console.log(`Controller: average_enagement_grade = ${average_enagement_grade}`)
 
   try {
-    // console.log("zoomId", zoomId);
-    console.log(data);
-    // call registerBootcamperAttendance from model
-    const register = await attendanceModel.registerBootcamperAttendance(
+    // call getEngagementCardData from model
+    const patchEngagmentGrade = await engagementModel.patchEngagmentGrade(
       zoomId,
-      data
+      week_number,
+      average_enagement_grade
     );
 
     // assume 404 status if the zoomID is not found
-    if (!register) {
+    if (!patchEngagmentGrade) {
       return { status: "fail", data: { msg: "ZoomId not found" } };
     }
 
     // Return a success response
-    return { status: "success", data: register };
+    return { status: "success", data: patchEngagmentGrade };
   } catch (error) {
-    console.error("Error in registerBootcamperAttendance controller", error);
+    console.error("Error in patchEngagmentGrade controller", error);
     return { status: "error", message: "Internal server error" };
   }
 }
