@@ -52,7 +52,7 @@ async function handlePatchRequest(req: NextApiRequest, res: NextApiResponse) {
     res.status(200).json({ status: "success", data: screenShareSwitchRate });
   } catch (error) {
     // Handle errors and return a 500 response
-    console.error("Error in registerBootcamperAttendance:", error);
+    console.error("Error in patchScreenShareSwitchFreq:", error);
     res.status(500).json({ status: "error", message: "Internal Server Error" });
   }
 }

@@ -11,7 +11,7 @@ export default async function handler(
 
   // Handle PATCH request
   if (method === "POST") {
-    return handlePatchRequest(req, res);
+    return handlePostRequest(req, res);
   }
 
   // If the method is not allowed, set the appropriate headers and status
@@ -20,7 +20,7 @@ export default async function handler(
 }
 
 // Function to handle POST request
-async function handlePOSTRequest(req: NextApiRequest, res: NextApiResponse) {
+async function handlePostRequest(req: NextApiRequest, res: NextApiResponse) {
   try {
     // check if it's a test (default to true)
     const testQuery: boolean = req.query.testCheck !== null && req.query.testCheck !== undefined;
@@ -51,7 +51,7 @@ async function handlePOSTRequest(req: NextApiRequest, res: NextApiResponse) {
     res.status(200).json({ status: "success", data: postPollData });
   } catch (error) {
     // Handle errors and return a 500 response
-    console.error("Error in registerBootcamperAttendance:", error);
+    console.error("Error in patchPollResults:", error);
     res.status(500).json({ status: "error", message: "Internal Server Error" });
   }
 }

@@ -14,7 +14,7 @@ export async function getPollCompletionRate(zoomID : number, tableName : string)
         RETURNING poll_completion_rate;
      `  
     try {
-        const result = await pool.query(queryText)
+        const result = await pool.query(queryText, [zoomID])
         return result.rows;
     } catch (error) {
         console.error('Error getting poll_completion_rate', error);
@@ -32,7 +32,7 @@ export async function getScreenShareTime(zoomID : number, tableName : string) {
     RETURNING screen_share_time;
      `  
     try {
-        const result = await pool.query(queryText)
+        const result = await pool.query(queryText, [zoomID])
         return result.rows;
     } catch (error) {
         console.error('Error getting screen_share_time', error);
@@ -50,7 +50,7 @@ export async function getScreenShareFreq(zoomID : number, tableName : string) {
     RETURNING screen_share_switch_freq;
      `  
     try {
-        const result = await pool.query(queryText)
+        const result = await pool.query(queryText, [zoomID])
         return result.rows;
     } catch (error) {
         console.error('Error getting screen_share_switch_freq', error);
@@ -69,7 +69,7 @@ export async function getEngagementCardData(zoomID : number, tableName : string)
         RETURNING *;
      `  
     try {
-        const result = await pool.query(queryText)
+        const result = await pool.query(queryText, [zoomID])
         return result.rows;
     } catch (error) {
         console.error('Error getting data for engagement card', error);

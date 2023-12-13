@@ -16,7 +16,7 @@ export async function getPollResults(ZoomPollID: number, tableName : string) {
         RETURNING *;
      `  
     try {
-        const result = await pool.query(queryText)
+        const result = await pool.query(queryText, [ZoomPollID])
         return result.rows;
     } catch (error) {
         console.error('Error getting poll results', error);

@@ -31,7 +31,7 @@ async function handleGetRequest(req: NextApiRequest, res: NextApiResponse) {
     const pollResults = await zoomPollsController.getPollResults(zoomPollID, testQuery);
     res.status(200).json({ status: 'success', data: pollResults });
     } catch (error) {
-    console.error('Error in getAbsentBootcampers:', error);
+    console.error('Error in getPollResults:', error);
     res.status(500).json({ status: 'error', message: 'Internal Server Error' });
   }
 }
