@@ -1,6 +1,6 @@
 // import block
 import { NextApiRequest, NextApiResponse } from 'next';
-import * as attendanceController from './controllers/attendanceController';
+import * as attendanceController from '../../controllers/attendanceController';
 
 // Main API route handler
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
