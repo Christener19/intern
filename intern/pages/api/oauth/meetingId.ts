@@ -99,7 +99,8 @@ export default async function handler(
       leave: Date;
     }
 
-    let newParticipantArr = [];
+    let newParticipantArr: newParticipantObjType[] = [];
+  
 
     for (let j = 0; j < uniqueRegistrantIDs.length; j++) {
       let duration = 0;

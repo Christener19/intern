@@ -1,8 +1,6 @@
 {
   "compilerOptions": {
-
     "target": "es2022",
-
     "lib": [
       "dom",
       "dom.iterable",
@@ -24,12 +22,12 @@
         "name": "next"
       }
     ],
-
     "paths": {
       "@/*": [
         "./*"
       ]
-    }
+    },
+    "strictNullChecks": true
   },
   "include": [
     "next-env.d.ts",
@@ -37,7 +35,6 @@
     "**/*.tsx",
     ".next/types/**/*.ts",
     "components/randomNamePicker.tsx"
-
   ],
   "exclude": [
     "node_modules"
