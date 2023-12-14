@@ -7,7 +7,7 @@ export const testAttPerecent = async (): Promise<object> => {
     // route loggers
     // console.log(`mainRoute = ${mainRoute()}`)
     // console.log(`getRoute = ${getRoute}`)
-
+const cleanAttPercent = async () => {
     // do call get data
     const bootCampersPresentResponse = await fetch(`${baseURL}${getRoute}getBootcampers`);
     // clean up JSON
@@ -23,15 +23,25 @@ export const testAttPerecent = async (): Promise<object> => {
     // Calculate attendance percentage
     const attendancePercentage = (totalPresent / (totalCount) * 100);
 
-    const cleanAttPercent = attendancePercentage.toFixed(0);
+    return attendancePercentage.toFixed(0);
 
+}
+
+const alertObject = async () => {
+    // // do call get data
+    const bootCampersMissingStreak = await fetch(`${baseURL}${getRoute}getAbsentBootcampers`);
+
+    // clean up JSON
+    const bootCampersMissing = await bootCampersMissingStreak.text();
+    const bootCampersMissingObject = JSON.parse(bootCampersMissing)
+    console.log(bootCampersMissingObject)
+
+}
+const calculatedPercentage = await cleanAttPercent();
+const alerts = await alertObject();
     // return attPercent val
     return {
-            attPercent: `${cleanAttPercent}%`, 
-            alerts: [
-                { name: 'Chirstner', alertLevel: 1 },
-                { name: 'Kit', alertLevel: 4 },
-                { name: 'Dave', alertLevel: 97 },
-            ]
+            attPercent: `${calculatedPercentage}%`,
+            alerts: alerts
             };
 };
