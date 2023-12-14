@@ -4,10 +4,10 @@ import React from 'react';
 export default function AlertEntry({ infoalert } : any) {
     // destructure for use in component
     // console.log('infoalert', infoalert);  // debug logger
-    const { name, alertLevel } = infoalert;
+    const { name, alert } = infoalert;
 
 
-    console.log(`name: ${name} alertlevel: ${alertLevel}`); // debug logger
+    console.log(`name: ${name} alertlevel: ${alert}`); // debug logger
 
 
     // set alert level
@@ -15,7 +15,7 @@ export default function AlertEntry({ infoalert } : any) {
     alertEmoji = null;
 
 
-  switch (alertLevel) {
+  switch (alert) {
     case 0:
       // no alert
       break;
