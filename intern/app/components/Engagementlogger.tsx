@@ -38,7 +38,7 @@ export default function EngagementLoggerCard({ cardObject }: any) {
     if (image) {
       return <Image src={image} height={64} width={64} alt={`profile image for ${name}`}/>
     } else {
-      return <Image src='/defaultUserimage.svg' height={64} width={64}  alt="default profile image"/>
+      return <Image src='/defaultUserImage.svg' height={64} width={64}  alt="default profile image"/>
     }
   };
 
