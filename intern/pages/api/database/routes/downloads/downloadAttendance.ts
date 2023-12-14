@@ -10,7 +10,7 @@ export default async function handler(req : NextApiRequest, res : NextApiRespons
       const testQuery: boolean = req.query.testCheck !== null && req.query.testCheck !== undefined;
 
       // Deterimine the table name based on the testQuery value
-      const tableName = testQuery ? 'test_attendance' : 'attendance';
+      const tableName = testQuery ? 'attendance' : 'test_attendance';
 
       // Fetch data from the table
       const result = await pool.query(`SELECT * FROM ${tableName}`);
