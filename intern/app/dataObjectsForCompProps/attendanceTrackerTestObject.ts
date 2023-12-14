@@ -15,8 +15,8 @@ const cleanAttPercent = async () => {
     const bootCampersPresentObject = JSON.parse(bootCampersPresent)
 
     // break data into variables we need
-    const totalPresent = Number(bootCampersPresentObject.data.todaysAttendanceCount)
-    const totalMissing = Number(bootCampersPresentObject.data.todaysAbsentCount)
+    const totalPresent = Number(bootCampersPresentObject.data?.todaysAttendanceCount)
+    const totalMissing = Number(bootCampersPresentObject.data?.todaysAbsentCount)
     // // get the total number of missing bootcampers today
     const totalCount = totalPresent + totalMissing
 
@@ -36,12 +36,26 @@ const alertObject = async () => {
     const bootCampersMissingObject = JSON.parse(bootCampersMissing)
     console.log(bootCampersMissingObject)
 
+    // transform object into form needed for the component
+    const modifiedAlertsObject = {
+        data: bootCampersMissingObject.data?.map(item => ({
+            name: item.name,
+            alert: item.missing_streak
+        }))
+    }
+
+    // console.log('modifiedAlertsObject')
+    // console.log(modifiedAlertsObject.data)
+
+    // return array of objects
+    return modifiedAlertsObject.data
 }
+
 const calculatedPercentage = await cleanAttPercent();
 const alerts = await alertObject();
     // return attPercent val
     return {
             attPercent: `${calculatedPercentage}%`,
-            alerts: alerts
+            alerts
             };
 };
