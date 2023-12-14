@@ -11,7 +11,7 @@ export default function EngagementLoggerBox({ EngagementInfo,}: {EngagementInfo:
   } else {
     // console.log('running map function to render cards')
     return (
-      <div className="h-[500px] overflow-auto rounded-3xl">
+      <div className="h-[542px] overflow-auto rounded">
         {EngagementInfo.map((loggerPersonal: any) => (
           <EngagementLoggerCard key={uuidv4()} cardObject={loggerPersonal} />
         ))}

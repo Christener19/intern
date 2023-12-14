@@ -43,8 +43,8 @@ export default function EngagementLoggerCard({ cardObject }: any) {
   };
 
   return (
-    <div className={bgColor}>
-    <div className="mt-3 rounded-lg">
+    <div className={`${bgColor} rounded-lg`}>
+    <div className="mt-3">
       <div className="CardContent flex p-2">
        {imageNotNullChecker()}
         <div className="cardTextContent flex flex-col justify-between pl-4">
