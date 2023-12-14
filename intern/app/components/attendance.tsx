@@ -1,6 +1,7 @@
 //import block
 
 import Image from "next/image";
+import ButtonAttendanceCSV from "./buttonAttendanceCSV";
 import AlertBox from "./alertBox";
 import React from "react";
 
@@ -43,9 +44,11 @@ export default function AttendanceTracker({ attendanceAlert }: any) {
             {" "}
             <p className="text-white text-9xl">{attendancePercent.attPercent}</p>
         </div>
-          <button className="bg-green-500 hover:bg-green-600 rounded-xl uppercase font-bold py-2 px-4 m-6 text-white">
+{/* It will download a CSV file with the attendance data for the day. */}
+      <ButtonAttendanceCSV />
+          {/* <button className="bg-green-500 hover:bg-green-600 rounded-xl uppercase font-bold py-2 px-4 m-6 text-white">
             Download CSV
-        </button>
+        </button> */}
         </div>
       
       {/* // div for attendance
