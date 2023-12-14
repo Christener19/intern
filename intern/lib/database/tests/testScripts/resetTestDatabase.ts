@@ -124,7 +124,7 @@ export default async function resetTestDatabase() {
             VALUES
             (123, 'John Doe', 4.5, 50.2, 30, 0),
             (456, 'Jane Smith', 5.8, 42.1, 28, 0),
-            (789, 'Bob Johnson', 3.2, 60.0, 35, 1),
+            (789, 'Bob Johnson', 3.2, 60.0, 35, 27),
             (987, 'Alice Williams', 6.3, 38.7, 26, 0),
             (654, 'Charlie Brown', 4.7, 55.8, 32, 1),
             (321, 'Eva Davis', 5.1, 48.2, 29, 0),

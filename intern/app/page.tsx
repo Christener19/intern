@@ -37,7 +37,7 @@ export default async function Index() {
 
   // test att percent prop
   const testPercent = await testAttPerecent()
-  console.log(`testPercent = ${testPercent}`)
+  console.log(`testPercent`)
   console.log(testPercent)
 
   return (

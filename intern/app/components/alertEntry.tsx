@@ -7,7 +7,7 @@ export default function AlertEntry({ infoalert } : any) {
     const { name, alertLevel } = infoalert;
 
 
-    // console.log(`alertlevel: ${alertLevel}`); // debug logger
+    console.log(`name: ${name} alertlevel: ${alertLevel}`); // debug logger
 
 
     // set alert level

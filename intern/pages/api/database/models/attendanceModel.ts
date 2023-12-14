@@ -46,7 +46,7 @@ export async function getAbsentBootcampersCount(tableName : string) {
 export async function getAbsentBootcampersID(tableName : string) {
     const queryText = `
         SELECT
-            zoomid
+         name, missing_streak
         FROM ${tableName}
         WHERE
             missing_streak > 0;
