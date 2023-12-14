@@ -19,7 +19,7 @@ const montserrat = Montserrat({
 // utitly function for authentication check
 
 // test import for comp data
-import { testAttendanceData } from "./demoObjects/attendancetrackerObject";
+import { testAttendanceData } from "./dataObjectsForCompProps/attendanceTrackerTestObject";
 import { testEngagementData } from "./demoObjects/engagementLoggerData";
 
 

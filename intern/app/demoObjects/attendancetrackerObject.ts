@@ -6,20 +6,24 @@
 
 // alert entry has 2 values, the name and the alert level (num), it uses these to render the components
 
-export const testAttendanceData = {
-    attPercent: '55%',
-    alerts: [
-        {
-        name: 'Chirstner',
-        alertLevel: 1,
-        },
-        {
-            name: 'Kit',
-            alertLevel: 4,
-            },
-        {
-            name: 'Dave',
-            alertLevel: 97,
-            },
-    ]
-}
+// export const testAttendanceData = {
+//     attPercent: '55%',
+//     alerts: [
+//         {
+//         name: 'Chirstner',
+//         alertLevel: 1,
+//         },
+//         {
+//             name: 'Kit',
+//             alertLevel: 4,
+//             },
+//         {
+//             name: 'Dave',
+//             alertLevel: 97,
+//             },
+//     ]
+// }
+
+// ElephantComponent.tsx
+
+
