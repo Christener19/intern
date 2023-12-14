@@ -23,6 +23,7 @@ export default function AttendanceTracker({ attendanceAlert }: any) {
   const { attPercent, alerts } = attendanceAlert;
 
   const attendancePercent = { attPercent };
+  console.log(`attendancePercent: ${attendancePercent.attPercent}`)
   return (
     <div className="flex flex-col text-center w-full  h-full rounded-xl border-2 border-blue-500 p-4 m-1 ">
       <h1 className="w-full text-2xl  text-blue-500 text-center uppercase font-bold rounded-md h-fit">

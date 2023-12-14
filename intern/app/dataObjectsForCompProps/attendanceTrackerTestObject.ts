@@ -1,38 +1,27 @@
-// import block
-import { mainRoute, getRoute } from "@/utils/APIRouteSetter"
+import { mainRoute, getRoute } from "@/utils/APIRouteSetter";
 
 // returns the attendance Percent value 
-const testAttPerecent = async () : Promise<string> => {
+const testAttPerecent = async (): Promise<string> => {
     // get the total number of bootcampers attending today
-    const bootCampersPresent : number = Number(await fetch (`${mainRoute}${getRoute}getBootcampers`))
+    const bootCampersPresentResponse = await fetch(`${mainRoute()}${getRoute}getBootcampers`);
+    const bootCampersPresent = Number(await bootCampersPresentResponse.text());
 
     // get the total number of missing bootcampers today
-    const bootCampersAbsent : number = Number(await fetch (`${mainRoute}${getRoute}getAbsentBootcampers`))
-    // do math and return percent value
-// 5 are present out of 10 = ((5/10 * 100) + '%' sign)
+    const bootCampersAbsentResponse = await fetch(`${mainRoute()}${getRoute}getAbsentBootcampers`);
+    const bootCampersAbsent = Number(await bootCampersAbsentResponse.text());
 
-const attendancePercentage = (bootCampersPresent/(bootCampersAbsent + bootCampersPresent) * 100)
+    // Calculate attendance percentage
+    const attendancePercentage = (bootCampersPresent / (bootCampersAbsent + bootCampersPresent)) * 100;
+
     // return attPercent val
-    return (
-        `${attendancePercentage}%` 
-    )
+    return `${attendancePercentage.toFixed(2)}%`;
 }
-
 
 export const testAttendanceData = {
-    attPercent: testAttPerecent(),
+    attPercent: testAttPerecent(), 
     alerts: [
-        {
-        name: 'Chirstner',
-        alertLevel: 1,
-        },
-        {
-            name: 'Kit',
-            alertLevel: 4,
-            },
-        {
-            name: 'Dave',
-            alertLevel: 97,
-            },
+        { name: 'Chirstner', alertLevel: 1 },
+        { name: 'Kit', alertLevel: 4 },
+        { name: 'Dave', alertLevel: 97 },
     ]
-}
+};
