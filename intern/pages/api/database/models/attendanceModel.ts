@@ -22,9 +22,28 @@ export async function getBootcampers(tableName : string) {
     }    
 }
 
+// GET count of absent bootcampers attendance
+export async function getAbsentBootcampersCount(tableName : string) {
+    
+    const queryText = `
+        SELECT
+            COUNT(*) AS missing_streak_count
+        FROM ${tableName}
+        WHERE
+            missing_streak > 0;
+     `  
+    try {
+        const result = await pool.query(queryText)
+        return result.rows;
+    } catch (error) {
+        console.error('Error patching record', error);
+        throw error;
+    }    
+}
+
 // GET missing people
 // GET all bootcampers attendance
-export async function getAbsentBootcampers(tableName : string) {
+export async function getAbsentBootcampersID(tableName : string) {
     const queryText = `
         SELECT
             zoomid

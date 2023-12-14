@@ -19,7 +19,7 @@ const montserrat = Montserrat({
 // utitly function for authentication check
 
 // test import for comp data
-import { testAttendanceData } from "./demoObjects/attendancetrackerObject";
+import { testAttPerecent } from "./dataObjectsForCompProps/attendanceTrackerTestObject";
 import { testEngagementData } from "./demoObjects/engagementLoggerData";
 
 
@@ -35,12 +35,17 @@ export default async function Index() {
     redirect("/login");
   }
 
+  // test att percent prop
+  const testPercent = await testAttPerecent()
+  console.log(`testPercent = ${testPercent}`)
+  console.log(testPercent)
+
   return (
     // adding redirects to either dashboard or login page depending on user status
     <section className="grid grid-cols-3 grid-rows-2 gap-2 w-full max-w-screen-trueHD ml-auto mr-auto">
       <div className="col-span-2">
         {" "}
-        <AttendanceTracker attendanceAlert={testAttendanceData} />
+        <AttendanceTracker attendanceAlert={testPercent} />
       </div>
       <div className="row-span-2 col-start-3 row-start-1">
         {" "}

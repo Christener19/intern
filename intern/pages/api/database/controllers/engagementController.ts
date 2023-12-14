@@ -9,7 +9,7 @@ export async function getPollCompletionRate(zoomID : number, testCheck : boolean
   // table to run call on
   let tableName : string = 'engagement_logger'
   // check if this is a test or a real api call
-  if (testCheck) {
+  if (!testCheck) {
     tableName = 'test_' + tableName
   }
 
@@ -27,7 +27,7 @@ export async function getScreenShareTime(zoomID : number, testCheck : boolean) {
   // table to run call on
   let tableName : string = 'engagement_logger'
   // check if this is a test or a real api call
-  if (testCheck) {
+  if (!testCheck) {
     tableName = 'test_' + tableName
   }
 
@@ -45,7 +45,7 @@ export async function getScreenShareFreq(zoomID : number, testCheck : boolean) {
   // table to run call on
   let tableName : string = 'engagement_logger'
   // check if this is a test or a real api call
-  if (testCheck) {
+  if (!testCheck) {
     tableName = 'test_' + tableName
   }
 
@@ -63,7 +63,7 @@ export async function getEngagementCardData(zoomID : number, testCheck : boolean
   // table to run call on
   let tableName : string = 'engagement_logger'
   // check if this is a test or a real api call
-  if (testCheck) {
+  if (!testCheck) {
     tableName = 'test_' + tableName
   }
 
@@ -81,7 +81,7 @@ export async function patchEngagmentGrade(zoomId : number, week_number : number,
     // table to run call on
     let tableName : string = 'engagement_logger'
     // check if this is a test or a real api call
-    if (testCheck) {
+    if (!testCheck) {
       tableName = 'test_' + tableName
     }
 
@@ -118,7 +118,7 @@ export async function patchPollCompletion(zoomId : number, week_number : number,
   // table to run call on
   let tableName : string = 'engagement_logger'
   // check if this is a test or a real api call
-  if (testCheck) {
+  if (!testCheck) {
     tableName = 'test_' + tableName
   }
 
@@ -155,7 +155,7 @@ export async function patchScreenShareTime(zoomId : number, week_number : number
   // table to run call on
   let tableName : string = 'engagement_logger'
   // check if this is a test or a real api call
-  if (testCheck) {
+  if (!testCheck) {
     tableName = 'test_' + tableName
   }
 
@@ -192,7 +192,7 @@ export async function patchScreenShareSwitchFreq(zoomId : number, week_number : 
   // table to run call on
   let tableName : string = 'engagement_logger'
   // check if this is a test or a real api call
-  if (testCheck) {
+  if (!testCheck) {
     tableName = 'test_' + tableName
   }
 
