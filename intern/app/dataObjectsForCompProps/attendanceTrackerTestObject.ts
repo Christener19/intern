@@ -8,10 +8,6 @@ export const testAttPerecent = async (): Promise<object> => {
     // console.log(`mainRoute = ${mainRoute()}`)
     // console.log(`getRoute = ${getRoute}`)
 
-    // // get the total number of bootcampers attending today
-    // const bootCampersPresentResponse = await fetch(`${baseURL}${getRoute}getBootcampers`);
-    // const bootCampersPresent = await bootCampersPresentResponse.text();
-
     // do call get data
     const bootCampersPresentResponse = await fetch(`${baseURL}${getRoute}getBootcampers`);
     // clean up JSON
@@ -24,15 +20,10 @@ export const testAttPerecent = async (): Promise<object> => {
     // // get the total number of missing bootcampers today
     const totalCount = totalPresent + totalMissing
 
-    // debug loggers
-    // console.log(`totalPresent = ${totalPresent}`)
-    // console.log(`totalMissing = ${totalMissing}`)
-    // console.log(`totalCount = ${totalCount}`)
-
     // Calculate attendance percentage
     const attendancePercentage = (totalPresent / (totalCount) * 100);
 
-    const cleanAttPercent = attendancePercentage.toFixed(2);
+    const cleanAttPercent = attendancePercentage.toFixed(0);
 
     // return attPercent val
     return {
@@ -44,12 +35,3 @@ export const testAttPerecent = async (): Promise<object> => {
             ]
             };
 };
-
-// export const testAttendanceData = {
-//     attPercent: await testAttPerecent(), 
-//     alerts: [
-//         { name: 'Chirstner', alertLevel: 1 },
-//         { name: 'Kit', alertLevel: 4 },
-//         { name: 'Dave', alertLevel: 97 },
-//     ]
-// };
