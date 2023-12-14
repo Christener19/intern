@@ -9,7 +9,7 @@ export async function getParticpantsList(testCheck : boolean) {
   // table to run call on
   let tableName : string = 'name_picker'
   // check if this is a test or a real api call
-  if (testCheck) {
+  if (!testCheck) {
     tableName = 'test_' + tableName
   }
 
@@ -27,7 +27,7 @@ export async function deleteName(ZoomPollID : number, testCheck : boolean) {
     // table to run call on
     let tableName : string = 'name_picker'
     // check if this is a test or a real api call
-    if (testCheck) {
+    if (!testCheck) {
       tableName = 'test_' + tableName
     }
 

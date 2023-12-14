@@ -4,12 +4,12 @@ import EngagementLoggerCard from "./Engagementlogger";
 
 export default function EngagementLoggerBox({ EngagementInfo,}: {EngagementInfo: object[] | null;}) 
  {
-  console.log(`rendering Engagemetlogger box`)
+  // console.log(`rendering Engagemetlogger box`)
   if (!EngagementInfo) {
     console.log('null card data')
     return null;
   } else {
-    console.log('running map function to render cards')
+    // console.log('running map function to render cards')
     return (
       <div className="h-[500px] overflow-auto rounded-3xl">
         {EngagementInfo.map((loggerPersonal: any) => (

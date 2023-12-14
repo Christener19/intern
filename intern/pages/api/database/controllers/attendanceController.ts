@@ -8,13 +8,31 @@ export async function getBootcampers(testCheck : boolean) {
   // table to run call on
   let tableName : string = 'attendance'
   // check if this is a test or a real api call
-  if (testCheck) {
+  if (!testCheck) {
   tableName = 'test_' + tableName
   }
 
+  console.log(`query going to ${tableName}`)
+
   try {
     const todaysAttendance = await attendanceModel.getBootcampers(tableName);
-    return todaysAttendance;
+    const todaysAbsent = await attendanceModel.getAbsentBootcampersCount(tableName)
+
+    // data clean up
+    const attendaceCount = todaysAttendance[0].missing_streak_count
+    console.log(`attendaceCount`)
+    console.log(attendaceCount)
+
+    const absentCount = todaysAbsent[0].missing_streak_count
+    console.log(`absent`)
+    console.log(absentCount)
+
+
+
+    return {
+      todaysAttendanceCount: attendaceCount,
+      todaysAbsentCount: absentCount
+    };
   } catch (error) {
     console.error("Error in getBootcampers controller", error);
   }
@@ -26,7 +44,7 @@ export async function getAbsentBootcampers(testCheck : boolean) {
   // table to run call on
   let tableName : string = 'attendance'
   // check if this is a test or a real api call
-  if (testCheck) {
+  if (!testCheck) {
   tableName = 'test_' + tableName
   }
 
@@ -48,7 +66,7 @@ export async function registerBootcamperAttendance(
   // table to run call on
   let tableName : string = 'attendance'
   // check if this is a test or a real api call
-  if (testCheck) {
+  if (!testCheck) {
   tableName = 'test_' + tableName
   }
 

@@ -9,7 +9,7 @@ export async function getPollResults(ZoomPollID : number, testCheck : boolean) {
   // table to run call on
   let tableName : string = 'zoom_polls'
   // check if this is a test or a real api call
-  if (testCheck) {
+  if (!testCheck) {
     tableName = 'test_' + tableName
   }
 
@@ -27,7 +27,7 @@ export async function postNewPollResults(ZoomPollID : number, resultsPayload : z
     // table to run call on
     let tableName : string = 'zoom_polls'
     // check if this is a test or a real api call
-    if (testCheck) {
+    if (!testCheck) {
       tableName = 'test_' + tableName
     }
 
@@ -59,7 +59,7 @@ export async function patchPollResults(ZoomPollID : number, resultsPayload : zoo
   // table to run call on
   let tableName : string = 'zoom_polls'
   // check if this is a test or a real api call
-  if (testCheck) {
+  if (!testCheck) {
     tableName = 'test_' + tableName
   }
 

@@ -11,8 +11,8 @@ import { useState, useEffect } from "react";
 import Image from "next/image";
 
 export default function EngagementLoggerCard({ cardObject }: any) {
-  console.log("rendering card");
-  console.log(cardObject);
+  // console.log("rendering card");
+  // console.log(cardObject);
 
   const [bgColor, setbgColor] = useState("bg-white-400");
 
