@@ -1,12 +1,19 @@
 // import block
-import { NextApiRequest } from "next";
 import * as attendanceModel from "../models/attendanceModel";
 
 // api request handlers
 // Get all attendance
-export async function getBootcampers() {
+export async function getBootcampers(testCheck : boolean) {
+
+  // table to run call on
+  let tableName : string = 'attendance'
+  // check if this is a test or a real api call
+  if (testCheck) {
+  tableName = 'test_' + tableName
+  }
+
   try {
-    const todaysAttendance = await attendanceModel.getBootcampers();
+    const todaysAttendance = await attendanceModel.getBootcampers(tableName);
     return todaysAttendance;
   } catch (error) {
     console.error("Error in getBootcampers controller", error);
@@ -14,9 +21,17 @@ export async function getBootcampers() {
 }
 
 // GET absent
-export async function getAbsentBootcampers() {
+export async function getAbsentBootcampers(testCheck : boolean) {
+
+  // table to run call on
+  let tableName : string = 'attendance'
+  // check if this is a test or a real api call
+  if (testCheck) {
+  tableName = 'test_' + tableName
+  }
+
   try {
-    const todaysAbsentees = await attendanceModel.getAbsentBootcampers();
+    const todaysAbsentees = await attendanceModel.getAbsentBootcampers(tableName);
     return todaysAbsentees;
   } catch (error) {
     console.error("Error in getAbsentBootcampers controller", error);
@@ -27,7 +42,16 @@ export async function getAbsentBootcampers() {
 export async function registerBootcamperAttendance(
     zoomId : number,
     data : object,
+    testCheck : boolean
 ) {
+
+  // table to run call on
+  let tableName : string = 'attendance'
+  // check if this is a test or a real api call
+  if (testCheck) {
+  tableName = 'test_' + tableName
+  }
+
   console.log("Calling registerBootcamperAttendance controller");
 
     // console log to check
@@ -40,7 +64,8 @@ export async function registerBootcamperAttendance(
     // call registerBootcamperAttendance from model
     const register = await attendanceModel.registerBootcamperAttendance(
       zoomId,
-      data
+      data,
+      tableName
     );
 
     // assume 404 status if the zoomID is not found

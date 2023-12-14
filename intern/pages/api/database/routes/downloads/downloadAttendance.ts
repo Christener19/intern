@@ -1,12 +1,19 @@
 // Import block
 import { NextApiRequest, NextApiResponse } from "next";
-import pool from "../../../dbIndex";
+import pool from "../../dbIndex";
 import { parse } from 'json2csv';
 
 export default async function handler(req : NextApiRequest, res : NextApiResponse) {
     try {
-      // Fetch data from the test_attendance table
-      const result = await pool.query('SELECT * FROM test_attendance');
+
+      // check if it's a test (default to true)
+      const testQuery: boolean = req.query.testCheck !== null && req.query.testCheck !== undefined;
+
+      // Deterimine the table name based on the testQuery value
+      const tableName = testQuery ? 'test_attendance' : 'attendance';
+
+      // Fetch data from the table
+      const result = await pool.query(`SELECT * FROM ${tableName}`);
       const data = result.rows;
   
       // Convert the json data to CSV using json2csv

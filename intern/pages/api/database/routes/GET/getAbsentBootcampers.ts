@@ -11,6 +11,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     return handleGetRequest(req, res);
   }
 
+
   // If the method is not allowed, set the appropriate headers and status
   res.setHeader('Allow', ['GET']);
   res.status(405).end(`Method ${method} Not Allowed`);
@@ -19,11 +20,15 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 // Function to handle GET request
 async function handleGetRequest(req: NextApiRequest, res: NextApiResponse) {
   try {
-    // Call the getBootcampers function from the controller
-    const todaysAttendance = await attendanceController.getBootcampers();
-    res.status(200).json({ status: 'success', data: todaysAttendance });
-  } catch (error) {
-    console.error('Error in getBootcampers:', error);
+
+    // check if it's a test (default to true)
+    const testQuery: boolean = req.query.testCheck !== null && req.query.testCheck !== undefined;
+
+    // Call the getAbsentBootcampers function from the controller
+    const todaysRegister = await attendanceController.getAbsentBootcampers(testQuery);
+    res.status(200).json({ status: 'success', data: todaysRegister });
+    } catch (error) {
+    console.error('Error in getAbsentBootcampers:', error);
     res.status(500).json({ status: 'error', message: 'Internal Server Error' });
   }
 }

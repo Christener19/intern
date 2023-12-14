@@ -1,14 +1,15 @@
 // import block
-import pool from "../../dbIndex";
+import pool from "../dbIndex";
 
 // file to manage all of the API calls to the database for the attendance table
 
 // GET all bootcampers attendance
-export async function getBootcampers() {
+export async function getBootcampers(tableName : string) {
+    
     const queryText = `
         SELECT
             COUNT(*) AS missing_streak_count
-        FROM test_attendance
+        FROM ${tableName}
         WHERE
             missing_streak = 0;
      `  
@@ -23,11 +24,11 @@ export async function getBootcampers() {
 
 // GET missing people
 // GET all bootcampers attendance
-export async function getAbsentBootcampers() {
+export async function getAbsentBootcampers(tableName : string) {
     const queryText = `
         SELECT
             zoomid
-        FROM test_attendance
+        FROM ${tableName}
         WHERE
             missing_streak > 0;
      `  
@@ -41,9 +42,9 @@ export async function getAbsentBootcampers() {
 }
 
 // POST attendance data for a bootcamper
-export async function registerBootcamperAttendance(zoomId : number, updates : any) {
+export async function registerBootcamperAttendance(zoomId : number, updates : any, tableName : string) {
     const queryText = `
-        UPDATE test_attendance
+        UPDATE ${tableName}
             SET
             todays_attendance_hours = COALESCE ($1, todays_attendance_hours),
             total_attendance_hours = COALESCE ($2, total_attendance_hours),
