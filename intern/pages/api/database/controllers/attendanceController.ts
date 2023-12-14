@@ -49,7 +49,7 @@ export async function getAbsentBootcampers(testCheck : boolean) {
   }
 
   try {
-    const todaysAbsentees = await attendanceModel.getAbsentBootcampers(tableName);
+    const todaysAbsentees = await attendanceModel.getAbsentBootcampersID(tableName);
     return todaysAbsentees;
   } catch (error) {
     console.error("Error in getAbsentBootcampers controller", error);
