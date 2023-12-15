@@ -60,5 +60,3 @@ export default async function attendanceZoomToDb() {
 }
 
 //http://localhost:3000/api/dbLink/attendance
- 
-attendanceZoomToDb()
