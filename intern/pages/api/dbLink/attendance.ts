@@ -68,14 +68,18 @@ export default async function attendanceZoomToDb() {
 //start loop 
 
 for(let i=0; i < zoomParticipants.participants.length; i++) {
-  // Try and catch for zoomID
+
   const currentZoomID = zoomParticipants.participants[i].registrant_id
 
-  if (currentZoomID.includes(allParticipants.data.zoomid)  ) { 
-// If zoomid then do following:
-//see if zoom id exists 
+  // If zoomid then do following:
+  //see if zoom id exists 
+  for (let j=0; j < allParticipants.length; j++) {
+  if (currentZoomID.includes(!allParticipants.data[j].zoomid)  ) { 
+    // if doesnt then add bootcamper to database
+    
   }
 
+}
 
 //   }
 

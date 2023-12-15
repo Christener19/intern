@@ -118,7 +118,7 @@ export async function registerBootcamperAttendance(
     return { status: "error", message: "Internal server error" };
   }
 }
-// Get list Bootcampers 
+// Get list Bootcampers
 export async function getListBootcampers(testCheck: boolean) {
   // table to run call on
   let tableName: string = "attendance";
@@ -130,12 +130,48 @@ export async function getListBootcampers(testCheck: boolean) {
   console.log(`query going to ${tableName} getListBootcampers`);
 
   try {
-    const bootcampers = await attendanceModel.getListBootcampers(
-      tableName,
-      
-    );
+    const bootcampers = await attendanceModel.getListBootcampers(tableName);
     return bootcampers;
   } catch (error) {
     console.error("Error in getBootcampers controller", error);
+  }
+}
+
+// POST register
+export async function postBootcamperAttendance(
+  zoomId: number,
+  testCheck: boolean
+) {
+  // table to run call on
+  let tableName: string = "attendance";
+  // check if this is a test or a real api call
+  if (!testCheck) {
+    tableName = "test_" + tableName;
+  }
+
+  console.log("Calling postBootcamperAttendance controller");
+
+  // console log to check
+  // console.log(`Controller: zoomid = ${zoomId}`)
+  // console.log(`Controller: data = ${data}`)
+
+  try {
+    console.log("alive at 159");
+    // call registerBootcamperAttendance from model
+    const register = await attendanceModel.postBootcamperAttendance(
+      zoomId,
+      tableName
+    );
+
+    // assume 404 status if the zoomID is not found
+    if (!register) {
+      return { status: "fail", data: { msg: "ZoomId not found" } };
+    }
+
+    // Return a success response
+    return { status: "success", data: register };
+  } catch (error) {
+    console.error("Error in allBootcamperAttendance controller", error);
+    return { status: "error", message: "Internal server error (controller)" };
   }
 }
