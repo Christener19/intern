@@ -3,53 +3,74 @@ import * as attendanceModel from "../models/attendanceModel";
 
 // api request handlers
 // Get all attendance
-export async function getBootcampers(testCheck : boolean) {
-
+export async function getBootcampers(testCheck: boolean) {
   // table to run call on
-  let tableName : string = 'attendance'
+  let tableName: string = "attendance";
   // check if this is a test or a real api call
   if (!testCheck) {
-  tableName = 'test_' + tableName
+    tableName = "test_" + tableName;
   }
 
-  console.log(`query going to ${tableName}`)
+  console.log(`query going to ${tableName}`);
 
   try {
     const todaysAttendance = await attendanceModel.getBootcampers(tableName);
-    const todaysAbsent = await attendanceModel.getAbsentBootcampersCount(tableName)
+    const todaysAbsent = await attendanceModel.getAbsentBootcampersCount(
+      tableName
+    );
 
     // data clean up
-    const attendaceCount = todaysAttendance[0].missing_streak_count
-    console.log(`attendaceCount`)
-    console.log(attendaceCount)
+    const attendaceCount = todaysAttendance[0].missing_streak_count;
+    console.log(`attendaceCount`);
+    console.log(attendaceCount);
 
-    const absentCount = todaysAbsent[0].missing_streak_count
-    console.log(`absent`)
-    console.log(absentCount)
-
-
+    const absentCount = todaysAbsent[0].missing_streak_count;
+    console.log(`absent`);
+    console.log(absentCount);
 
     return {
       todaysAttendanceCount: attendaceCount,
-      todaysAbsentCount: absentCount
+      todaysAbsentCount: absentCount,
     };
   } catch (error) {
     console.error("Error in getBootcampers controller", error);
   }
 }
 
-// GET absent
-export async function getAbsentBootcampers(testCheck : boolean) {
-
+// Get all Bootcampers by ID
+export async function getBootcamperById(testCheck: boolean, zoomid: string) {
   // table to run call on
-  let tableName : string = 'attendance'
+  let tableName: string = "attendance";
   // check if this is a test or a real api call
   if (!testCheck) {
-  tableName = 'test_' + tableName
+    tableName = "test_" + tableName;
+  }
+
+  console.log(`query going to ${tableName}`);
+
+  try {
+    const bootcamper = await attendanceModel.getBootcamperById(
+      tableName,
+      zoomid
+    );
+  } catch (error) {
+    console.error("Error in getBootcampers controller", error);
+  }
+}
+
+// GET absent
+export async function getAbsentBootcampers(testCheck: boolean) {
+  // table to run call on
+  let tableName: string = "attendance";
+  // check if this is a test or a real api call
+  if (!testCheck) {
+    tableName = "test_" + tableName;
   }
 
   try {
-    const todaysAbsentees = await attendanceModel.getAbsentBootcampersID(tableName);
+    const todaysAbsentees = await attendanceModel.getAbsentBootcampersID(
+      tableName
+    );
     return todaysAbsentees;
   } catch (error) {
     console.error("Error in getAbsentBootcampers controller", error);
@@ -58,23 +79,22 @@ export async function getAbsentBootcampers(testCheck : boolean) {
 
 // PATCH register
 export async function registerBootcamperAttendance(
-    zoomId : number,
-    data : object,
-    testCheck : boolean
+  zoomId: number,
+  data: object,
+  testCheck: boolean
 ) {
-
   // table to run call on
-  let tableName : string = 'attendance'
+  let tableName: string = "attendance";
   // check if this is a test or a real api call
   if (!testCheck) {
-  tableName = 'test_' + tableName
+    tableName = "test_" + tableName;
   }
 
   console.log("Calling registerBootcamperAttendance controller");
 
-    // console log to check
-    // console.log(`Controller: zoomid = ${zoomId}`)
-    // console.log(`Controller: data = ${data}`)
+  // console log to check
+  // console.log(`Controller: zoomid = ${zoomId}`)
+  // console.log(`Controller: data = ${data}`)
 
   try {
     // console.log("zoomId", zoomId);
