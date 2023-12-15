@@ -38,7 +38,7 @@ export default function ButtonAttendanceCSV() {
             className="bg-green-500 hover:bg-green-600 rounded-xl uppercase font-bold py-2 px-4 m-6 text-white"
             onClick={handleDownloadClick}
         >
-            Download CSV
+            Download A CSV
         </button>
     );
 }

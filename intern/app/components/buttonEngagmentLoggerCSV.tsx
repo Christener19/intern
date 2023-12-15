@@ -8,7 +8,7 @@ export default function ButtonEngagementCSV() {
     // A fetch function to get CSV data
     async function fetchCSV() {
         try {
-            const response = await fetch(`${apiRoute}${downloadRoute}downloadEngagementLogger`);
+            const response = await fetch(`http://localhost:3000/api/database/routes/downloads/downloadEngagementLogger`);
             if (!response.ok) {
                 throw new Error('Network response was not ok');
             }
@@ -22,6 +22,7 @@ export default function ButtonEngagementCSV() {
 
     // Function to handle the button click
     async function handleDownloadClick() {
+        console.log(`${apiRoute}${downloadRoute}downloadEngagementLogger`) // try and understand why this log doesn't run?
         const csvData = await fetchCSV();
         if (csvData) {
             const blob = new Blob([csvData], { type: 'text/csv;charset=utf-8;' });
@@ -41,7 +42,7 @@ export default function ButtonEngagementCSV() {
             className="bg-green-500 hover:bg-green-600 rounded-xl uppercase font-bold py-2 px-4  text-white ml-auto mr-auto"
             onClick={handleDownloadClick}
         >
-            Download CSV
+            Download E CSV
         </button>
     );
 }

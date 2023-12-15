@@ -53,7 +53,7 @@ export default function EngagementLogger({ engagementData }: any) {
 
       {/* Download CSV button */}
       <div className="w-full flex justify-items-center mt-8 ">
-        <ButtonEngagementCSV/>
+        <ButtonEngagementCSV></ButtonEngagementCSV>
       </div>
     </div>
   );
