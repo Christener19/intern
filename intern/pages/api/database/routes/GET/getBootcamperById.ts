@@ -42,6 +42,6 @@ async function handleGetRequest(req: NextApiRequest, res: NextApiResponse) {
 
 // test
 
-// http://localhost:3000/api/database/GET/getBootcamperById
+// http://localhost:3000/api/database/routes/GET/getBootcamperById?zoomid=123
 
 // need to break this into seperate files to use the routing function
