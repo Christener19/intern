@@ -6,22 +6,32 @@ const mainURL = mainRoute();
 // Function to grab participant attendance data from Zoom API and add to our database
 export default async function attendanceZoomToDb() {
   // Grab zoom data of everyone, latest meeting ID
-  const Zoomparticipants = await fetch(`${mainURL}${oauthRoute}getMeetingParticipants`);
-  const AllParticipant= await fetch (`${mainURL}${getRoute}getListBootcampers`);
-  // debug logger
-  console.log(participants);
-//start loop 
+  const ZoomparticipantsJSON = await fetch(`${mainURL}${oauthRoute}getMeetingParticipants`);
+  const AllParticipantsJSON = await fetch (`${mainURL}${getRoute}getListBootcampers`);
+  
 //variable/ reponse clean up
+  const ZoomparticipantsClean = await ZoomparticipantsJSON.text()
+  const zoomParticipants = JSON.parse(ZoomparticipantsClean)
 
-for(let i=0; i<Zoomparticipants.length; i++)
-  // Try and catch for zoomID
-  if{
-// If zoomid then do following:
-//see if zoom id exists 
+  const allParticipantsClean = await AllParticipantsJSON.text()
+  const AllParticipants = JSON.parse(allParticipantsClean)
+
+  // debug logger
+  console.log('zoomParticipants');
+  console.log(zoomParticipants);
+  console.log('AllParticipants');
+  console.log(AllParticipants);
+//start loop 
+
+// for(let i=0; i< zoomParticipants.length; i++)
+//   // Try and catch for zoomID
+//   if (zoomParticipants.) { 
+// // If zoomid then do following:
+// //see if zoom id exists 
 
 
 
-  }
+//   }
 
  //end loop if 
  //then do patch
@@ -44,12 +54,11 @@ for(let i=0; i<Zoomparticipants.length; i++)
 
   // Create loop to patch by zoomid.
   
-  const getBootcampers = fetch(
-    "http://localhost:3000/api/database/route/GET/getBootcampers"
-  );
-  console.log(getBootcampers);
+  // console.log(getBootcampers);
  
   // pool.end();
 }
 
 //http://localhost:3000/api/dbLink/attendance
+ 
+attendanceZoomToDb()

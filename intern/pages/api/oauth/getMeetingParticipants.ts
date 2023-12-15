@@ -103,7 +103,7 @@ export default async function handler(
     }
 
     // Send the participants data in the response
-    res.status(200).json({ success: true, participants: participantsData });
+    res.status(200).json({ success: true, participants: newParticipantArr });
   } catch (error) {
     console.error("Error:", error);
     res.status(500).json({ success: false, error: "Internal Server Error" });
