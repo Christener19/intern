@@ -118,3 +118,23 @@ export async function registerBootcamperAttendance(
     return { status: "error", message: "Internal server error" };
   }
 }
+// Get list Bootcampers 
+export async function getListBootcampers(testCheck: boolean) {
+  // table to run call on
+  let tableName: string = "attendance";
+  // check if this is a test or a real api call
+  if (!testCheck) {
+    tableName = "test_" + tableName;
+  }
+
+  console.log(`query going to ${tableName}`);
+
+  try {
+    const bootcamper = await attendanceModel.getListBootcampers(
+      tableName,
+      
+    );
+  } catch (error) {
+    console.error("Error in getBootcampers controller", error);
+  }
+}
