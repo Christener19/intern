@@ -127,13 +127,14 @@ export async function getListBootcampers(testCheck: boolean) {
     tableName = "test_" + tableName;
   }
 
-  console.log(`query going to ${tableName}`);
+  console.log(`query going to ${tableName} getListBootcampers`);
 
   try {
-    const bootcamper = await attendanceModel.getListBootcampers(
+    const bootcampers = await attendanceModel.getListBootcampers(
       tableName,
       
     );
+    return bootcampers;
   } catch (error) {
     console.error("Error in getBootcampers controller", error);
   }

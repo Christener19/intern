@@ -13,22 +13,68 @@ export default async function attendanceZoomToDb() {
   const ZoomparticipantsClean = await ZoomparticipantsJSON.text()
   const zoomParticipants = JSON.parse(ZoomparticipantsClean)
 
+  // const parsedData = {
+  //   success: true,
+  //   participants: [
+  //     {
+  //       registrant_id: "_ic4PfRWS1mCf5GsC3Zhcg",
+  //       name: "(Kit) Wing-Kit Leung",
+  //       user_email: "wing_kitleung@hotmail.com",
+  //       day: "2023-12-14T",
+  //       duration: 182,
+  //       join_leave: [
+  //         {
+  //           join: "2023-12-14T10:11:12Z",
+  //           leave: "2023-12-14T10:11:15Z",
+  //         },
+  //         {
+  //           join: "2023-12-14T10:11:15Z",
+  //           leave: "2023-12-14T10:12:17Z",
+  //         },
+  //         {
+  //           join: "2023-12-14T10:12:17Z",
+  //           leave: "2023-12-14T10:12:22Z",
+  //         },
+  //         {
+  //           join: "2023-12-14T10:12:23Z",
+  //           leave: "2023-12-14T10:12:32Z",
+  //         },
+  //         {
+  //           join: "2023-12-14T10:12:32Z",
+  //           leave: "2023-12-14T10:12:41Z",
+  //         },
+  //         {
+  //           join: "2023-12-14T10:12:41Z",
+  //           leave: "2023-12-14T10:12:45Z",
+  //         },
+  //         {
+  //           join: "2023-12-14T10:12:46Z",
+  //           leave: "2023-12-14T10:14:16Z",
+  //         },
+  //       ],
+  //     },
+  //   ],
+  // };
+  
+  
   const allParticipantsClean = await AllParticipantsJSON.text()
-  const AllParticipants = JSON.parse(allParticipantsClean)
+  const allParticipants = JSON.parse(allParticipantsClean)
 
   // debug logger
   console.log('zoomParticipants');
   console.log(zoomParticipants);
   console.log('AllParticipants');
-  console.log(AllParticipants);
+  console.log(allParticipants);
 //start loop 
 
-// for(let i=0; i< zoomParticipants.length; i++)
-//   // Try and catch for zoomID
-//   if (zoomParticipants.) { 
-// // If zoomid then do following:
-// //see if zoom id exists 
+for(let i=0; i < zoomParticipants.participants.length; i++) {
+  // Try and catch for zoomID
+  const currentZoomID = zoomParticipants.participants[i].registrant_id
 
+  if (currentZoomID.includes(allParticipants.data.zoomid)  ) { 
+// If zoomid then do following:
+//see if zoom id exists 
+  }
 
 
 //   }
