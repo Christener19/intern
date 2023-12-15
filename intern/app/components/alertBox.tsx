@@ -14,7 +14,7 @@ export default function AlertBox({
     return (
       // create alerts for every alert in the array
 
-      <div className="rounded-xl border-2 border-blue-500 ml-4 mr-4 mb-4 h-48 box-border">
+      <div className="rounded-xl border-2 border-blue-500 ml-4 mr-4 mb-4 h-48 box-border p-2">
         {alertInformation.map((alert: any) => (
           <AlertEntry key={uuid()} infoalert={alert} />
         ))}

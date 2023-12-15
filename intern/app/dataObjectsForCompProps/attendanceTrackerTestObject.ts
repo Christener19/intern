@@ -1,7 +1,7 @@
 import { mainRoute, getRoute } from "@/utils/APIRouteSetter";
 
 // returns the attendance Percent value 
-export const testAttPerecent = async (): Promise<object> => {
+export const attendanceDataFetcher = async (): Promise<object> => {
 
     const baseURL = mainRoute()
     // route loggers

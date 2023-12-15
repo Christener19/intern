@@ -7,9 +7,9 @@ import AttendanceTracker from "./components/attendance";
 
 import EngagementLogger from "./components/elogger";
 
-import NamePicker from "../components/randomNamePicker";
+import NamePicker from "./components/randomNamePicker";
 import { Montserrat } from "next/font/google";
-import ZoomPolls from "../components/zoomPoll";
+import ZoomPolls from "./components/zoomPoll";
 
 const montserrat = Montserrat({
   subsets: ["latin"],
@@ -19,7 +19,7 @@ const montserrat = Montserrat({
 // utitly function for authentication check
 
 // test import for comp data
-import { testAttPerecent } from "./dataObjectsForCompProps/attendanceTrackerTestObject";
+import { attendanceDataFetcher } from "./dataObjectsForCompProps/attendanceTrackerTestObject";
 import { testEngagementData } from "./demoObjects/engagementLoggerData";
 
 
@@ -36,16 +36,16 @@ export default async function Index() {
   }
 
   // test att percent prop
-  const testPercent = await testAttPerecent()
-  console.log(`testPercent`)
-  console.log(testPercent)
+  const attendanceData = await attendanceDataFetcher()
+  console.log(`attendanceData`)
+  console.log(attendanceData)
 
   return (
     // adding redirects to either dashboard or login page depending on user status
-    <section className="grid grid-cols-3 grid-rows-2 gap-2 w-full max-w-screen-trueHD ml-auto mr-auto">
+    <section className="grid grid-cols-3 grid-rows-2 gap-2 p-2 w-full max-w-screen-trueHD trueHD:ml-auto trueHD:mr-auto">
       <div className="col-span-2">
         {" "}
-        <AttendanceTracker attendanceAlert={testPercent} />
+        <AttendanceTracker attendanceAlert={attendanceData} />
       </div>
       <div className="row-span-2 col-start-3 row-start-1">
         {" "}
