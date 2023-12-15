@@ -140,7 +140,8 @@ export async function getListBootcampers(testCheck: boolean) {
 // POST register
 export async function postBootcamperAttendance(
   zoomId: number,
-  testCheck: boolean
+  testCheck: boolean,
+  name: string
 ) {
   // table to run call on
   let tableName: string = "attendance";
@@ -160,7 +161,8 @@ export async function postBootcamperAttendance(
     // call registerBootcamperAttendance from model
     const register = await attendanceModel.postBootcamperAttendance(
       zoomId,
-      tableName
+      tableName,
+      name
     );
 
     // assume 404 status if the zoomID is not found

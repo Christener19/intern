@@ -28,7 +28,7 @@ async function handlePostRequest(req: NextApiRequest, res: NextApiResponse) {
 
     // Extract parameters from the request
     const zoomId = Number(req.query.zoomId);
-    // const data = req.body;
+    const name = req.body.name;
 
     // console log to check
     console.log(`Router: zoomid = ${zoomId}`);
@@ -37,7 +37,8 @@ async function handlePostRequest(req: NextApiRequest, res: NextApiResponse) {
     // Call the registerBootcamperAttendance function from the controller
     const register = await attendanceController.postBootcamperAttendance(
       zoomId,
-      testQuery
+      testQuery,
+      name
     );
 
     // If the registration fails, return a 404 response

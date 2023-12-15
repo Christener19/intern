@@ -1,5 +1,5 @@
 import pool from "../database/dbIndex";
-import { mainRoute, getRoute, oauthRoute } from "@/utils/APIRouteSetter";
+import { mainRoute, getRoute, oauthRoute, postRoute } from "@/utils/APIRouteSetter";
 
 const mainURL = mainRoute();
 
@@ -74,9 +74,25 @@ for(let i=0; i < zoomParticipants.participants.length; i++) {
   // If zoomid then do following:
   //see if zoom id exists 
   for (let j=0; j < allParticipants.length; j++) {
-  if (currentZoomID.includes(!allParticipants.data[j].zoomid)  ) { 
+    if (currentZoomID.includes(!allParticipants.data[j].zoomid)  ) { 
+    try {
     // if doesnt then add bootcamper to database
-    
+    const response = await fetch(`${mainURL}${postRoute}
+    postBootcamperAttendance?=${currentZoomID}`, {
+      // set header
+      headers: {
+        "Content-Type": "application/json",
+      },
+      // send name in the body
+      body: JSON.stringify(currentZoomID.name),
+    });
+      // log that it works
+      const result = await response.json()
+      console.log("Success:", result)
+      // log if it errors
+    } catch (error) {
+      console.log('Error:', error)
+    } 
   }
 
 }
