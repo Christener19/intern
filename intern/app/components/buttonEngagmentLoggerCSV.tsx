@@ -8,7 +8,7 @@ export default function ButtonEngagementCSV() {
     // A fetch function to get CSV data
     async function fetchCSV() {
         try {
-            const response = await fetch(`http://localhost:3000/api/database/routes/downloads/downloadEngagementLogger`);
+            const response = await fetch(`https://intern-soc.vercel.app/api/database/routes/downloads/downloadEngagementLogger`);
             if (!response.ok) {
                 throw new Error('Network response was not ok');
             }
