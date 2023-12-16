@@ -3,7 +3,7 @@
 export const mainRoute = ():string => {
     if (process.env.NODE_ENV === 'development') {
         // dev/local url
-        return 'http:localhost:3000/'
+        return 'http://localhost:3000/'
     } else {
         // prod url
         return 'https://intern-soc.vercel.app/'

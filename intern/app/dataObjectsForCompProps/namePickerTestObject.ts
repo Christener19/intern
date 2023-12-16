@@ -5,9 +5,16 @@ import { ParticipantNamesResponse } from "../components/randomNamePicker";
 export const fetchParticipantNames = async (): Promise<ParticipantNamesResponse> => {
     const baseURL = mainRoute();
 
+    // Construct the URL for the API call
+    const url = `${baseURL}${getRoute}getParticipantList`;
+
+    // Log the URL to the console
+    console.log("Requesting URL:", url);
+
     try {
         // Fetch data from the 'getParticipantList' API route
-        const participantResponse = await fetch(`${baseURL}${getRoute}getParticipantList`);
+        const participantResponse = await fetch(url);
+        // const participantResponse = await fetch(`${baseURL}${getRoute}getParticipantList`);
 
         if (!participantResponse.ok) {
             throw new Error(`HTTP error! status: ${participantResponse.status}`);
@@ -19,8 +26,8 @@ export const fetchParticipantNames = async (): Promise<ParticipantNamesResponse>
         }
 
  
-        const participantText = await participantResponse.text();
-        const participantData = JSON.parse(participantText);
+        const participantData = await participantResponse.json();
+
 
         const names = participantData.data.map(item => item.name);
 

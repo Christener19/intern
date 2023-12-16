@@ -63,4 +63,4 @@ export default async function Index() {
   );
 }
 
-// Removed from line 24 className="flex-1 w-full flex flex-col gap-20 items-center"
+
