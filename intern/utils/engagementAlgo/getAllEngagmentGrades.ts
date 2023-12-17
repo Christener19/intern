@@ -20,7 +20,7 @@ export default function getAllEngagementGrades(weekNumber: number) {
   // if data does exist -> patch
 
   for (let bootcamper of zoomIDs) {
-    let bootcamperScore = getScoreForBootcamper(bootcamper);
+    let bootcamperScore = getScoreForBootcamper(bootcamper, breakpoints, bootcamper.data, cohortdata);
     // patch record in database by zoomID and weekNumber
   }
 }

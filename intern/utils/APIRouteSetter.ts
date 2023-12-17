@@ -1,11 +1,13 @@
 
 // to allow fetch requests to dynamically change between dev and live environment
 export const mainRoute = ():string => {
-    if (process.env.NODE_ENV === 'development') {
+    if (process.env.NODE_ENV == 'development') {
         // dev/local url
-        return 'http:localhost:3000/'
+        console.log('running in dev')
+        return 'http://localhost:3000/'
     } else {
         // prod url
+        console.log('running in live')
         return 'https://intern-soc.vercel.app/'
     }
 }

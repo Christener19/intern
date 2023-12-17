@@ -233,16 +233,50 @@ export async function getAllScreenData(testCheck : boolean, weekNumber: number) 
   if (!testCheck) {
     tableName = 'test_' + tableName
   }
+
+  console.log(`running query on ${tableName}`)
+
   try {
     // call functions from model
+    console.log('getting all screen time')
     const allScreenTime = await engagementModel.getAllScreenTime(tableName, weekNumber);
+    console.log('gettings all screen switch')
     const allScreenSwitch = await engagementModel.getAllScreenSwitch(tableName, weekNumber);
     // return both in an object
     return ( 
+      { status: "success", data: 
       {
         allScreenTime,
         allScreenSwitch
-      });
+        }
+      }
+    );
+  // if fail, throw error
+  } catch (error) {
+    console.error('Error in getAllScreenData')
+  }
+};
+
+// GET all bootcampers data to engagementGrade
+export async function getBootcampersDataArr(testCheck : boolean, weekNumber: number) {
+
+  // table to run all on
+  let tableName : string = 'engagement_logger'
+  // check if this is a test or a real api call
+  if (!testCheck) {
+    tableName = 'test_' + tableName
+  }
+
+  console.log(`running query on ${tableName}`)
+
+  try {
+    // call functions from model
+    console.log('getting all bootcamper data')
+    const allBootcampersData = await engagementModel.getBootcampersDataArr(tableName, weekNumber);;
+    // return both in an object
+    return ( 
+      { status: "success", data: allBootcampersData}
+    );
   // if fail, throw error
   } catch (error) {
     console.error('Error in getAllScreenData')

@@ -175,16 +175,22 @@ export async function patchScreenShareSwitchFreq(zoomId : number, week_number : 
 
 // GET for all screen share switch to use in engagment calc
 export async function getAllScreenSwitch(tableName:string, weekNumber: number) {
+    console.log(
+        'getting all screen switch model'
+    )
+    const tabName = tableName
+    const weeknum = weekNumber
+
     // query to run
     const queryText = `
     SELECT
     screen_share_switch_freq
-    FROM ${tableName}
-    WHERE week_number = ${weekNumber}
+    FROM ${tabName}
+    WHERE week_number = $1
     `
     // try this first
     try {
-        const result = await pool.query(queryText);
+        const result = await pool.query(queryText, [weeknum]);
         return result.rows;
     // if fail throw the error
     } catch (error) {
@@ -195,20 +201,53 @@ export async function getAllScreenSwitch(tableName:string, weekNumber: number) {
 
 // GET for all screen time to use in engagment calc
 export async function getAllScreenTime(tableName:string, weekNumber: number) {
+    console.log(
+        'getting all screen time model'
+    )
+    const tabName = tableName
+    const weeknum = weekNumber
+
+
+       // query to run
+       const queryText = `
+       SELECT
+       screen_share_time
+       FROM ${tabName}
+       WHERE week_number = $1
+       `
+       // try this first
+       try {
+           const result = await pool.query(queryText, [weeknum]);
+           return result.rows;
+       // if fail throw the error
+       } catch (error) {
+           console.error(`Error in getAllScreenTime:`, error);
+           throw error;
+       }
+}
+
+// GET all bootcamper data
+export async function getBootcampersDataArr(tableName:string, weekNumber: number) {
+    console.log('Getting all bootcampers in an array of objects')
+
+    const tabName = tableName
+    const weeknum = weekNumber
+    
     // query to run
     const queryText = `
     SELECT
-    screen_share_time
-    FROM ${tableName}
-    WHERE week_number = ${weekNumber}
+    zoomid, poll_completion_rate, screen_share_time, screen_share_switch_freq
+    FROM ${tabName}
+    WHERE week_number = $1;
     `
-    // try this first
+    // try
     try {
-        const result = await pool.query(queryText);
-        return result.rows;
-    // if fail throw the error
-    } catch (error) {
-        console.error(`Error in getAllScreenTime:`, error);
+        const result = await pool.query(queryText, [weeknum]);
+        return result.rows
+        // if fail throw an error
+    } catch (error){
+        console.error(`Error in getBootcampersDataArr:`, error);
         throw error;
     }
+    
 }

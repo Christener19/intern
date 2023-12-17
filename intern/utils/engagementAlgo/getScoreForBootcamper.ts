@@ -30,11 +30,25 @@ import getPolls from "./getPolls";
 import getTotalScreenShare from "./getTotalScreenShare";
 import getFreqScreenSwitch from "./getFreqScreenSwitch";
 
-export default function getScoreForBootcamper(zoomID: number): string {
+export default function getScoreForBootcamper(breakPoints: object, bootcamperData: object[]): string {
+
+  // deconstruct objects for use
+    // zoomID
+    const zoomID = bootcamperData.zoomId
+    // screen share data values
+    const bootcamperScreenShareTotal : number = bootcamperData.screenShareTotal
+    // screen share breakpoint
+    const screenShareBreakPoint: object = breakPoints.screenShare
+    // Switch freq data values
+    const bootcamperScreenSwitchFreqTotal : number = bootcamperData.screenSwitchFreqTotal
+    // switch freq breakpoint
+    const switchFreqBreakPoint: object = breakPoints.switchFreq
+
+
   let total =
-    getPolls(zoomID) +
-    getFreqScreenSwitch(zoomID) +
-    getTotalScreenShare(zoomID);
+    getPolls(zoomID, bootcamperData.pollCompletionRate) +
+    getFreqScreenSwitch(zoomID, switchFreqBreakPoint, bootcamperScreenSwitchFreqTotal) +
+    getTotalScreenShare(zoomID, screenShareBreakPoint, bootcamperScreenShareTotal);
   let grade = "";
 
   switch (true) {
