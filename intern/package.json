@@ -46,6 +46,7 @@
     "@types/react-dom": "18.2.5",
     "@types/uuid": "^9.0.7",
     "encoding": "^0.1.13",
+    "eslint-config-next": "^14.0.4",
     "ngrok": "^5.0.0-beta.2"
   }
 }

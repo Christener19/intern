@@ -222,3 +222,29 @@ try {
   return { status: "error", message: "Internal server error" };
 }
 }
+
+
+// GET all screen share switch freq
+export async function getAllScreenData(testCheck : boolean, weekNumber: number) {
+
+  // table to run all on
+  let tableName : string = 'engagement_logger'
+  // check if this is a test or a real api call
+  if (!testCheck) {
+    tableName = 'test_' + tableName
+  }
+  try {
+    // call functions from model
+    const allScreenTime = await engagementModel.getAllScreenTime(tableName, weekNumber);
+    const allScreenSwitch = await engagementModel.getAllScreenSwitch(tableName, weekNumber);
+    // return both in an object
+    return ( 
+      {
+        allScreenTime,
+        allScreenSwitch
+      });
+  // if fail, throw error
+  } catch (error) {
+    console.error('Error in getAllScreenData')
+  }
+};

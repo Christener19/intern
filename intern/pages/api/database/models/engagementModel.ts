@@ -172,3 +172,43 @@ export async function patchScreenShareSwitchFreq(zoomId : number, week_number : 
         throw error;
     }
 }
+
+// GET for all screen share switch to use in engagment calc
+export async function getAllScreenSwitch(tableName:string, weekNumber: number) {
+    // query to run
+    const queryText = `
+    SELECT
+    screen_share_switch_freq
+    FROM ${tableName}
+    WHERE week_number = ${weekNumber}
+    `
+    // try this first
+    try {
+        const result = await pool.query(queryText);
+        return result.rows;
+    // if fail throw the error
+    } catch (error) {
+        console.error(`Error in getAllScreenSwitch:`, error);
+        throw error;
+    }
+}
+
+// GET for all screen time to use in engagment calc
+export async function getAllScreenTime(tableName:string, weekNumber: number) {
+    // query to run
+    const queryText = `
+    SELECT
+    screen_share_time
+    FROM ${tableName}
+    WHERE week_number = ${weekNumber}
+    `
+    // try this first
+    try {
+        const result = await pool.query(queryText);
+        return result.rows;
+    // if fail throw the error
+    } catch (error) {
+        console.error(`Error in getAllScreenTime:`, error);
+        throw error;
+    }
+}
