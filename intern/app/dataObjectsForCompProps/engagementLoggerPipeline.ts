@@ -1,13 +1,14 @@
 // import block
 import { mainRoute, getRoute } from "../../utils/APIRouteSetter";
-import findBreakPoints from "../../utils/engagementAlgo/findBreakPoints";
 const baseURL = mainRoute()
+import findBreakPoints from "../../utils/engagementAlgo/findBreakPoints";
 import findMedian from '../../utils/engagementAlgo/findMedian'
 
 // This updates the data that feeds the engagement logger cards
 
 // GET the data points from the database
 async function allScreenDataFetcher(weekNumber: number) {
+
     console.log(weekNumber)
     console.log(`allScreen URL: ${baseURL}${getRoute}getAllScreenData?weeknumber=${weekNumber}`)
     console.log(`allBootcampers URL: ${baseURL}${getRoute}getAllScreenData?weeknumber=${weekNumber}`)

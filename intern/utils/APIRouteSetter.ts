@@ -1,7 +1,7 @@
-
 // to allow fetch requests to dynamically change between dev and live environment
 export const mainRoute = ():string => {
-    if (process.env.NODE_ENV == 'development') {
+    console.log(`ENV: ${process.env.ENV}`)
+    if (process.env.ENV! == 'development') {
         // dev/local url
         console.log('running in dev')
         return 'http://localhost:3000/'
