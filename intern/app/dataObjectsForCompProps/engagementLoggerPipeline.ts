@@ -15,6 +15,7 @@ async function allScreenDataFetcher(weekNumber: number) {
 
     // Freq Screen Switch for all as an array
     // Total screen share for all as an array
+    console.log('getting all screen data')
     const allScreenData = await fetch(`${baseURL}${getRoute}getAllScreenData?weeknumber=${weekNumber}`)
     // clean up response json
     interface screenData {
