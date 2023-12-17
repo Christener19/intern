@@ -1,7 +1,6 @@
 // import block
 import { NextApiRequest, NextApiResponse } from 'next';
 import * as engagementController from '../../controllers/engagementController';
-import { query } from 'express';
 
 // Main API route handler
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
