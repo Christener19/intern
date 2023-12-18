@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import React, { useState, useEffect } from "react";
 import { Bar } from "react-chartjs-2";
 import {
@@ -6,17 +6,22 @@ import {
   CategoryScale,
   LinearScale,
   BarElement,
+  Tooltip,
 } from "chart.js";
 import { fetchZoomPollResults } from "../dataObjectsForCompProps/zoompollTestObject";
 
-ChartJS.register(CategoryScale, LinearScale, BarElement);
+ChartJS.register(CategoryScale, LinearScale, BarElement, Tooltip);
 
 type ZoomPollsProps = {
   zoomPollID?: number;
 };
 
 const ZoomPolls: React.FC<ZoomPollsProps> = ({ zoomPollID }) => {
-  const [pollResults, setPollResults] = useState({ good: 0, average: 0, poor: 0 });
+  const [pollResults, setPollResults] = useState({
+    good: 0,
+    average: 0,
+    poor: 0,
+  });
   const [showResults, setShowResults] = useState(false);
 
   useEffect(() => {
@@ -36,16 +41,58 @@ const ZoomPolls: React.FC<ZoomPollsProps> = ({ zoomPollID }) => {
   }, [zoomPollID]);
 
   const chartData = {
-    labels: ['Good', 'Average', 'Poor'],
+    labels: ["Good", "Average", "Poor"],
     datasets: [
       {
-        label: "Poll Results",
+        label: "Thermometer",
         data: [pollResults.good, pollResults.average, pollResults.poor],
         backgroundColor: ["#4ADE80", "#FACC15", "#F87171"],
+        borderRadius: 8,
       },
     ],
   };
-
+  const options = {
+    plugins: {
+      legend: {
+        labels: {
+          font: {
+            size: 20, // Legend font size
+          },
+        },
+      },
+      tooltip: {
+        backgroundColor: "rgba(0, 0, 0, 0.8)",
+        titleFont: {
+          size: 16,
+          family: "Arial, sans-serif",
+        },
+        bodyFont: {
+          size: 14,
+          family: "Arial, sans-serif",
+        },
+        cornerRadius: 4,
+        displayColors: true,
+        mode: "index",
+        intersect: false,
+      },
+    },
+    scales: {
+      x: {
+        ticks: {
+          font: {
+            size: 20, // X-axis labels font size
+          },
+        },
+      },
+      y: {
+        ticks: {
+          font: {
+            size: 16, // Y-axis labels font size
+          },
+        },
+      },
+    },
+  };
 
   return (
     <div className="border-2 border-blue-500 p-4 rounded-xl shadow-sm w-full h-full mt-1 mr-2">
@@ -54,10 +101,10 @@ const ZoomPolls: React.FC<ZoomPollsProps> = ({ zoomPollID }) => {
       </div>
       <div className="bg-gray-200 p-4 flex justify-around items-end h-52 rounded-xl">
         {showResults ? (
-          <Bar data={chartData} />
+          <Bar data={chartData} options={options} />
         ) : (
           <div className="text-center w-full text-black mb-20 uppercase font-semibold">
-           NO RESULTS
+            NO RESULTS
           </div>
         )}
       </div>
@@ -66,7 +113,7 @@ const ZoomPolls: React.FC<ZoomPollsProps> = ({ zoomPollID }) => {
           className="bg-green-500 hover:bg-green-600 text-white py-2 px-4 border-none cursor-pointer rounded-xl shadow-sm uppercase font-bold mt-4"
           onClick={() => setShowResults(!showResults)}
         >
-          Toggle Results
+          Thermometer
         </button>
       </div>
     </div>
@@ -74,9 +121,6 @@ const ZoomPolls: React.FC<ZoomPollsProps> = ({ zoomPollID }) => {
 };
 
 export default ZoomPolls;
-
-
-
 
 // // console.log(zoomPollData[0].questions[0].question_details[0].answer);
 
