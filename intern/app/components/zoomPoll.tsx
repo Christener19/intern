@@ -31,9 +31,9 @@ const ZoomPolls: React.FC<ZoomPollsProps> = ({ zoomPollData }) => {
         average: zoomPollData.average,
         poor: zoomPollData.poor,
       });
-      setShowResults(true);
-    } else {
       setShowResults(false);
+    } else {
+      setShowResults(true);
     }
   }, [zoomPollData]);
 
