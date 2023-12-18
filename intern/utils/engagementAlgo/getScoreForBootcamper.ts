@@ -30,25 +30,44 @@ import getPolls from "./getPolls";
 import getTotalScreenShare from "./getTotalScreenShare";
 import getFreqScreenSwitch from "./getFreqScreenSwitch";
 
-export default function getScoreForBootcamper(breakPoints: object, bootcamperData: object[]): string {
-
+export default function getScoreForBootcamper(
+  breakPoints: any,
+  bootcamperData: any
+): string {
+  console.log("Started function getScoreForBootcamper");
   // deconstruct objects for use
-    // zoomID
-    const zoomID = bootcamperData.zoomId
-    // screen share data values
-    const bootcamperScreenShareTotal : number = bootcamperData.screenShareTotal
-    // screen share breakpoint
-    const screenShareBreakPoint: object = breakPoints.screenShare
-    // Switch freq data values
-    const bootcamperScreenSwitchFreqTotal : number = bootcamperData.screenSwitchFreqTotal
-    // switch freq breakpoint
-    const switchFreqBreakPoint: object = breakPoints.switchFreq
-
+  // zoomID
+  const zoomID = bootcamperData.zoomId;
+  console.log(`zoomID ${zoomID}`);
+  // screen share data values
+  const bootcamperScreenShareTotal: number = bootcamperData.screenShareTotal;
+  console.log(`SreenShare: ${bootcamperScreenShareTotal}`);
+  // screen share breakpoint
+  const screenShareBreakPoint: object = breakPoints.screenShareBreakPoint;
+  console.log(`screenShareBreakPoint: ${screenShareBreakPoint}`);
+  // Switch freq data values
+  const bootcamperScreenSwitchFreqTotal: number =
+    bootcamperData.screenSwitchFreqTotal;
+  console.log(`ScreenShareSwitch: ${bootcamperScreenSwitchFreqTotal}`);
+  // switch freq breakpoint
+  const switchFreqBreakPoint: object = breakPoints.screenSwitchFreqBreakPoint;
+  console.log(`switch Freq BP: ${switchFreqBreakPoint}`);
+  // poll completetion rate
+  const pollCompletionRate: number = bootcamperData.pollCompletionRate;
+  console.log(`pollCompletionRate: ${pollCompletionRate}`);
 
   let total =
-    getPolls(zoomID, bootcamperData.pollCompletionRate) +
-    getFreqScreenSwitch(zoomID, switchFreqBreakPoint, bootcamperScreenSwitchFreqTotal) +
-    getTotalScreenShare(zoomID, screenShareBreakPoint, bootcamperScreenShareTotal);
+    getPolls(zoomID, pollCompletionRate) +
+    getFreqScreenSwitch(
+      zoomID,
+      switchFreqBreakPoint,
+      bootcamperScreenSwitchFreqTotal
+    ) +
+    getTotalScreenShare(
+      zoomID,
+      screenShareBreakPoint,
+      bootcamperScreenShareTotal
+    );
   let grade = "";
 
   switch (true) {
