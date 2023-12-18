@@ -31,13 +31,15 @@ import getTotalScreenShare from "./getTotalScreenShare";
 import getFreqScreenSwitch from "./getFreqScreenSwitch";
 
 export default function getScoreForBootcamper(
+  bootcamperData: any,
   breakPoints: any,
-  bootcamperData: any
-): string {
+  ): string {
+  // console.log(`$(breakPoints)`);
+  // console.log(`$(bootcamperData)`);
   console.log("Started function getScoreForBootcamper");
   // deconstruct objects for use
   // zoomID
-  const zoomID = bootcamperData.zoomId;
+  const zoomID = bootcamperData.zoomID;
   console.log(`zoomID ${zoomID}`);
   // screen share data values
   const bootcamperScreenShareTotal: number = bootcamperData.screenShareTotal;
@@ -47,7 +49,7 @@ export default function getScoreForBootcamper(
   console.log(`screenShareBreakPoint: ${screenShareBreakPoint}`);
   // Switch freq data values
   const bootcamperScreenSwitchFreqTotal: number =
-    bootcamperData.screenSwitchFreqTotal;
+    bootcamperData.screenSwitchTotal;
   console.log(`ScreenShareSwitch: ${bootcamperScreenSwitchFreqTotal}`);
   // switch freq breakpoint
   const switchFreqBreakPoint: object = breakPoints.screenSwitchFreqBreakPoint;

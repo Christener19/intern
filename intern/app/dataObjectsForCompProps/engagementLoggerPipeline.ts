@@ -108,8 +108,11 @@ const dave = async () => {
 export default async function getAllEngagementGrades(weekNumber: number) {
   // fetch all zoomIDs
   // const zoomIDs = [23, 24, 56, 67];
+//intalising return array 
+const CreatedArry= []
 
   const allBootcamper = await allScreenDataFetcher(weekNumber);
+  //console.log(`Number of bootcampers: ${allBootcamper.bootcampers.length}`);
 
   // start for loop
   // Get score for ID
@@ -130,12 +133,21 @@ export default async function getAllEngagementGrades(weekNumber: number) {
       allBootcamper.breakpoints
     );
     // patch record in database by zoomID and weekNumber
-  }
-  // Great return object
-  // array of objects of each bootcamper {id, grade, week number}
+    //console.log(`${bootcamperScore}`)
+    CreatedArry.push({zoomID:allBootcamper.bootcampers[i].zoomID, bootcamperScore}) ;
+    
 }
+// Great return object
+// array of objects of each bootcamper {id, grade, week number}
+return CreatedArry;
+}
+const Bill = async () => {
+    const logger = await getAllEngagementGrades(1);
+    console.log(logger);
+  };
 
-getAllEngagementGrades(1);
+Bill();
+// getAllEngagementGrades(1);
 
 // Start loop to go thru every bootcamper in the database
 async function allEngagementGradePatcher(screenShareMedians: object) {
