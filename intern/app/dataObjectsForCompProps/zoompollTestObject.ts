@@ -1,9 +1,11 @@
 import { mainRoute, getRoute } from "@/utils/APIRouteSetter";
 
 // Function to fetch Zoom poll results
-export const fetchZoomPollResults = async (zoomPollID: any, testQuery = true) => {
+export const fetchZoomPollResults = async (zoomPollID: number) => {
     const baseURL = mainRoute();
-    const url = `${baseURL}${getRoute}getZoomPollResults?zoomPollId=${zoomPollID}&testCheck=${testQuery}`;
+    const url = `${baseURL}${getRoute}getZoomPollResults?zoomPollId=${zoomPollID}`; //deleted test query 
+    console.log("Requesting URL:", url);
+    console.log('zoomPollID:', zoomPollID);
 
     try {
         const response = await fetch(url);
@@ -18,9 +20,16 @@ export const fetchZoomPollResults = async (zoomPollID: any, testQuery = true) =>
         }
 
         const pollResults = await response.json();
-        return pollResults.data;
+
+        // Check if the data array is not empty
+        if (pollResults.status === 'success' && pollResults.data.length > 0) {
+            return pollResults.data[0]; // Return the first element of the data array
+        } else {
+            throw new Error('No data found');
+        }
     } catch (error) {
         console.error('Error fetching Zoom poll results:', error);
         return null; 
     }
 };
+

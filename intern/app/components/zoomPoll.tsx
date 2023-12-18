@@ -17,7 +17,7 @@ type ZoomPollsProps = {
 };
 
 const ZoomPolls: React.FC<ZoomPollsProps> = ({ zoomPollID }) => {
-  const [pollResults, setPollResults] = useState({ good: 0, neutral: 0, bad: 0 });
+  const [pollResults, setPollResults] = useState({ good: 0, average: 0, poor: 0 });
   const [showResults, setShowResults] = useState(false);
 
   useEffect(() => {
@@ -70,19 +70,8 @@ const ZoomPolls: React.FC<ZoomPollsProps> = ({ zoomPollID }) => {
 
 export default ZoomPolls;
 
-// "use client";
-// import React, { useState } from "react";
-// import { zoomPollData } from "../dummData/zoomPollData";
-// import { Bar } from "react-chartjs-2";
-// import {
-//   Chart as ChartJS,
-//   CategoryScale,
-//   LinearScale,
-//   BarElement,
-// } from "chart.js";
 
-// // Register the category scale
-// ChartJS.register(CategoryScale, LinearScale, BarElement);
+
 
 // // console.log(zoomPollData[0].questions[0].question_details[0].answer);
 
