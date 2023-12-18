@@ -121,13 +121,13 @@ const CreatedArry= []
   // if data does exist -> patch
 
   for (let i = 0; i < allBootcamper.bootcampers.length; i++) {
-    console.log(
-      `Getting score for: ${allBootcamper.bootcampers[i].zoomID} ${i} of ${allBootcamper.bootcampers.length}`
-    );
-    console.log(
-      `details of bootcamper: zoomID: ${allBootcamper.bootcampers[i].zoomID} screenShare: ${allBootcamper.bootcampers[i].screenShareTotal}, screenShareSwitch: ${allBootcamper.bootcampers[i].screenSwitchTotal}
-      pollCompletionRate: ${allBootcamper.bootcampers[i].pollCompletionRate}`
-    );
+    // console.log(
+    //   `Getting score for: ${allBootcamper.bootcampers[i].zoomID} ${i} of ${allBootcamper.bootcampers.length}`
+    // );
+    // console.log(
+    //   `details of bootcamper: zoomID: ${allBootcamper.bootcampers[i].zoomID} screenShare: ${allBootcamper.bootcampers[i].screenShareTotal}, screenShareSwitch: ${allBootcamper.bootcampers[i].screenSwitchTotal}
+    //   pollCompletionRate: ${allBootcamper.bootcampers[i].pollCompletionRate}`
+    // );
     let bootcamperScore = await getScoreForBootcamper(
       allBootcamper.bootcampers[i],
       allBootcamper.breakpoints
@@ -165,14 +165,14 @@ const Bill = async () => {
         average_engagement_grade: patchArray[i].bootcamperScore
     }
     // debug logger
-    console.log('data object')
-    console.log(data)
+    // console.log('data object')
+    // console.log(data)
 
     // tracking logger
     console.log(`patching zoomID: ${zoomId}, grade: ${patchArray[i].bootcamperScore} record ${i} of ${patchArray.length}`)
     // PATCH the Average engagment value by ID
     await fetch(`
-        ${baseURL}${patchRoute}patchEngagmentGrade?zoomId=${zoomId}`,
+        ${baseURL}${patchRoute}patchEngagementGrade?zoomId=${zoomId}`,
         {
             method: 'PATCH',
             headers: {
@@ -188,4 +188,6 @@ const Bill = async () => {
     console.log('patching complete')
 }
 
-allEngagementGradePatcher(1);
+// test runner - real thing needs to work on an onclick function
+//allEngagementGradePatcher(1);
+
