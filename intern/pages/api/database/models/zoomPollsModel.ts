@@ -4,7 +4,7 @@ import pool from "../dbIndex";
 // file to manage all of the API calls to the database for the zoom_polls table
 
 // GET Poll results from postgres
-export async function getPollResults(ZoomPollID: number, tableName : string) {
+export async function getPollResults(zoomPollID: number, tableName : string) {
 
     const queryText = `
         SELECT
@@ -15,7 +15,7 @@ export async function getPollResults(ZoomPollID: number, tableName : string) {
             WHERE zoom_poll_id = $1;
      `  
     try {
-        const result = await pool.query(queryText, [ZoomPollID])
+        const result = await pool.query(queryText, [zoomPollID])
         return result.rows;
     } catch (error) {
         console.error('Error getting poll results', error);
@@ -36,7 +36,7 @@ export interface ResultsType {
 }
 
 // POST poll results
-export async function postNewPollResults(ZoomPollID : number, results : ResultsType, tableName : string) {
+export async function postNewPollResults(zoomPollID : number, results : ResultsType, tableName : string) {
 
     // destructure object to post
     const {zoom_poll_date, zoom_poll_time, poor, average, good, response_rate, respondants, non_respondants}: ResultsType = results
@@ -53,7 +53,7 @@ export async function postNewPollResults(ZoomPollID : number, results : ResultsT
     `
     try {
     const result = await pool.query(queryText, [
-            ZoomPollID,
+            zoomPollID,
             zoom_poll_date,
             zoom_poll_time,
             poor,

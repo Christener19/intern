@@ -53,7 +53,7 @@ export default async function Index() {
       </div>
       <div className="col-start-1 row-start-2">
         {" "}
-        <ZoomPolls />
+        <ZoomPolls zoomPollID={101} />
       </div>
       <div className="col-start-2 row-start-2">
         {" "}

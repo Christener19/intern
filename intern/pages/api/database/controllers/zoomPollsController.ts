@@ -4,7 +4,7 @@ import * as zoomPollsModel from "../models/zoomPollsModel";
 // api request handlers
 
 // GET Poll results
-export async function getPollResults(ZoomPollID : number, testCheck : boolean) {
+export async function getPollResults(zoomPollID : number, testCheck : boolean) {
   
   // table to run call on
   let tableName : string = 'zoom_polls'
@@ -14,7 +14,7 @@ export async function getPollResults(ZoomPollID : number, testCheck : boolean) {
   }
 
   try {
-    const pollResults = await zoomPollsModel.getPollResults(ZoomPollID, tableName)
+    const pollResults = await zoomPollsModel.getPollResults(zoomPollID, tableName)
     return pollResults;
   } catch (error) {
     console.error("Error in getPollCompletionRate controller", error);
