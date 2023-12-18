@@ -19,26 +19,44 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
 // Function to handle GET request
 async function handleGetRequest(req: NextApiRequest, res: NextApiResponse) {
+  const zoomPollID = req.query.zoomPollId ? Number(req.query.zoomPollId) : undefined;
 
-  const zoomPollID = Number(req.query.zoomPollId)
-  if (isNaN(zoomPollID)) {
-    // Handle the case where zoomPollID is not a valid number
+  if (zoomPollID !== undefined && isNaN(zoomPollID)) {
+    // Handle the case where zoomPollID is provided but not valid
     return res.status(400).json({ error: "Invalid zoomPollID" });
   }
 
   try {
-
-    // check if it's a test (default to true)
     const testQuery: boolean = req.query.testCheck !== null && req.query.testCheck !== undefined;
-
-    // Call the getAbsentBootcampers function from the controller
     const pollResults = await zoomPollsController.getPollResults(zoomPollID, testQuery);
     res.status(200).json({ status: 'success', data: pollResults });
-    } catch (error) {
+  } catch (error) {
     console.error('Error in getPollResults:', error);
     res.status(500).json({ status: 'error', message: 'Internal Server Error' });
   }
 }
+
+// async function handleGetRequest(req: NextApiRequest, res: NextApiResponse) {
+
+//   const zoomPollID = Number(req.query.zoomPollId)
+//   if (isNaN(zoomPollID)) {
+//     // Handle the case where zoomPollID is not a valid number
+//     return res.status(400).json({ error: "Invalid zoomPollID" });
+//   }
+
+//   try {
+
+//     // check if it's a test (default to true)
+//     const testQuery: boolean = req.query.testCheck !== null && req.query.testCheck !== undefined;
+
+//     // Call the getAbsentBootcampers function from the controller
+//     const pollResults = await zoomPollsController.getPollResults(zoomPollID, testQuery);
+//     res.status(200).json({ status: 'success', data: pollResults });
+//     } catch (error) {
+//     console.error('Error in getPollResults:', error);
+//     res.status(500).json({ status: 'error', message: 'Internal Server Error' });
+//   }
+// }
 
 
 

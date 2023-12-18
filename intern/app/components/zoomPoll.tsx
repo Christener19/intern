@@ -9,11 +9,11 @@ import {
 } from "chart.js";
 import { fetchZoomPollResults } from "../dataObjectsForCompProps/zoompollTestObject";
 
-// Register the category scale
+// Register the chart components
 ChartJS.register(CategoryScale, LinearScale, BarElement);
 
 type ZoomPollsProps = {
-  zoomPollID: number; 
+  zoomPollID?: number; // Make zoomPollID optional
 };
 
 const ZoomPolls: React.FC<ZoomPollsProps> = ({ zoomPollID }) => {
@@ -22,9 +22,12 @@ const ZoomPolls: React.FC<ZoomPollsProps> = ({ zoomPollID }) => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const results = await fetchZoomPollResults(zoomPollID);
+      const results = await fetchZoomPollResults(zoomPollID); // zoomPollID can be undefined
       if (results) {
         setPollResults(results); // Set the fetched results
+        setShowResults(true); // Show the results if data is fetched
+      } else {
+        setShowResults(false); // Hide the results if no data is fetched
       }
     };
 
@@ -35,9 +38,9 @@ const ZoomPolls: React.FC<ZoomPollsProps> = ({ zoomPollID }) => {
     labels: Object.keys(pollResults),
     datasets: [
       {
-        label: "Thermometer",
+        label: "Poll Results",
         data: Object.values(pollResults),
-        backgroundColor: ["green", "blue", "red"],
+        backgroundColor: ["#F87171", "#FACC15", "#4ADE80"],
       },
     ],
   };
@@ -52,16 +55,16 @@ const ZoomPolls: React.FC<ZoomPollsProps> = ({ zoomPollID }) => {
           <Bar data={chartData} />
         ) : (
           <div className="text-center w-full text-black mb-20 uppercase font-semibold">
-            No results
+            No results available
           </div>
         )}
       </div>
       <div className="flex justify-center mt-4">
         <button
           className="bg-green-500 hover:bg-green-600 text-white py-2 px-4 border-none cursor-pointer rounded-xl shadow-sm uppercase font-bold mt-4"
-          onClick={() => setShowResults(!showResults)} // Toggle the showResults state
+          onClick={() => setShowResults(!showResults)}
         >
-          Thermometer
+          Toggle Results
         </button>
       </div>
     </div>

@@ -1,11 +1,15 @@
 import { mainRoute, getRoute } from "@/utils/APIRouteSetter";
 
 // Function to fetch Zoom poll results
-export const fetchZoomPollResults = async (zoomPollID: number) => {
+export const fetchZoomPollResults = async (zoomPollID?: number) => {
     const baseURL = mainRoute();
-    const url = `${baseURL}${getRoute}getZoomPollResults?zoomPollId=${zoomPollID}`; //deleted test query 
+    let url = `${baseURL}${getRoute}getZoomPollResults`;
+
+    // Append zoomPollID to the URL only if it's provided
+    if (zoomPollID !== undefined) {
+        url += `?zoomPollId=${zoomPollID}`;
+    }
     console.log("Requesting URL:", url);
-    console.log('zoomPollID:', zoomPollID);
 
     try {
         const response = await fetch(url);
@@ -14,15 +18,10 @@ export const fetchZoomPollResults = async (zoomPollID: number) => {
             throw new Error(`HTTP error! status: ${response.status}`);
         }
 
-        const contentType = response.headers.get("content-type");
-        if (!contentType || !contentType.includes("application/json")) {
-            throw new TypeError("Not a JSON response");
-        }
-
         const pollResults = await response.json();
 
-        // Check if the data array is not empty
-        if (pollResults.status === 'success' && pollResults.data.length > 0) {
+        // Ensure that pollResults has a data property and it's an array
+        if (pollResults && Array.isArray(pollResults.data) && pollResults.data.length > 0) {
             return pollResults.data[0]; // Return the first element of the data array
         } else {
             throw new Error('No data found');

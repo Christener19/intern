@@ -2,6 +2,33 @@
 import pool from "../dbIndex";
 
 // file to manage all of the API calls to the database for the zoom_polls table
+// GET the latest Poll results from postgres
+export async function getLatestPollResult(tableName: string) {
+    const queryText = `
+        SELECT
+            zoom_poll_id,
+            poor,
+            average,
+            good,
+            response_rate,
+            respondants,
+            non_respondants,
+            zoom_poll_date, 
+            zoom_poll_time 
+        FROM ${tableName}
+        ORDER BY zoom_poll_date DESC, zoom_poll_time DESC
+        LIMIT 1;
+    `;
+
+    try {
+        const result = await pool.query(queryText);
+        return result.rows[0] || null;
+    } catch (error) {
+        console.error('Error getting the latest poll results', error);
+        throw error;
+    }    
+}
+
 
 // GET Poll results from postgres
 export async function getPollResults(zoomPollID: number, tableName : string) {

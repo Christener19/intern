@@ -4,22 +4,43 @@ import * as zoomPollsModel from "../models/zoomPollsModel";
 // api request handlers
 
 // GET Poll results
-export async function getPollResults(zoomPollID : number, testCheck : boolean) {
-  
-  // table to run call on
-  let tableName : string = 'zoom_polls'
-  // check if this is a test or a real api call
+export async function getPollResults(zoomPollID: number | undefined, testCheck: boolean) {
+  let tableName: string = 'zoom_polls';
   if (!testCheck) {
-    tableName = 'test_' + tableName
+    tableName = 'test_' + tableName;
   }
 
   try {
-    const pollResults = await zoomPollsModel.getPollResults(zoomPollID, tableName)
+    // If zoomPollID is not provided, fetch the latest poll result
+    if (zoomPollID === undefined) {
+      const latestPollResult = await zoomPollsModel.getLatestPollResult(tableName);
+      return latestPollResult;
+    }
+
+    // If zoomPollID is provided, fetch the specified poll result
+    const pollResults = await zoomPollsModel.getPollResults(zoomPollID, tableName);
     return pollResults;
   } catch (error) {
-    console.error("Error in getPollCompletionRate controller", error);
+    console.error("Error in getPollResults controller", error);
   }
 }
+
+// export async function getPollResults(zoomPollID : number, testCheck : boolean) {
+  
+//   // table to run call on
+//   let tableName : string = 'zoom_polls'
+//   // check if this is a test or a real api call
+//   if (!testCheck) {
+//     tableName = 'test_' + tableName
+//   }
+
+//   try {
+//     const pollResults = await zoomPollsModel.getPollResults(zoomPollID, tableName)
+//     return pollResults;
+//   } catch (error) {
+//     console.error("Error in getPollCompletionRate controller", error);
+//   }
+// }
 
 // POST new poll results
 export async function postNewPollResults(ZoomPollID : number, resultsPayload : zoomPollsModel.ResultsType, testCheck : boolean) {
