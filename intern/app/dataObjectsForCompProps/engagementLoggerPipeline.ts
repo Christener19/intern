@@ -108,8 +108,8 @@ const dave = async () => {
 export default async function getAllEngagementGrades(weekNumber: number) {
   // fetch all zoomIDs
   // const zoomIDs = [23, 24, 56, 67];
-//intalising return array 
-const CreatedArry= []
+  //intalising return array
+  const CreatedArry = [];
 
   const allBootcamper = await allScreenDataFetcher(weekNumber);
   //console.log(`Number of bootcampers: ${allBootcamper.bootcampers.length}`);
@@ -134,60 +134,65 @@ const CreatedArry= []
     );
     // patch record in database by zoomID and weekNumber
     //console.log(`${bootcamperScore}`)
-    CreatedArry.push({zoomID:allBootcamper.bootcampers[i].zoomID, bootcamperScore}) ;
-    
-}
-// Great return object
-// array of objects of each bootcamper {id, grade, week number}
-return CreatedArry;
+    CreatedArry.push({
+      zoomID: allBootcamper.bootcampers[i].zoomID,
+      bootcamperScore,
+    });
+  }
+  // Great return object
+  // array of objects of each bootcamper {id, grade, week number}
+  return CreatedArry;
 }
 
 const Bill = async () => {
-    const logger = await getAllEngagementGrades(1);
-    console.log(logger);
-  };
+  const logger = await getAllEngagementGrades(1);
+  console.log(logger);
+};
 
 // Bill();
 //  getAllEngagementGrades(1);
 
- // Start loop to go thru every bootcamper in the database
- async function allEngagementGradePatcher(weekNumber:number) {
-
-    // get the array of updated records to pat
-    const patchArray : any = await getAllEngagementGrades(weekNumber)
-    // init loop
-    for (let i = 0; i < patchArray.length; i++) {
-        
+// Start loop to go thru every bootcamper in the database
+async function allEngagementGradePatcher(weekNumber: number) {
+  // get the array of updated records to pat
+  const patchArray: any = await getAllEngagementGrades(weekNumber);
+  // init loop
+  for (let i = 0; i < patchArray.length; i++) {
     // set patch data
-    let zoomId = patchArray[i].zoomID
-    let data : any = {
-        week_number: weekNumber,
-        average_engagement_grade: patchArray[i].bootcamperScore
-    }
+    let zoomId = patchArray[i].zoomID;
+    let data: any = {
+      week_number: weekNumber,
+      average_engagement_grade: patchArray[i].bootcamperScore,
+    };
     // debug logger
     // console.log('data object')
     // console.log(data)
 
     // tracking logger
-    console.log(`patching zoomID: ${zoomId}, grade: ${patchArray[i].bootcamperScore} record ${i} of ${patchArray.length}`)
+    console.log(
+      `patching zoomID: ${zoomId}, grade: ${patchArray[i].bootcamperScore} record ${i} of ${patchArray.length}`
+    );
     // PATCH the Average engagment value by ID
-    await fetch(`
+    await fetch(
+      `
         ${baseURL}${patchRoute}patchEngagementGrade?zoomId=${zoomId}`,
-        {
-            method: 'PATCH',
-            headers: {
-                "Content-Type":  "application/json",
-            },
-            body: JSON.stringify(data),
-        })
+      {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      }
+    );
     // debug loggers
-    console.log(`Patch URL = ${baseURL}${patchRoute}patchEngagmentGrade?zoomId=${zoomId}`)
-    console.log('payload')
-    console.log(JSON.stringify(data))
-    }
-    console.log('patching complete')
+    console.log(
+      `Patch URL = ${baseURL}${patchRoute}patchEngagmentGrade?zoomId=${zoomId}`
+    );
+    console.log("payload");
+    console.log(JSON.stringify(data));
+  }
+  console.log("patching complete");
 }
 
 // test runner - real thing needs to work on an onclick function
-//allEngagementGradePatcher(1);
-
+allEngagementGradePatcher(1);

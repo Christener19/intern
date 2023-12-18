@@ -4,17 +4,22 @@ import * as engagementModel from "../models/engagementModel";
 // api request handlers
 
 // GET Poll completion
-export async function getPollCompletionRate(zoomID : number, testCheck : boolean) {
-  
+export async function getPollCompletionRate(
+  zoomID: number,
+  testCheck: boolean
+) {
   // table to run call on
-  let tableName : string = 'engagement_logger'
+  let tableName: string = "engagement_logger";
   // check if this is a test or a real api call
   if (!testCheck) {
-    tableName = 'test_' + tableName
+    tableName = "test_" + tableName;
   }
 
   try {
-    const pollCompRate = await engagementModel.getPollCompletionRate(zoomID, tableName)
+    const pollCompRate = await engagementModel.getPollCompletionRate(
+      zoomID,
+      tableName
+    );
     return pollCompRate;
   } catch (error) {
     console.error("Error in getPollCompletionRate controller", error);
@@ -22,17 +27,19 @@ export async function getPollCompletionRate(zoomID : number, testCheck : boolean
 }
 
 // GET screenshare time
-export async function getScreenShareTime(zoomID : number, testCheck : boolean) {
-
+export async function getScreenShareTime(zoomID: number, testCheck: boolean) {
   // table to run call on
-  let tableName : string = 'engagement_logger'
+  let tableName: string = "engagement_logger";
   // check if this is a test or a real api call
   if (!testCheck) {
-    tableName = 'test_' + tableName
+    tableName = "test_" + tableName;
   }
 
   try {
-    const screenShareTime = await engagementModel.getScreenShareTime(zoomID, tableName)
+    const screenShareTime = await engagementModel.getScreenShareTime(
+      zoomID,
+      tableName
+    );
     return screenShareTime;
   } catch (error) {
     console.error("Error in getScreenShareFreq controller", error);
@@ -40,17 +47,19 @@ export async function getScreenShareTime(zoomID : number, testCheck : boolean) {
 }
 
 // GET screenshare freq
-export async function getScreenShareFreq(zoomID : number, testCheck : boolean) {
-
+export async function getScreenShareFreq(zoomID: number, testCheck: boolean) {
   // table to run call on
-  let tableName : string = 'engagement_logger'
+  let tableName: string = "engagement_logger";
   // check if this is a test or a real api call
   if (!testCheck) {
-    tableName = 'test_' + tableName
+    tableName = "test_" + tableName;
   }
 
   try {
-    const screenShareFreq = await  engagementModel.getScreenShareFreq(zoomID, tableName);
+    const screenShareFreq = await engagementModel.getScreenShareFreq(
+      zoomID,
+      tableName
+    );
     return screenShareFreq;
   } catch (error) {
     console.error("Error in getAbsentBootcampers controller", error);
@@ -58,17 +67,22 @@ export async function getScreenShareFreq(zoomID : number, testCheck : boolean) {
 }
 
 // GET engagment card props
-export async function getEngagementCardData(zoomID : number, testCheck : boolean) {
-
+export async function getEngagementCardData(
+  zoomID: number,
+  testCheck: boolean
+) {
   // table to run call on
-  let tableName : string = 'engagement_logger'
+  let tableName: string = "engagement_logger";
   // check if this is a test or a real api call
   if (!testCheck) {
-    tableName = 'test_' + tableName
+    tableName = "test_" + tableName;
   }
 
   try {
-    const engagementCardData = await engagementModel.getEngagementCardData(zoomID, tableName);
+    const engagementCardData = await engagementModel.getEngagementCardData(
+      zoomID,
+      tableName
+    );
     return engagementCardData;
   } catch (error) {
     console.error("Error in getEngagementCardData controller", error);
@@ -76,19 +90,25 @@ export async function getEngagementCardData(zoomID : number, testCheck : boolean
 }
 
 // PATCH avegage engagement data for a bootcamper
-export async function patchEngagmentGrade(zoomId : number, week_number : number, average_engagement_grade : string, testCheck : boolean) {
+export async function patchEngagmentGrade(
+  zoomId: number,
+  week_number: number,
+  average_engagement_grade: string,
+  testCheck: boolean
+) {
+  // table to run call on
+  let tableName: string = "engagement_logger";
+  // check if this is a test or a real api call
+  if (!testCheck) {
+    tableName = "test_" + tableName;
+  }
 
-    // table to run call on
-    let tableName : string = 'engagement_logger'
-    // check if this is a test or a real api call
-    if (!testCheck) {
-      tableName = 'test_' + tableName
-    }
-
-    // console log to check
-    console.log(`Controller: zoomid = ${zoomId}`)
-    console.log(`Controller: week_number = ${week_number}`)
-    console.log(`Controller: average_engagement_grade = ${average_engagement_grade}`)
+  // console log to check
+  console.log(`Controller: zoomid = ${zoomId}`);
+  console.log(`Controller: week_number = ${week_number}`);
+  console.log(
+    `Controller: average_engagement_grade = ${average_engagement_grade}`
+  );
 
   try {
     // call getEngagementCardData from model
@@ -96,7 +116,7 @@ export async function patchEngagmentGrade(zoomId : number, week_number : number,
       zoomId,
       week_number,
       average_engagement_grade,
-      tableName,
+      tableName
     );
 
     // assume 404 status if the zoomID is not found
@@ -113,172 +133,214 @@ export async function patchEngagmentGrade(zoomId : number, week_number : number,
 }
 
 // PATCH poll completion rate for a bootcamper
-export async function patchPollCompletion(zoomId : number, week_number : number, poll_completion_rate : number, testCheck : boolean) {
-
+export async function patchPollCompletion(
+  zoomId: number,
+  week_number: number,
+  poll_completion_rate: number,
+  testCheck: boolean
+) {
   // table to run call on
-  let tableName : string = 'engagement_logger'
+  let tableName: string = "engagement_logger";
   // check if this is a test or a real api call
   if (!testCheck) {
-    tableName = 'test_' + tableName
+    tableName = "test_" + tableName;
   }
 
   // console log to check
-  console.log(`Controller: zoomid = ${zoomId}`)
-  console.log(`Controller: week_number = ${week_number}`)
-  console.log(`Controller: poll_completion_rate = ${poll_completion_rate}`)
+  console.log(`Controller: zoomid = ${zoomId}`);
+  console.log(`Controller: week_number = ${week_number}`);
+  console.log(`Controller: poll_completion_rate = ${poll_completion_rate}`);
 
-try {
-  // call getEngagementCardData from model
-  const patchPollCompletionRate = await engagementModel.patchPollCompletion(
-    zoomId,
-    week_number,
-    poll_completion_rate,
-    tableName,
-  );
+  try {
+    // call getEngagementCardData from model
+    const patchPollCompletionRate = await engagementModel.patchPollCompletion(
+      zoomId,
+      week_number,
+      poll_completion_rate,
+      tableName
+    );
 
-  // assume 404 status if the zoomID is not found
-  if (!patchPollCompletionRate) {
-    return { status: "fail", data: { msg: "ZoomId not found" } };
+    // assume 404 status if the zoomID is not found
+    if (!patchPollCompletionRate) {
+      return { status: "fail", data: { msg: "ZoomId not found" } };
+    }
+
+    // Return a success response
+    return { status: "success", data: patchPollCompletionRate };
+  } catch (error) {
+    console.error("Error in patchEngagmentGrade controller", error);
+    return { status: "error", message: "Internal server error" };
   }
-
-  // Return a success response
-  return { status: "success", data: patchPollCompletionRate };
-} catch (error) {
-  console.error("Error in patchEngagmentGrade controller", error);
-  return { status: "error", message: "Internal server error" };
-}
 }
 
 // PATCH screen share time for a bootcamper
-export async function patchScreenShareTime(zoomId : number, week_number : number, screen_share_time : number, testCheck : boolean) {
-
+export async function patchScreenShareTime(
+  zoomId: number,
+  week_number: number,
+  screen_share_time: number,
+  testCheck: boolean
+) {
   // table to run call on
-  let tableName : string = 'engagement_logger'
+  let tableName: string = "engagement_logger";
   // check if this is a test or a real api call
   if (!testCheck) {
-    tableName = 'test_' + tableName
+    tableName = "test_" + tableName;
   }
 
   // console log to check
-  console.log(`Controller: zoomid = ${zoomId}`)
-  console.log(`Controller: week_number = ${week_number}`)
-  console.log(`Controller: screen_share_time = ${screen_share_time}`)
+  console.log(`Controller: zoomid = ${zoomId}`);
+  console.log(`Controller: week_number = ${week_number}`);
+  console.log(`Controller: screen_share_time = ${screen_share_time}`);
 
-try {
-  // call getEngagementCardData from model
-  const patchScreenShare = await engagementModel.patchScreenShareTime(
-    zoomId,
-    week_number,
-    screen_share_time,
-    tableName,
-  );
+  try {
+    // call getEngagementCardData from model
+    const patchScreenShare = await engagementModel.patchScreenShareTime(
+      zoomId,
+      week_number,
+      screen_share_time,
+      tableName
+    );
 
-  // assume 404 status if the zoomID is not found
-  if (!patchScreenShare) {
-    return { status: "fail", data: { msg: "ZoomId not found" } };
+    // assume 404 status if the zoomID is not found
+    if (!patchScreenShare) {
+      return { status: "fail", data: { msg: "ZoomId not found" } };
+    }
+
+    // Return a success response
+    return { status: "success", data: patchScreenShare };
+  } catch (error) {
+    console.error("Error in patchEngagmentGrade controller", error);
+    return { status: "error", message: "Internal server error" };
   }
-
-  // Return a success response
-  return { status: "success", data: patchScreenShare };
-} catch (error) {
-  console.error("Error in patchEngagmentGrade controller", error);
-  return { status: "error", message: "Internal server error" };
-}
 }
 
 // PATCH screen share switch freq for a bootcamper
-export async function patchScreenShareSwitchFreq(zoomId : number, week_number : number, screen_share_switch_freq : number, testCheck : boolean) {
-
+export async function patchScreenShareSwitchFreq(
+  zoomId: number,
+  week_number: number,
+  screen_share_switch_freq: number,
+  testCheck: boolean
+) {
   // table to run call on
-  let tableName : string = 'engagement_logger'
+  let tableName: string = "engagement_logger";
   // check if this is a test or a real api call
   if (!testCheck) {
-    tableName = 'test_' + tableName
+    tableName = "test_" + tableName;
   }
 
   // console log to check
-  console.log(`Controller: zoomid = ${zoomId}`)
-  console.log(`Controller: week_number = ${week_number}`)
-  console.log(`Controller: screen_share_switch_freq = ${screen_share_switch_freq}`)
-
-try {
-  // call getEngagementCardData from model
-  const patchScreenShareSwitchRate = await engagementModel.patchScreenShareSwitchFreq(
-    zoomId,
-    week_number,
-    screen_share_switch_freq,
-    tableName,
+  console.log(`Controller: zoomid = ${zoomId}`);
+  console.log(`Controller: week_number = ${week_number}`);
+  console.log(
+    `Controller: screen_share_switch_freq = ${screen_share_switch_freq}`
   );
 
-  // assume 404 status if the zoomID is not found
-  if (!patchScreenShareSwitchRate) {
-    return { status: "fail", data: { msg: "ZoomId not found" } };
+  try {
+    // call getEngagementCardData from model
+    const patchScreenShareSwitchRate =
+      await engagementModel.patchScreenShareSwitchFreq(
+        zoomId,
+        week_number,
+        screen_share_switch_freq,
+        tableName
+      );
+
+    // assume 404 status if the zoomID is not found
+    if (!patchScreenShareSwitchRate) {
+      return { status: "fail", data: { msg: "ZoomId not found" } };
+    }
+
+    // Return a success response
+    return { status: "success", data: patchScreenShareSwitchRate };
+  } catch (error) {
+    console.error("Error in patchEngagmentGrade controller", error);
+    return { status: "error", message: "Internal server error" };
   }
-
-  // Return a success response
-  return { status: "success", data: patchScreenShareSwitchRate };
-} catch (error) {
-  console.error("Error in patchEngagmentGrade controller", error);
-  return { status: "error", message: "Internal server error" };
 }
-}
-
 
 // GET all screen share switch freq
-export async function getAllScreenData(testCheck : boolean, weekNumber: number) {
-
+export async function getAllScreenData(testCheck: boolean, weekNumber: number) {
   // table to run all on
-  let tableName : string = 'engagement_logger'
+  let tableName: string = "engagement_logger";
   // check if this is a test or a real api call
   if (!testCheck) {
-    tableName = 'test_' + tableName
+    tableName = "test_" + tableName;
   }
 
-  console.log(`running query on ${tableName}`)
+  console.log(`running query on ${tableName}`);
 
   try {
     // call functions from model
-    console.log('getting all screen time')
-    const allScreenTime = await engagementModel.getAllScreenTime(tableName, weekNumber);
-    console.log('gettings all screen switch')
-    const allScreenSwitch = await engagementModel.getAllScreenSwitch(tableName, weekNumber);
-    // return both in an object
-    return ( 
-      { status: "success", data: 
-      {
-        allScreenTime,
-        allScreenSwitch
-        }
-      }
+    console.log("getting all screen time");
+    const allScreenTime = await engagementModel.getAllScreenTime(
+      tableName,
+      weekNumber
     );
-  // if fail, throw error
+    console.log("gettings all screen switch");
+    const allScreenSwitch = await engagementModel.getAllScreenSwitch(
+      tableName,
+      weekNumber
+    );
+    // return both in an object
+    return {
+      status: "success",
+      data: {
+        allScreenTime,
+        allScreenSwitch,
+      },
+    };
+    // if fail, throw error
   } catch (error) {
-    console.error('Error in getAllScreenData')
+    console.error("Error in getAllScreenData");
   }
-};
+}
 
 // GET all bootcampers data to engagementGrade
-export async function getBootcampersDataArr(testCheck : boolean, weekNumber: number) {
-
+export async function getBootcampersDataArr(
+  testCheck: boolean,
+  weekNumber: number
+) {
   // table to run all on
-  let tableName : string = 'engagement_logger'
+  let tableName: string = "engagement_logger";
   // check if this is a test or a real api call
   if (!testCheck) {
-    tableName = 'test_' + tableName
+    tableName = "test_" + tableName;
   }
 
-  console.log(`running query on ${tableName}`)
+  console.log(`running query on ${tableName}`);
 
   try {
     // call functions from model
-    console.log('getting all bootcamper data')
-    const allBootcampersData = await engagementModel.getBootcampersDataArr(tableName, weekNumber);;
-    // return both in an object
-    return ( 
-      { status: "success", data: allBootcampersData}
+    console.log("getting all bootcamper data");
+    const allBootcampersData = await engagementModel.getBootcampersDataArr(
+      tableName,
+      weekNumber
     );
-  // if fail, throw error
+    // return both in an object
+    return { status: "success", data: allBootcampersData };
+    // if fail, throw error
   } catch (error) {
-    console.error('Error in getAllScreenData')
+    console.error("Error in getAllScreenData");
   }
-};
+}
+
+// GET Engagement Card Props by week
+export async function getEngagementCardPropsByWeek(
+  weekNumber: number,
+  testCheck: boolean
+) {
+  // table to run call on
+  let tableName: string = "engagement_logger";
+  // check if this is a test or a real api call
+  if (!testCheck) {
+    tableName = "test_" + tableName;
+  }
+
+  try {
+    const engagementCardProp =
+      await engagementModel.getEngagementCardPropsByWeek(weekNumber, tableName);
+    return engagementCardProp;
+  } catch (error) {
+    console.error("Error in getPollCompletionRate controller", error);
+  }
+}

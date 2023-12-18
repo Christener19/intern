@@ -1,4 +1,4 @@
-'use client';
+"use client";
 //title egagement logger
 //div search bar
 //div componate container  this can be state
@@ -11,11 +11,39 @@ import EngagementLoggerBox from "./eloggerBox";
 import { useState } from "react";
 import Image from "next/image";
 import ButtonEngagementCSV from "./buttonEngagmentLoggerCSV";
+import { getRoute, mainRoute } from "../../utils/APIRouteSetter";
+
+const mainUrl = mainRoute();
 
 // Define the EngagementLogger component
-export default function EngagementLogger({ engagementData }: any) {
+export default async function EngagementLogger() {
   // State to manage the search term
   const [searchTerm, setSearchTerm] = useState("");
+
+  // Data we need:
+  // [{ name: "Alice", avgEngagement: "average", image: null, fullData: {} }],
+  const engagementData = (async function () {
+    const engagementDataResponse = async (weekNumber) => {
+      await fetch(
+        `${mainUrl}${getRoute}getEngagementScoreByWeek?weekNumber=${weekNumber}`
+      );
+      const engagementDataJSON = await engagementDataResponse.text();
+      const engagementDataPayload = JSON.parse(engagementDataJSON);
+      const engagementDataArray = engagementDataPayload.data;
+      const engagementData = engagementDataArray.map((entry) => ({
+        name: entry.name,
+        avgEngagement: entry.average_engagement_grade,
+        image: null,
+        fullData: {},
+      }));
+      return engagementData;
+    };
+
+    // Call the engagementDataResponse function and return its result
+    return await engagementDataResponse(1);
+  })();
+
+  console.log(engagementData);
 
   // Event handler for updating the search term
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -31,14 +59,14 @@ export default function EngagementLogger({ engagementData }: any) {
   return (
     <div className="rounded-xl border-2 border-blue-500 p-4 w-full h-full">
       {/* Heading */}
-      <h1 className=" text-xl text-center w-full font-bold text-blue-500">ENGAGEMENT LOGGER</h1>
+      <h1 className=" text-xl text-center w-full font-bold text-blue-500">
+        ENGAGEMENT LOGGER
+      </h1>
 
       {/* Search input */}
       <div className="mt-3">
         <input
-        className="w-full border-2 border-blue-400 rounded-lg mt-2 mb-2 pl-2 pr-2"
-
-     
+          className="w-full border-2 border-blue-400 rounded-lg mt-2 mb-2 pl-2 pr-2"
           type="text"
           placeholder=" Search"
           value={searchTerm}

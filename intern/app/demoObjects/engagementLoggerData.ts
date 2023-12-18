@@ -8,7 +8,7 @@ export const testEngagementData = [
     name: "Chirstner",
     avgEngagement: "good",
     image: null,
-    fullData: {},
+    fullData: {}, // all data, array of scores over the weeks
   },
   {
     name: "Kit",
