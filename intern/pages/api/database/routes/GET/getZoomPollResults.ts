@@ -21,7 +21,10 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 async function handleGetRequest(req: NextApiRequest, res: NextApiResponse) {
 
   const zoomPollID = Number(req.query.zoomPollId)
-
+  if (isNaN(zoomPollID)) {
+    // Handle the case where zoomPollID is not a valid number
+    return res.status(400).json({ error: "Invalid zoomPollID" });
+  }
   try {
 
     // check if it's a test (default to true)

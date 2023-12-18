@@ -12,8 +12,7 @@ export async function getPollResults(ZoomPollID: number, tableName : string) {
             average,
             good
         FROM ${tableName}
-            WHERE zoom_poll_id = $1
-        RETURNING *;
+            WHERE zoom_poll_id = $1;
      `  
     try {
         const result = await pool.query(queryText, [ZoomPollID])
