@@ -1,5 +1,5 @@
 // import block
-import { mainRoute, getRoute } from "../../utils/APIRouteSetter";
+import { mainRoute, getRoute, patchRoute } from "../../utils/APIRouteSetter";
 const baseURL = mainRoute();
 import findBreakPoints from "../../utils/engagementAlgo/findBreakPoints";
 import findMedian from "../../utils/engagementAlgo/findMedian";
@@ -141,19 +141,47 @@ const CreatedArry= []
 // array of objects of each bootcamper {id, grade, week number}
 return CreatedArry;
 }
+
 const Bill = async () => {
     const logger = await getAllEngagementGrades(1);
     console.log(logger);
   };
 
-Bill();
-// getAllEngagementGrades(1);
+// Bill();
+//  getAllEngagementGrades(1);
 
-// Start loop to go thru every bootcamper in the database
-async function allEngagementGradePatcher(screenShareMedians: object) {
-  // Calc the values
-  // Polls
-  // Freq screen Share
-  // Total screen share
-  // PATCH the Average engagment value
+ // Start loop to go thru every bootcamper in the database
+ async function allEngagementGradePatcher(weekNumber:number) {
+
+    // get the array of updated records to pat
+    const patchArray : any = await getAllEngagementGrades(weekNumber)
+    // init loop
+    for (let i = 0; i < patchArray.length; i++) {
+        
+    // set patch data
+    let zoomId = patchArray[i].zoomID
+    let data : any = {
+        week_number: weekNumber,
+        average_engagement_grade: patchArray[i].bootcamperScore
+    }
+    // debug logger
+    console.log('data object')
+    console.log(data)
+
+    // tracking logger
+    console.log(`patching zoomID: ${zoomId}, grade: ${patchArray[i].bootcamperScore} record ${i} of ${patchArray.length}`)
+    // PATCH the Average engagment value by ID
+    await fetch(`
+        ${baseURL}${patchRoute}patchEngagmentGrade?zoomId=${zoomId}`,
+        {
+            method: 'PATCH',
+            headers: {
+                "Content-Type":  "application/json",
+            },
+            body: data
+        })
+    }
+    console.log('patching complete')
 }
+
+allEngagementGradePatcher(1);
