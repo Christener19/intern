@@ -178,8 +178,12 @@ const Bill = async () => {
             headers: {
                 "Content-Type":  "application/json",
             },
-            body: data
+            body: JSON.stringify(data),
         })
+    // debug loggers
+    console.log(`Patch URL = ${baseURL}${patchRoute}patchEngagmentGrade?zoomId=${zoomId}`)
+    console.log('payload')
+    console.log(JSON.stringify(data))
     }
     console.log('patching complete')
 }

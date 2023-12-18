@@ -79,6 +79,7 @@ export async function getEngagementCardData(zoomID : number, tableName : string)
 
 // PATCH avegage engagement data for a bootcamper
 export async function patchEngagmentGrade(zoomId : number, week_number : number, average_engagement_grade : string, tableName : string) {
+    console.log(`Model: patching record ID: ${zoomId}, Week Number: ${week_number}, Grade: ${average_engagement_grade}`)
     const queryText = `
         UPDATE ${tableName}
             SET
@@ -89,8 +90,8 @@ export async function patchEngagmentGrade(zoomId : number, week_number : number,
     try {
     const result = await pool.query(queryText, [
             average_engagement_grade,
-            week_number,
             zoomId,
+            week_number,
     ]);
         // if no bootcamper exists with the specified ID the rows array will be empty
         return result.rows[0] || null;
