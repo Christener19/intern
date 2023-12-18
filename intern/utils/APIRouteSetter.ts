@@ -3,7 +3,7 @@
 export const mainRoute = ():string => {
     if (process.env.NODE_ENV === 'development') {
         // dev/local url
-        return 'http:localhost:3000/'
+        return 'http://localhost:3000/'
     } else {
         // prod url
         return 'https://intern-soc.vercel.app/'
@@ -17,7 +17,7 @@ export const getRoute:string = 'api/database/routes/GET/'
 export const patchRoute:string = 'api/database/routes/PATCH/'
 
 // to allow rapid setting of POST request routes
-export const postRoute:string = 'api/database/routes/POSt/'
+export const postRoute:string = 'api/database/routes/POST/'
 
 // to allow rapid setting of download request routes
 export const downloadRoute:string = 'api/database/routes/download/'
