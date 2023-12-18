@@ -2,9 +2,36 @@
 import pool from "../dbIndex";
 
 // file to manage all of the API calls to the database for the zoom_polls table
+// GET the latest Poll results from postgres
+export async function getLatestPollResult(tableName: string) {
+    const queryText = `
+        SELECT
+            zoom_poll_id,
+            poor,
+            average,
+            good,
+            response_rate,
+            respondants,
+            non_respondants,
+            zoom_poll_date, 
+            zoom_poll_time 
+        FROM ${tableName}
+        ORDER BY zoom_poll_date DESC, zoom_poll_time DESC
+        LIMIT 1;
+    `;
+
+    try {
+        const result = await pool.query(queryText);
+        return result.rows[0] || null;
+    } catch (error) {
+        console.error('Error getting the latest poll results', error);
+        throw error;
+    }    
+}
+
 
 // GET Poll results from postgres
-export async function getPollResults(ZoomPollID: number, tableName : string) {
+export async function getPollResults(zoomPollID: number, tableName : string) {
 
     const queryText = `
         SELECT
@@ -12,11 +39,10 @@ export async function getPollResults(ZoomPollID: number, tableName : string) {
             average,
             good
         FROM ${tableName}
-            WHERE zoom_poll_id = $1
-        RETURNING *;
+            WHERE zoom_poll_id = $1;
      `  
     try {
-        const result = await pool.query(queryText, [ZoomPollID])
+        const result = await pool.query(queryText, [zoomPollID])
         return result.rows;
     } catch (error) {
         console.error('Error getting poll results', error);
@@ -37,7 +63,7 @@ export interface ResultsType {
 }
 
 // POST poll results
-export async function postNewPollResults(ZoomPollID : number, results : ResultsType, tableName : string) {
+export async function postNewPollResults(zoomPollID : number, results : ResultsType, tableName : string) {
 
     // destructure object to post
     const {zoom_poll_date, zoom_poll_time, poor, average, good, response_rate, respondants, non_respondants}: ResultsType = results
@@ -54,7 +80,7 @@ export async function postNewPollResults(ZoomPollID : number, results : ResultsT
     `
     try {
     const result = await pool.query(queryText, [
-            ZoomPollID,
+            zoomPollID,
             zoom_poll_date,
             zoom_poll_time,
             poor,
