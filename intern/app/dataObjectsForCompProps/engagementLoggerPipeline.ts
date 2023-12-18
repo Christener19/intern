@@ -18,11 +18,8 @@ async function allScreenDataFetcher(weekNumber: number) {
     // Total screen share for all as an array
     console.log('getting all screen data')
     const allScreenData = await fetch(`${baseURL}${getRoute}getAllScreenData?weeknumber=${weekNumber}`)
+    
     // clean up response json
-    // interface screenData {
-    //     allScreenTime: {screen_share_time: number}[]
-    //     allScreenSwitch: {screen_share_switch_freq: number}[]
-    // }
     const allScreenDataJSON = await allScreenData.text();
     const allScreenDataClean = JSON.parse(allScreenDataJSON)
     const allScreenDataPayload = allScreenDataClean.data.data
@@ -67,6 +64,7 @@ async function allScreenDataFetcher(weekNumber: number) {
     const allBootcampersPayload = allBootcampersArr.data.data
     console.log('bootcamperArr check')
     //console.log(allBootcampersPayload);
+    
     // restructure it into the right format
     const bootcampers: bootcamperData = allBootcampersPayload.map(entry => ({
         zoomID: Number(entry.zoomid),
