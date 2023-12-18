@@ -12,28 +12,48 @@ import { fetchZoomPollResults } from "../dataObjectsForCompProps/zoompollTestObj
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, Tooltip);
 
-
-// Type definition for the component's props
 type ZoomPollsProps = {
   zoomPollData?: { good: number; average: number; poor: number };
 };
 
 const ZoomPolls: React.FC<ZoomPollsProps> = ({ zoomPollData }) => {
-  const [pollResults, setPollResults] = useState({ good: 0, average: 0, poor: 0 });
+  const [pollResults, setPollResults] = useState({
+    good: 0,
+    average: 0,
+    poor: 0,
+  });
   const [showResults, setShowResults] = useState(false);
 
   useEffect(() => {
     if (zoomPollData) {
-      setPollResults({ 
-        good: zoomPollData.good, 
-        average: zoomPollData.average, 
-        poor: zoomPollData.poor 
+      setPollResults({
+        good: zoomPollData.good,
+        average: zoomPollData.average,
+        poor: zoomPollData.poor,
       });
-      setShowResults(true);
-    } else {
       setShowResults(false);
+    } else {
+      setShowResults(true);
     }
   }, [zoomPollData]);
+
+  // Function to fetch data
+  const fetchData = async () => {
+    const data = await fetchZoomPollResults(); // Replace with your actual fetch call
+    setPollResults(data);
+  };
+
+  const handleButtonClick = () => {
+    setShowResults(!showResults);
+
+    if (!showResults) {
+      // Start fetching data every 10 seconds
+      const interval = setInterval(fetchData, 10000);
+
+      // Stop fetching after 3 minutes
+      setTimeout(() => clearInterval(interval), 180000);
+    }
+  };
 
   const chartData = {
     labels: ["Good", "Average", "Poor"],
@@ -46,6 +66,7 @@ const ZoomPolls: React.FC<ZoomPollsProps> = ({ zoomPollData }) => {
       },
     ],
   };
+
   const options = {
     plugins: {
       legend: {
@@ -106,7 +127,7 @@ const ZoomPolls: React.FC<ZoomPollsProps> = ({ zoomPollData }) => {
       <div className="flex justify-center mt-4">
         <button
           className="bg-green-500 hover:bg-green-600 text-white py-2 px-4 border-none cursor-pointer rounded-xl shadow-sm uppercase font-bold mt-4"
-          onClick={() => setShowResults(!showResults)}
+          onClick={handleButtonClick}
         >
           Thermometer
         </button>
