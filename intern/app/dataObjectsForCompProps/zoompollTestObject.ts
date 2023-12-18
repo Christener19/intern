@@ -6,8 +6,7 @@ export const fetchZoomPollResults = async (zoomPollID?: number) => {
     let url = `${baseURL}${getRoute}getZoomPollResults`;
 
     // Append zoomPollID to the URL only if it's provided
-    if (zoomPollID !== undefined) {
-        url += `?zoomPollId=${zoomPollID}`;
+    if (zoomPollID !== undefined) {   url += `?zoomPollId=${zoomPollID}`;
     }
     console.log("Requesting URL:", url);
 
@@ -19,16 +18,20 @@ export const fetchZoomPollResults = async (zoomPollID?: number) => {
         }
 
         const pollResults = await response.json();
+        console.log("API Response:", pollResults); // Log the API response
 
-        // Ensure that pollResults has a data property and it's an array
-        if (pollResults && Array.isArray(pollResults.data) && pollResults.data.length > 0) {
-            return pollResults.data[0]; // Return the first element of the data array
+        // Adjust this check according to the new response format
+        if (pollResults && pollResults.status === 'success' && pollResults.data) {
+            return pollResults.data; // Directly return the data object
         } else {
-            throw new Error('No data found');
+            // Handle the case where data is empty or not as expected
+            console.warn('API returned success but no data:', pollResults);
+            return null; // Return null or a default value
         }
     } catch (error) {
         console.error('Error fetching Zoom poll results:', error);
-        return null; 
+        return null;
     }
 };
+
 

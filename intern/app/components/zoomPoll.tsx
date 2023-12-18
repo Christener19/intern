@@ -9,11 +9,10 @@ import {
 } from "chart.js";
 import { fetchZoomPollResults } from "../dataObjectsForCompProps/zoompollTestObject";
 
-// Register the chart components
 ChartJS.register(CategoryScale, LinearScale, BarElement);
 
 type ZoomPollsProps = {
-  zoomPollID?: number; // Make zoomPollID optional
+  zoomPollID?: number;
 };
 
 const ZoomPolls: React.FC<ZoomPollsProps> = ({ zoomPollID }) => {
@@ -22,28 +21,31 @@ const ZoomPolls: React.FC<ZoomPollsProps> = ({ zoomPollID }) => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const results = await fetchZoomPollResults(zoomPollID); // zoomPollID can be undefined
+      const results = await fetchZoomPollResults(zoomPollID);
       if (results) {
-        setPollResults(results); // Set the fetched results
-        setShowResults(true); // Show the results if data is fetched
+        // Extract only the necessary fields
+        const { good, average, poor } = results;
+        setPollResults({ good, average, poor });
+        setShowResults(true);
       } else {
-        setShowResults(false); // Hide the results if no data is fetched
+        setShowResults(false);
       }
     };
 
     fetchData();
-  }, [zoomPollID]); // Dependency array includes zoomPollID
+  }, [zoomPollID]);
 
   const chartData = {
-    labels: Object.keys(pollResults),
+    labels: ['Good', 'Average', 'Poor'],
     datasets: [
       {
         label: "Poll Results",
-        data: Object.values(pollResults),
-        backgroundColor: ["#F87171", "#FACC15", "#4ADE80"],
+        data: [pollResults.good, pollResults.average, pollResults.poor],
+        backgroundColor: ["#4ADE80", "#FACC15", "#F87171"],
       },
     ],
   };
+
 
   return (
     <div className="border-2 border-blue-500 p-4 rounded-xl shadow-sm w-full h-full mt-1 mr-2">
@@ -55,7 +57,7 @@ const ZoomPolls: React.FC<ZoomPollsProps> = ({ zoomPollID }) => {
           <Bar data={chartData} />
         ) : (
           <div className="text-center w-full text-black mb-20 uppercase font-semibold">
-            No results available
+           NO RESULTS
           </div>
         )}
       </div>
