@@ -18,7 +18,11 @@ Key features:
     This is just a simple piece of functionality that allows the coaches to press pick, upon doing so the boot camper will be removed from the list. They can press 
     refresh if they want to get all boot camper names back. This lowers the possibility of the same person being picked more than other bootcampers.
 - Alerts for when a boot camper is off for consecutive days:
+    This uses a Webhook which gives near real-time data on the boot campers' attendance. The alert will include some emojis depending on their level of absence.
 
+This project involved learning new concepts on the job such as Chart.js, Webhooks, and AuthTokens. We also learned more from the tech stack we used which was Next.js, TypeScript, Tailwind, Superbase, Elephant SQL, and Chart.js. Some of the features from above involved a lot of planning and working out the different algorithms for engagement logger, and attendance tracker. 
+
+As a team, we made sure that we didn't just code 9-5 and beyond. We did energizers and took breaks. We often swapped the teams around which meant everyone had an understanding of what we had all been doing. At the start of every day, we have our retros and discuss the plan for that day. At the end of the day, we plan out what we are going to do the following day. 
 
 // BELOW WILL BE JOURNEY
 Team Shift Happens- Journey of 4 weeks.
