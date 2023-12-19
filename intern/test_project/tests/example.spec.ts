@@ -3,7 +3,7 @@ require('dotenv').config({ path: '../.env.local' });
 
 
 
-test('should pick a random name', async ({ page }) => {
+test('login', async ({ page }) => {
   // Navigate to the login page
   await page.goto('http://localhost:3000/login');
 
@@ -23,5 +23,20 @@ test('should pick a random name', async ({ page }) => {
 
   // Navigate to the homepage
   await page.goto('http://localhost:3000/');
+
+  
+   // Click the "Pick" button
+   await page.click('button:has-text("Pick")');
+
+   // Wait for the selected name to be updated
+   await page.waitForFunction(() => {
+     const element = document.querySelector('.bg-blue-500.text-white');
+     return element && element.textContent.trim() !== '';
+   });
+ 
+   // Retrieve the selected name
+   const selectedName = await page.textContent('.bg-blue-500.text-white');
+   expect(selectedName).not.toBe("");
+
 });
 
