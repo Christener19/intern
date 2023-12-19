@@ -6,7 +6,7 @@ const mainUrl = mainRoute();
 // Data provided in this shape (example):
 // [{ name: "Alice", avgEngagement: "average", image: null, fullData: {} }],
 export default async function createEngagementProps(weekNumber: number) {
-  await fetch(
+  const engagementDataResponse = await fetch(
     `${mainUrl}${getRoute}getEngagementScoreByWeek?weekNumber=${weekNumber}`
   );
   const engagementDataJSON = await engagementDataResponse.text();
