@@ -200,4 +200,37 @@ export async function allEngagementGradePatcher(weekNumber: number) {
 }
 
 // test runner - real thing needs to work on an onclick function
-allEngagementGradePatcher(1);
+// allEngagementGradePatcher(1);
+
+//patch db then fatching new results 
+// Function provides data props to be used in elogger react component
+
+// Data provided in this shape (example):
+// [{ name: "Alice", avgEngagement: "average", image: null, fullData: {} }],
+export  async function createEngagementProps(weekNumber: number) {
+  // Patch database with latest engagement grades
+  // await allScreenDataFetcher(weekNumber);
+
+  const engagementDataResponse = await fetch(
+    `${baseURL}${getRoute}getEngagementScoreByWeek?weekNumber=${weekNumber}`
+  );
+  const engagementDataJSON = await engagementDataResponse.text();
+  const engagementDataPayload = JSON.parse(engagementDataJSON);
+  const engagementDataArray = engagementDataPayload.data;
+  const engagementData = engagementDataArray.map((entry) => ({
+    name: entry.name,
+    avgEngagement: entry.average_engagement_grade,
+    image: null,
+    fullData: {},
+  }));
+  console.log("engagementData")
+  console.log(engagementData)
+  return engagementData;
+}
+
+async function patcherAndFetcher (weekNumber:number) {
+  await allEngagementGradePatcher (weekNumber)
+  await createEngagementProps (weekNumber)
+
+}
+patcherAndFetcher(1)

@@ -1,10 +1,14 @@
 // import block
 import pool from "../dbIndex";
+import throttle from "@/utils/delayCall";
 
 // file to manage all of the API calls to the database for the enagement_logger table
 
 // GET Poll completion rate from postgres
 export async function getPollCompletionRate(zoomID: number, tableName: string) {
+  // applying delay to avoid rate limit
+  await throttle();
+
   const queryText = `
         SELECT
             poll_completion_rate
@@ -12,17 +16,31 @@ export async function getPollCompletionRate(zoomID: number, tableName: string) {
             WHERE zoomID = $1
         RETURNING poll_completion_rate;
      `;
+
+  // set up client variable
+  let client: any;
+
   try {
-    const result = await pool.query(queryText, [zoomID]);
+    client = await pool.connect(); // get new client from the pool
+
+    const result = await client.query(queryText, [zoomID]);
     return result.rows;
   } catch (error) {
     console.error("Error getting poll_completion_rate", error);
     throw error;
+  } finally {
+    if (client) {
+      // release client connection
+      client.release();
+    }
   }
 }
 
 // GET screenshare time from postgres
 export async function getScreenShareTime(zoomID: number, tableName: string) {
+  // applying delay to avoid rate limit
+  await throttle();
+
   const queryText = `
     SELECT
         screen_share_time
@@ -30,17 +48,30 @@ export async function getScreenShareTime(zoomID: number, tableName: string) {
         WHERE zoomID = $1
     RETURNING screen_share_time;
      `;
+  // set up client variable
+  let client: any;
+
   try {
-    const result = await pool.query(queryText, [zoomID]);
+    client = await pool.connect(); // get new client from the pool
+
+    const result = await client.query(queryText, [zoomID]);
     return result.rows;
   } catch (error) {
     console.error("Error getting screen_share_time", error);
     throw error;
+  } finally {
+    if (client) {
+      // release client connection
+      client.release();
+    }
   }
 }
 
 // GET screenshare freq from postgres
 export async function getScreenShareFreq(zoomID: number, tableName: string) {
+  // applying delay to avoid rate limit
+  await throttle();
+
   const queryText = `
     SELECT
         screen_share_switch_freq
@@ -48,17 +79,30 @@ export async function getScreenShareFreq(zoomID: number, tableName: string) {
         WHERE zoomID = $1
     RETURNING screen_share_switch_freq;
      `;
+  // set up client variable
+  let client: any;
+
   try {
-    const result = await pool.query(queryText, [zoomID]);
+    client = await pool.connect(); // get new client from the pool
+
+    const result = await client.query(queryText, [zoomID]);
     return result.rows;
   } catch (error) {
     console.error("Error getting screen_share_switch_freq", error);
     throw error;
+  } finally {
+    if (client) {
+      // release client connection
+      client.release();
+    }
   }
 }
 
 // GET engagement card props from postgres - to be called on a loop to get everyone
 export async function getEngagementCardData(zoomID: number, tableName: string) {
+  // applying delay to avoid rate limit
+  await throttle();
+
   const queryText = `
         SELECT
             name,
@@ -67,12 +111,22 @@ export async function getEngagementCardData(zoomID: number, tableName: string) {
             WHERE zoomID = $1
         RETURNING *;
      `;
+  // set up client variable
+  let client: any;
+
   try {
-    const result = await pool.query(queryText, [zoomID]);
+    client = await pool.connect(); // get new client from the pool
+
+    const result = await client.query(queryText, [zoomID]);
     return result.rows;
   } catch (error) {
     console.error("Error getting data for engagement card", error);
     throw error;
+  } finally {
+    if (client) {
+      // release client connection
+      client.release();
+    }
   }
 }
 
@@ -83,6 +137,10 @@ export async function patchEngagmentGrade(
   average_engagement_grade: string,
   tableName: string
 ) {
+  // applying delay to avoid rate limit
+  await throttle();
+  console.log("delay applied");
+
   console.log(
     `Model: patching record ID: ${zoomId}, Week Number: ${week_number}, Grade: ${average_engagement_grade}`
   );
@@ -93,8 +151,13 @@ export async function patchEngagmentGrade(
             WHERE zoomId = $2 AND week_number = $3
             RETURNING *;
     `;
+  // set up client variable
+  let client: any;
+
   try {
-    const result = await pool.query(queryText, [
+    client = await pool.connect(); // get new client from the pool
+
+    const result = await client.query(queryText, [
       average_engagement_grade,
       zoomId,
       week_number,
@@ -104,6 +167,11 @@ export async function patchEngagmentGrade(
   } catch (error) {
     console.error("Error updating record", error);
     throw error;
+  } finally {
+    if (client) {
+      // release client connection
+      client.release();
+    }
   }
 }
 
@@ -114,6 +182,9 @@ export async function patchPollCompletion(
   poll_completion_rate: number,
   tableName: string
 ) {
+  // applying delay to avoid rate limit
+  await throttle();
+
   const queryText = `
         UPDATE ${tableName}
             SET
@@ -121,8 +192,13 @@ export async function patchPollCompletion(
             WHERE zoomId = $2 AND week_number = $3
             RETURNING *;
     `;
+  // set up client variable
+  let client: any;
+
   try {
-    const result = await pool.query(queryText, [
+    client = await pool.connect(); // get new client from the pool
+
+    const result = await client.query(queryText, [
       poll_completion_rate,
       week_number,
       zoomId,
@@ -132,6 +208,11 @@ export async function patchPollCompletion(
   } catch (error) {
     console.error("Error updating record", error);
     throw error;
+  } finally {
+    if (client) {
+      // release client connection
+      client.release();
+    }
   }
 }
 
@@ -142,6 +223,9 @@ export async function patchScreenShareTime(
   screen_share_time: number,
   tableName: string
 ) {
+  // applying delay to avoid rate limit
+  await throttle();
+
   const queryText = `
         UPDATE ${tableName}
             SET
@@ -149,8 +233,13 @@ export async function patchScreenShareTime(
             WHERE zoomId = $2 AND week_number = $3
             RETURNING *;
     `;
+  // set up client variable
+  let client: any;
+
   try {
-    const result = await pool.query(queryText, [
+    client = await pool.connect(); // get new client from the pool
+
+    const result = await client.query(queryText, [
       screen_share_time,
       week_number,
       zoomId,
@@ -160,6 +249,11 @@ export async function patchScreenShareTime(
   } catch (error) {
     console.error("Error updating record", error);
     throw error;
+  } finally {
+    if (client) {
+      // release client connection
+      client.release();
+    }
   }
 }
 
@@ -170,6 +264,9 @@ export async function patchScreenShareSwitchFreq(
   screen_share_switch_freq: number,
   tableName: string
 ) {
+  // applying delay to avoid rate limit
+  await throttle();
+
   const queryText = `
         UPDATE ${tableName}
             SET
@@ -177,8 +274,13 @@ export async function patchScreenShareSwitchFreq(
             WHERE zoomId = $2 AND week_number = $3
             RETURNING *;
     `;
+  // set up client variable
+  let client: any;
+
   try {
-    const result = await pool.query(queryText, [
+    client = await pool.connect(); // get new client from the pool
+
+    const result = await client.query(queryText, [
       screen_share_switch_freq,
       week_number,
       zoomId,
@@ -188,14 +290,21 @@ export async function patchScreenShareSwitchFreq(
   } catch (error) {
     console.error("Error updating record", error);
     throw error;
+  } finally {
+    if (client) {
+      // release client connection
+      client.release();
+    }
   }
 }
-
 // GET for all screen share switch to use in engagment calc
 export async function getAllScreenSwitch(
   tableName: string,
   weekNumber: number
 ) {
+  // applying delay to avoid rate limit
+  await throttle();
+
   console.log("getting all screen switch model");
   const tabName = tableName;
   const weeknum = weekNumber;
@@ -208,13 +317,23 @@ export async function getAllScreenSwitch(
     WHERE week_number = $1
     `;
   // try this first
+  // set up client variable
+  let client: any;
+
   try {
-    const result = await pool.query(queryText, [weeknum]);
+    client = await pool.connect(); // get new client from the pool
+
+    const result = await client.query(queryText, [weeknum]);
     return result.rows;
     // if fail throw the error
   } catch (error) {
     console.error(`Error in getAllScreenSwitch:`, error);
     throw error;
+  } finally {
+    if (client) {
+      // release client connection
+      client.release();
+    }
   }
 }
 
@@ -224,6 +343,9 @@ export async function getAllScreenTime(tableName: string, weekNumber: number) {
   const tabName = tableName;
   const weeknum = weekNumber;
 
+  // applying delay to avoid rate limit
+  await throttle();
+
   // query to run
   const queryText = `
        SELECT
@@ -232,13 +354,23 @@ export async function getAllScreenTime(tableName: string, weekNumber: number) {
        WHERE week_number = $1
        `;
   // try this first
+  // set up client variable
+  let client: any;
+
   try {
-    const result = await pool.query(queryText, [weeknum]);
+    client = await pool.connect(); // get new client from the pool
+
+    const result = await client.query(queryText, [weeknum]);
     return result.rows;
     // if fail throw the error
   } catch (error) {
     console.error(`Error in getAllScreenTime:`, error);
     throw error;
+  } finally {
+    if (client) {
+      // release client connection
+      client.release();
+    }
   }
 }
 
@@ -247,6 +379,9 @@ export async function getBootcampersDataArr(
   tableName: string,
   weekNumber: number
 ) {
+  // applying delay to avoid rate limit
+  await throttle();
+
   console.log("Getting all bootcampers in an array of objects");
 
   const tabName = tableName;
@@ -260,13 +395,23 @@ export async function getBootcampersDataArr(
     WHERE week_number = $1;
     `;
   // try
+  // set up client variable
+  let client: any;
+
   try {
-    const result = await pool.query(queryText, [weeknum]);
+    client = await pool.connect(); // get new client from the pool
+
+    const result = await client.query(queryText, [weeknum]);
     return result.rows;
     // if fail throw an error
   } catch (error) {
     console.error(`Error in getBootcampersDataArr:`, error);
     throw error;
+  } finally {
+    if (client) {
+      // release client connection
+      client.release();
+    }
   }
 }
 
@@ -275,6 +420,9 @@ export async function getEngagementCardPropsByWeek(
   weekNumber: number,
   tableName: string
 ) {
+  // applying delay to avoid rate limit
+  await throttle();
+
   // console.log(`tableName, ${tableName}`);
   const queryText = `
         SELECT
@@ -283,11 +431,21 @@ export async function getEngagementCardPropsByWeek(
         FROM ${tableName}
             WHERE week_number = $1
      `;
+  // set up client variable
+  let client: any;
+
   try {
-    const result = await pool.query(queryText, [weekNumber]);
+    client = await pool.connect(); // get new client from the pool
+
+    const result = await client.query(queryText, [weekNumber]);
     return result.rows;
   } catch (error) {
     console.error("Error getting poll_completion_rate", error);
     throw error;
+  } finally {
+    if (client) {
+      // release client connection
+      client.release();
+    }
   }
 }
