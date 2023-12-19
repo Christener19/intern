@@ -41,6 +41,7 @@ export default function EngagementLogger() {
 
   // useEffect to track changes and re-render component(s)
   useEffect(() => {
+    console.log("dataLoaded");
     // Updates EngagementProps
     setEngagementProps([
       {
@@ -50,7 +51,6 @@ export default function EngagementLogger() {
         fullData: {},
       },
     ]);
-    console.log("dataLoaded");
   }, [dataLoaded]);
 
   // Event handler for updating the search term
