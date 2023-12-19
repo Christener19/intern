@@ -27,7 +27,7 @@ export default function AttendanceTracker({ attendanceAlert: initialAttendanceAl
       }
     };
     fetchAttendanceData();
-    const interval = setInterval(fetchAttendanceData, 3600000 ); 
+    const interval = setInterval(fetchAttendanceData, 10000 ); //3600000
   }, []);
 
 
