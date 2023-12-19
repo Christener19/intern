@@ -12,7 +12,7 @@
 import findMedian from "./findMedian";
 import findBreakPoints from "./findBreakPoints";
 
-export default function getFreqScreenSwitch(zoomID: number, breakPoints: object, freqScreenSwitchNum: number): number {
+export default function getFreqScreenSwitch(zoomID: number, breakPoints: any, freqScreenSwitchNum: number): number {
   console.log(`Getting freq screen switch for ${zoomID}`);
   let score = 0;
 

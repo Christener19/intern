@@ -7,7 +7,9 @@ import { NextApiRequest, NextApiResponse } from "next";
 export default async function handler(req:NextApiRequest, res:NextApiResponse) {
     try {
         // get the weeknumber
-        const weekNumber = Number(req.query.weeknumber)
+        //const weekNumber = Number(req.query.weeknumber)
+        // test hard code week number
+        const weekNumber:number = 1
         // Run patcher
         await allEngagementGradePatcher(weekNumber);
         console.log(`Engagment Grades for week ${weekNumber} patched, next patch in 1 hour`);

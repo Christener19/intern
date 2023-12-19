@@ -14,7 +14,7 @@ import findBreakPoints from "./findBreakPoints";
 
 export default function getTotalScreenShare(
   zoomID: number,
-  screenShareBreakPoint: {},
+  screenShareBreakPoint: any,
   bootcamperScreenShareTotal: number
 ): number {
   console.log(`Getting Total Screen Share for ${zoomID}`);
@@ -51,4 +51,4 @@ export default function getTotalScreenShare(
   return score;
 }
 
-console.log(getTotalScreenShare(65, 6));
+//console.log(getTotalScreenShare(65, 6));

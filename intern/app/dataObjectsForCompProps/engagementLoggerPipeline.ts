@@ -110,10 +110,10 @@ export default async function getAllEngagementGrades(weekNumber: number) {
   // fetch all zoomIDs
   // const zoomIDs = [23, 24, 56, 67];
   //intalising return array
-  const CreatedArry = [];
+  const CreatedArry : any = [];
 
   console.log('before all screenDataFetcher line 115')
-  const allBootcamper = await allScreenDataFetcher(weekNumber);
+  const allBootcamper: any = await allScreenDataFetcher(weekNumber);
   console.log('after all screenDataFetcher line 117')
   //console.log(`Number of bootcampers: ${allBootcamper.bootcampers.length}`);
   // console.log("bootcampers 2345");
@@ -133,7 +133,7 @@ export default async function getAllEngagementGrades(weekNumber: number) {
       `details of bootcamper: zoomID: ${allBootcamper.bootcampers[i].zoomID} screenShare: ${allBootcamper.bootcampers[i].screenShareTotal}, screenShareSwitch: ${allBootcamper.bootcampers[i].screenSwitchTotal}
       pollCompletionRate: ${allBootcamper.bootcampers[i].pollCompletionRate}`
     );
-    let bootcamperScore = await getScoreForBootcamper(
+    let bootcamperScore : any = await getScoreForBootcamper(
       allBootcamper.bootcampers[i],
       allBootcamper.breakpoints
     );
@@ -177,7 +177,7 @@ export async function allEngagementGradePatcher(weekNumber: number) {
 
     // tracking logger
     console.log(
-      `patching zoomID: ${zoomId}, grade: ${patchArray[i].bootcamperScore} record ${i} of ${patchArray.length}`
+      `patching zoomID: ${zoomId}, grade: ${patchArray[i].bootcamperScore} record ${i +1} of ${patchArray.length}`
     );
     // PATCH the Average engagment value by ID
     await fetch(
