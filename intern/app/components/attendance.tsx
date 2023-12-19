@@ -27,7 +27,7 @@ export default function AttendanceTracker({ attendanceAlert: initialAttendanceAl
       }
     };
     fetchAttendanceData();
-    const interval = setInterval(fetchAttendanceData, 10000 ); //3600000
+    const interval = setInterval(fetchAttendanceData, 3600000 ); 
   }, []);
 
 
@@ -42,7 +42,7 @@ console.log(`attPercent: ${attPercent}`)
 
   return (
     <div className="flex flex-col text-center w-full  h-full rounded-xl border-2 border-blue-500 p-4 ">
-      <h1 className="w-full text-2xl  text-blue-500 text-center uppercase font-bold rounded-md h-fit">
+      <h1 className="w-full text-2xl  text-blue-500 text-center uppercase font-bold rounded-md h-fit mb-5">
         {" "}
         Attendance tracking
       </h1>
