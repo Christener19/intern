@@ -5,6 +5,7 @@
     "build": "next build",
     "start": "next start",
     "reset-main-db": "ts-node lib/database/scripts/resetDatabase.ts",
+    "test": "playwright test",
     "reset-test-db": "ts-node lib/database/tests/testScripts/resetTestDatabase.ts"
   },
   "dependencies": {
@@ -36,6 +37,7 @@
     "uuid": "^9.0.1"
   },
   "devDependencies": {
+    "@playwright/test": "^1.40.1",
     "@types/chart.js": "^2.9.41",
     "@types/express": "^4.17.21",
     "@types/json2csv": "^5.0.7",
