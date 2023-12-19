@@ -11,31 +11,37 @@ import EngagementLoggerBox from "./eloggerBox";
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import ButtonEngagementCSV from "./buttonEngagmentLoggerCSV";
-import { getRoute, mainRoute } from "../../utils/APIRouteSetter";
 import engagementDataResponse from "../dataObjectsForCompProps/eloggerHydration";
 
-const mainUrl = mainRoute();
-
 // Define the EngagementLogger component
-export default async function EngagementLogger() {
+export default function EngagementLogger() {
   // State to manage the search term
   const [searchTerm, setSearchTerm] = useState("");
   // State to manage engagmentProps
   const [engagmentProps, setEngagementProps] = useState();
 
-  // useEffect to track changes and re-render component(s)
+  // useEffect to fetch data at set intervals
   useEffect(() => {
-  // set 
-        
-  }, [engagmentProps]);
+    // Fetch data when component mounds
+    fetchData()
+    // Fetch data every hour (in milliseconds)
+    setInterval(fetchData, 3_600_000);
+    // no dependency needed, all runs off the interval timer 
+  }, []);
 
-  // get database to update it's engagement grades
+  // 3_600_000
 
-  // call function to fetch data and setEngagment props to update data being shown to the user
-  engagementDataResponse(1)
-
-  // rerun above functions every x seconds
-  
+  // update database and reGet data
+  const fetchData = async () => {
+    try {
+      console.log('getting new engagmentProps')
+      const newEngagementGrades = await engagementDataResponse(1);
+      setEngagementProps(newEngagementGrades);
+    } catch (error) {
+      console.error('Error getting new engagment grades from database', error)
+    }
+  // update database values
+  };
 
   // Event handler for updating the search term
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
