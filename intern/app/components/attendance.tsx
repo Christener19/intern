@@ -1,30 +1,45 @@
 //import block
-
+"use client"
 import Image from "next/image";
 import AlertBox from "./alertBox";
 import React from "react";
 import ButtonAttendanceCSV from "./buttonAttendanceCSV";
+import { useState, useEffect } from "react";  
+import { mainRoute, getRoute } from "@/utils/APIRouteSetter";
 
-///////////////Attendance tracking page//////////////
-
-// div to hold everything
-// title
-
-// div for attendance
-// title
-// attendance percentage/chart
-// button download csv
-   
 
 // div to hold everything
-export default function AttendanceTracker({ attendanceAlert }: any) {
- 
-//console.log(`attPercent: ${attPercent}`) // debug logger
-    //console.log(`alerts: ${alerts}`) // debug logger
+export default function AttendanceTracker({ attendanceAlert: initialAttendanceAlert }) {
+  const [attendanceAlert, setAttendanceAlert] = useState(initialAttendanceAlert);
+
+  const baseURL = mainRoute()
+
+  useEffect(() => {
+    const fetchAttendanceData = async () => {
+      try {
+        // Replace with your actual endpoint and fetching logic
+        const response = await fetch(`${baseURL}${getRoute}getBootcampers`);
+        const updatedData = await response.json();
+      
+        console.log('Updated attendance data:', updatedData);
+      } catch (error) {
+        console.error('Failed to fetch attendance data:', error);
+      }
+    };
+    fetchAttendanceData();
+    const interval = setInterval(fetchAttendanceData, 3600000 ); 
+  }, []);
+
+
+
   const { attPercent, alerts } = attendanceAlert;
-
+console.log(`attPercent: ${attPercent}`) // debug logger
+    console.log(`alerts: ${alerts}`) // debug logger
   const attendancePercent = { attPercent };
   console.log(`attendancePercent: ${attendancePercent.attPercent}`)
+
+
+
   return (
     <div className="flex flex-col text-center w-full  h-full rounded-xl border-2 border-blue-500 p-4 ">
       <h1 className="w-full text-2xl  text-blue-500 text-center uppercase font-bold rounded-md h-fit">
