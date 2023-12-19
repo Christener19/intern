@@ -53,16 +53,17 @@ export default function EngagementLogger() {
   const FetchData = async (weekNumber: number) => {
     const data = await patcherAndFetcher(weekNumber);
   };
-  const engagementProps = FetchData(1);
+    // defining engagementProps
+    const engagementProps = FetchData(1);
   // Event handler for updating the search term
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchTerm(e.target.value);
   };
 
-  // Filter the engagementData based on the search term
-  const filteredData = engagementProps?.filter((person: any) =>
-    person.name.toLowerCase().includes(searchTerm.toLowerCase())
-  );
+  // // Filter the engagementData based on the search term
+  // const filteredData = engagementProps?.filter((person: any) =>
+  //   person.name.toLowerCase().includes(searchTerm.toLowerCase())
+  // );
 
   // Return the JSX for the component
   return (
@@ -85,7 +86,7 @@ export default function EngagementLogger() {
 
       {/* EngagementLoggerBox component with filtered data */}
       <div>
-        <EngagementLoggerBox EngagementInfo={filteredData} />
+        {/* <EngagementLoggerBox EngagementInfo={filteredData} /> */}
       </div>
 
       {/* Download CSV button */}

@@ -258,7 +258,6 @@ export async function patchScreenShareSwitchFreq(
   }
 }
 
-// GET all screen share switch freq
 export async function getAllScreenData(testCheck: boolean, weekNumber: number) {
   // table to run all on
   let tableName: string = "engagement_logger";
@@ -269,30 +268,50 @@ export async function getAllScreenData(testCheck: boolean, weekNumber: number) {
 
   console.log(`running query on ${tableName}`);
 
-  try {
-    // call functions from model
-    console.log("getting all screen time");
-    const allScreenTime = await engagementModel.getAllScreenTime(
-      tableName,
-      weekNumber
-    );
-    console.log("gettings all screen switch");
-    const allScreenSwitch = await engagementModel.getAllScreenSwitch(
-      tableName,
-      weekNumber
-    );
-    // return both in an object
-    return {
-      status: "success",
-      data: {
-        allScreenTime,
-        allScreenSwitch,
-      },
-    };
-    // if fail, throw error
-  } catch (error) {
-    console.error("Error in getAllScreenData");
+  // retry function
+  let retryCounter = 0;
+  const maxRetries = 7;
+
+  while (retryCounter < maxRetries) {
+    console.log(`attempting fetch ${retryCounter + 1} of ${maxRetries}`);
+    try {
+      // call functions from model
+      console.log("getting allscreentime");
+      const allScreenTime = await engagementModel.getAllScreenTime(
+        tableName,
+        weekNumber
+      );
+      console.log("getting allscreenswitch");
+      const allScreenSwitch = await engagementModel.getAllScreenSwitch(
+        tableName,
+        weekNumber
+      );
+      // return both in an object
+      return {
+        status: "success",
+        data: {
+          allScreenTime,
+          allScreenSwitch,
+        },
+      };
+    } catch (error) {
+      console.error("Error in getAllScreenData", error);
+      // Retry logic, continue to the next iteration of the loop
+      retryCounter += 1;
+    }
   }
+
+  // Return an error response after multiple retries
+  return {
+    status: 'error',
+    message: 'failed to fetch screen data after multiple retries',
+  };
+}
+
+  return {
+    status: "error",
+    message: "Failed to fetch screen data after multiple retries",
+  };
 }
 
 // GET all bootcampers data to engagementGrade
