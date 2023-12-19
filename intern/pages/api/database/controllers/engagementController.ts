@@ -287,6 +287,7 @@ export async function getAllScreenData(testCheck: boolean, weekNumber: number) {
         weekNumber
       );
       // return both in an object
+      console.log('success fetch allscreentime and allscreenswitch')
       return {
         status: "success",
         data: {
