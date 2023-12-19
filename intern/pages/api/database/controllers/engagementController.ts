@@ -308,12 +308,6 @@ export async function getAllScreenData(testCheck: boolean, weekNumber: number) {
   };
 }
 
-  return {
-    status: "error",
-    message: "Failed to fetch screen data after multiple retries",
-  };
-}
-
 // GET all bootcampers data to engagementGrade
 export async function getBootcampersDataArr(
   testCheck: boolean,
