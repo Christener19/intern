@@ -1,7 +1,7 @@
-// import block
-import { mainRoute, getRoute } from "@/utils/APIRouteSetter";
-import { allScreenDataFetcher } from "./engagementLoggerPipeline";
-const mainUrl = mainRoute();
+// // import block
+// import { mainRoute, getRoute } from "@/utils/APIRouteSetter";
+// import { allScreenDataFetcher } from "./engagementLoggerPipeline";
+// const mainUrl = mainRoute();
 // Function provides data props to be used in elogger react component
 
 // Data provided in this shape (example):
