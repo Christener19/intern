@@ -10,9 +10,8 @@ export async function getParticpantsList(tableName : string) {
         SELECT
             name,
             zoomid
-        FROM ${tableName}
-        RETURNING *;
-     `  
+        FROM ${tableName};
+            `  
     try {
         const nameList = await pool.query(queryText)
         return nameList.rows;
