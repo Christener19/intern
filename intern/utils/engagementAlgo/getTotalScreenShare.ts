@@ -12,7 +12,11 @@ import findBreakPoints from "./findBreakPoints";
 
 // return score (1-3)
 
-export default function getTotalScreenShare(zoomID: number, median: number): number {
+export default function getTotalScreenShare(
+  zoomID: number,
+  screenShareBreakPoint: {},
+  bootcamperScreenShareTotal: number
+): number {
   console.log(`Getting Total Screen Share for ${zoomID}`);
   let score = 0;
   // Get call to look up Total Screen Share time
@@ -23,21 +27,20 @@ export default function getTotalScreenShare(zoomID: number, median: number): num
   // let cohortScreenShareArr = [2, 4, 5, 6];
 
   // Bootcampers details from database
-  const bootcamperTotalScreenShare = 4
-
+  // const bootcamperTotalScreenShare = 4
 
   // calc median and breakpoints
   // let median = findMedian(cohortScreenShareArr);
-  let breakPoints = findBreakPoints(0.15, 0.3, median);
+  // let breakPoints = findBreakPoints(0.15, 0.3, median);
 
   switch (true) {
     // good
-    case bootcamperTotalScreenShare >= breakPoints.goodBP:
+    case bootcamperScreenShareTotal >= screenShareBreakPoint.goodBP:
       score = 3;
       break;
     // average
-    case bootcamperTotalScreenShare < breakPoints.goodBP &&
-    bootcamperTotalScreenShare >= breakPoints.averageBP:
+    case bootcamperScreenShareTotal < screenShareBreakPoint.goodBP &&
+      bootcamperScreenShareTotal >= screenShareBreakPoint.averageBP:
       score = 2;
       break;
     // poor

@@ -35,17 +35,17 @@ export async function allScreenDataFetcher(weekNumber: number) {
     (singleValue) => singleValue["screen_share_switch_freq"]
   );
   // debug loggers
-  //   console.log("allScreenTimeArr");
-  //   console.log(allScreenTimeArr);
-  //   console.log("allScreenSwitchArr");
-  //   console.log(allScreenSwitchArr);
+  console.log("allScreenTimeArr");
+  console.log(allScreenTimeArr);
+  console.log("allScreenSwitchArr");
+  console.log(allScreenSwitchArr);
 
   // Calculate median for each
   const screenShareMedian = findMedian(allScreenTimeArr);
   const screenSwitchMedian = findMedian(allScreenSwitchArr);
   // debug loggers
-  // console.log(`screenShareMedian: ${screenShareMedian}`)
-  // console.log(`screenSwitchMedian: ${screenSwitchMedian}`)
+  console.log(`screenShareMedian: ${screenShareMedian}`);
+  console.log(`screenSwitchMedian: ${screenSwitchMedian}`);
 
   // Calculate the breakpoints () from the medians
   const screenShareBreakPoint = findBreakPoints(0.15, 0.3, screenShareMedian);
@@ -55,10 +55,10 @@ export async function allScreenDataFetcher(weekNumber: number) {
     screenSwitchMedian
   );
   // debug loggers
-  //   console.log(`screenShareBreakPoint`);
-  //   console.log(screenShareBreakPoint);
-  //   console.log(`screenSwitchFreqBreakPoint}`);
-  //   console.log(screenSwitchFreqBreakPoint);
+  console.log(`screenShareBreakPoint`);
+  console.log(screenShareBreakPoint);
+  console.log(`screenSwitchFreqBreakPoint}`);
+  console.log(screenSwitchFreqBreakPoint);
 
   // get all bootcampers and clean up into array of objects
   const allBootcampers = await fetch(
@@ -73,7 +73,7 @@ export async function allScreenDataFetcher(weekNumber: number) {
   const allBootcampersJSON = await allBootcampers.text();
   const allBootcampersArr = JSON.parse(allBootcampersJSON);
   const allBootcampersPayload = allBootcampersArr.data.data;
-  console.log("bootcamperArr check");
+  // console.log("bootcamperArr check");
   //console.log(allBootcampersPayload);
 
   // restructure it into the right format
@@ -84,7 +84,8 @@ export async function allScreenDataFetcher(weekNumber: number) {
     pollCompletionRate: Number(entry.poll_completion_rate),
   }));
 
-  //   console.log(bootcampers);
+  // console.log("bootcampers - 123456");
+  // console.log(bootcampers);
   // Create return object
   return {
     // array of objects of each bootcamper {id, screenshareData, screenSwitchData, pollCompletionRate}
@@ -113,7 +114,8 @@ export default async function getAllEngagementGrades(weekNumber: number) {
 
   const allBootcamper = await allScreenDataFetcher(weekNumber);
   //console.log(`Number of bootcampers: ${allBootcamper.bootcampers.length}`);
-
+  // console.log("bootcampers 2345");
+  // console.log(allBootcamper);
   // start for loop
   // Get score for ID
   // check if there is any data
@@ -121,19 +123,20 @@ export default async function getAllEngagementGrades(weekNumber: number) {
   // if data does exist -> patch
 
   for (let i = 0; i < allBootcamper.bootcampers.length; i++) {
-    // console.log(
-    //   `Getting score for: ${allBootcamper.bootcampers[i].zoomID} ${i} of ${allBootcamper.bootcampers.length}`
-    // );
-    // console.log(
-    //   `details of bootcamper: zoomID: ${allBootcamper.bootcampers[i].zoomID} screenShare: ${allBootcamper.bootcampers[i].screenShareTotal}, screenShareSwitch: ${allBootcamper.bootcampers[i].screenSwitchTotal}
-    //   pollCompletionRate: ${allBootcamper.bootcampers[i].pollCompletionRate}`
-    // );
+    console.log("loop started to update scores");
+    console.log(
+      `Getting score for: ${allBootcamper.bootcampers[i].zoomID} ${i} of ${allBootcamper.bootcampers.length}`
+    );
+    console.log(
+      `details of bootcamper: zoomID: ${allBootcamper.bootcampers[i].zoomID} screenShare: ${allBootcamper.bootcampers[i].screenShareTotal}, screenShareSwitch: ${allBootcamper.bootcampers[i].screenSwitchTotal}
+      pollCompletionRate: ${allBootcamper.bootcampers[i].pollCompletionRate}`
+    );
     let bootcamperScore = await getScoreForBootcamper(
       allBootcamper.bootcampers[i],
       allBootcamper.breakpoints
     );
     // patch record in database by zoomID and weekNumber
-    //console.log(`${bootcamperScore}`)
+    console.log(`${bootcamperScore}`);
     CreatedArry.push({
       zoomID: allBootcamper.bootcampers[i].zoomID,
       bootcamperScore,
@@ -141,6 +144,8 @@ export default async function getAllEngagementGrades(weekNumber: number) {
   }
   // Great return object
   // array of objects of each bootcamper {id, grade, week number}
+  console.log("created array");
+  console.log(CreatedArry);
   return CreatedArry;
 }
 

@@ -12,37 +12,39 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import ButtonEngagementCSV from "./buttonEngagmentLoggerCSV";
 import createEngagementProps from "../dataObjectsForCompProps/eloggerHydration";
+import { allEngagementGradePatcher } from "../dataObjectsForCompProps/engagementLoggerPipeline";
 
 // Define the EngagementLogger component
 export default function EngagementLogger() {
   // State to manage the search term
   const [searchTerm, setSearchTerm] = useState("");
   // State to manage engagmentProps
-  const [engagmentProps, setEngagementProps] = useState([
-    {
-      name: "Loading",
-      avgEngagement: "good",
-      image: null,
-      fullData: {},
-    },
-  ]);
+  // const [engagmentProps, setEngagementProps] = useState([
+  //   {
+  //     name: "Loading",
+  //     avgEngagement: "good",
+  //     image: null,
+  //     fullData: {},
+  //   },
+  // ]);
   // const [dataLoaded, setDataLoaded] = useState(true);
 
-  let data = [];
+  // let data = [];
 
-  const fetchData = async () => {
-    data = await createEngagementProps(1);
+  // const fetchData = async () => {
+  //   // data = await createEngagementProps(1);
 
-    // Push to database
-    console.log("fetchData function");
-    setEngagementProps(data);
-    // setDataLoaded(dataLoaded ? false : true);
-  };
-  setInterval(fetchData, 30 * 1000);
+  //   // Push to database
+  //   console.log("fetchData function");
+  //   // allEngagementGradePatcher(1);
 
-  // // [{ name: "Alice", avgEngagement: "average", image: null, fullData: {} }],
+  //   setDataLoaded(dataLoaded ? false : true);
+  // };
+  // setInterval(fetchData, 30 * 1000);
 
-  // useEffect to track changes and re-render component(s)
+  // // // [{ name: "Alice", avgEngagement: "average", image: null, fullData: {} }],
+
+  // // useEffect to track changes and re-render component(s)
   // useEffect(() => {
   //   console.log("dataLoaded");
   //   // Updates EngagementProps
