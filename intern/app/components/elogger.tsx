@@ -26,7 +26,7 @@ export default function EngagementLogger() {
       fullData: {},
     },
   ]);
-  const [dataLoaded, setDataLoaded] = useState(false);
+  const [dataLoaded, setDataLoaded] = useState(true);
 
   const fetchData = async () => {
     const data = await createEngagementProps(1);
@@ -35,7 +35,7 @@ export default function EngagementLogger() {
     console.log("fetchData function");
     setDataLoaded(dataLoaded ? false : true);
   };
-  setInterval(fetchData, 60 * 1000 * 60);
+  setInterval(fetchData, 60 * 1000);
 
   // // [{ name: "Alice", avgEngagement: "average", image: null, fullData: {} }],
 
@@ -44,7 +44,7 @@ export default function EngagementLogger() {
     // Updates EngagementProps
     setEngagementProps([
       {
-        name: "Alice",
+        name: "Thomas",
         avgEngagement: "average",
         image: null,
         fullData: {},
