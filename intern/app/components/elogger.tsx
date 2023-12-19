@@ -8,10 +8,11 @@
 //div form
 // if card clicked profile appersimport React, { useState } from "react";
 import EngagementLoggerBox from "./eloggerBox";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import ButtonEngagementCSV from "./buttonEngagmentLoggerCSV";
 import { getRoute, mainRoute } from "../../utils/APIRouteSetter";
+import engagementDataResponse from "../dataObjectsForCompProps/eloggerHydration";
 
 const mainUrl = mainRoute();
 
@@ -19,31 +20,22 @@ const mainUrl = mainRoute();
 export default async function EngagementLogger() {
   // State to manage the search term
   const [searchTerm, setSearchTerm] = useState("");
+  // State to manage engagmentProps
+  const [engagmentProps, setEngagementProps] = useState();
 
-  // Data we need:
-  // [{ name: "Alice", avgEngagement: "average", image: null, fullData: {} }],
-  const engagementData = (async function () {
-    const engagementDataResponse = async (weekNumber) => {
-      await fetch(
-        `${mainUrl}${getRoute}getEngagementScoreByWeek?weekNumber=${weekNumber}`
-      );
-      const engagementDataJSON = await engagementDataResponse.text();
-      const engagementDataPayload = JSON.parse(engagementDataJSON);
-      const engagementDataArray = engagementDataPayload.data;
-      const engagementData = engagementDataArray.map((entry) => ({
-        name: entry.name,
-        avgEngagement: entry.average_engagement_grade,
-        image: null,
-        fullData: {},
-      }));
-      return engagementData;
-    };
+  // useEffect to track changes and re-render component(s)
+  useEffect(() => {
+  // set 
+        
+  }, [engagmentProps]);
 
-    // Call the engagementDataResponse function and return its result
-    return await engagementDataResponse(1);
-  })();
+  // get database to update it's engagement grades
 
-  console.log(engagementData);
+  // call function to fetch data and setEngagment props to update data being shown to the user
+  engagementDataResponse(1)
+
+  // rerun above functions every x seconds
+  
 
   // Event handler for updating the search term
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -51,7 +43,7 @@ export default async function EngagementLogger() {
   };
 
   // Filter the engagementData based on the search term
-  const filteredData = engagementData?.filter((person: any) =>
+  const filteredData = engagmentProps?.filter((person: any) =>
     person.name.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
