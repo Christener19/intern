@@ -8,7 +8,7 @@ import { useState, useEffect } from "react";
 import { mainRoute, getRoute } from "@/utils/APIRouteSetter";
 
 
-// div to hold everything
+
 export default function AttendanceTracker({ attendanceAlert: initialAttendanceAlert }) {
   const [attendanceAlert, setAttendanceAlert] = useState(initialAttendanceAlert);
 
@@ -17,7 +17,7 @@ export default function AttendanceTracker({ attendanceAlert: initialAttendanceAl
   useEffect(() => {
     const fetchAttendanceData = async () => {
       try {
-        // Replace with your actual endpoint and fetching logic
+   
         const response = await fetch(`${baseURL}${getRoute}getBootcampers`);
         const updatedData = await response.json();
       
@@ -33,8 +33,8 @@ export default function AttendanceTracker({ attendanceAlert: initialAttendanceAl
 
 
   const { attPercent, alerts } = attendanceAlert;
-console.log(`attPercent: ${attPercent}`) // debug logger
-    console.log(`alerts: ${alerts}`) // debug logger
+console.log(`attPercent: ${attPercent}`)
+    console.log(`alerts: ${alerts}`) 
   const attendancePercent = { attPercent };
   console.log(`attendancePercent: ${attendancePercent.attPercent}`)
 
@@ -88,4 +88,4 @@ console.log(`attPercent: ${attPercent}`) // debug logger
   );
 }
 
-// This was from line 37 w-full justify-center  ml-auto mr-auto text-center
+
