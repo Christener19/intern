@@ -26,32 +26,28 @@ export default function EngagementLogger() {
       fullData: {},
     },
   ]);
-  const [dataLoaded, setDataLoaded] = useState(true);
+  // const [dataLoaded, setDataLoaded] = useState(true);
+
+  let data = [];
 
   const fetchData = async () => {
-    const data = await createEngagementProps(1);
+    data = await createEngagementProps(1);
 
     // Push to database
     console.log("fetchData function");
-    setDataLoaded(dataLoaded ? false : true);
+    setEngagementProps(data);
+    // setDataLoaded(dataLoaded ? false : true);
   };
-  setInterval(fetchData, 60 * 1000);
+  setInterval(fetchData, 30 * 1000);
 
   // // [{ name: "Alice", avgEngagement: "average", image: null, fullData: {} }],
 
   // useEffect to track changes and re-render component(s)
-  useEffect(() => {
-    console.log("dataLoaded");
-    // Updates EngagementProps
-    setEngagementProps([
-      {
-        name: "Thomas",
-        avgEngagement: "average",
-        image: null,
-        fullData: {},
-      },
-    ]);
-  }, [dataLoaded]);
+  // useEffect(() => {
+  //   console.log("dataLoaded");
+  //   // Updates EngagementProps
+  //   setEngagementProps(data);
+  // }, [dataLoaded]);
 
   // Event handler for updating the search term
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {

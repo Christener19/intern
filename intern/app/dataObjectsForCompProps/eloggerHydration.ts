@@ -1,11 +1,15 @@
 // import block
 import { mainRoute, getRoute } from "@/utils/APIRouteSetter";
+import { allEngagementGradePatcher } from "./engagementLoggerPipeline";
 const mainUrl = mainRoute();
 // Function provides data props to be used in elogger react component
 
 // Data provided in this shape (example):
 // [{ name: "Alice", avgEngagement: "average", image: null, fullData: {} }],
 export default async function createEngagementProps(weekNumber: number) {
+  // Patch database with latest engagement grades
+  await allEngagementGradePatcher(weekNumber);
+
   const engagementDataResponse = await fetch(
     `${mainUrl}${getRoute}getEngagementScoreByWeek?weekNumber=${weekNumber}`
   );

@@ -153,7 +153,7 @@ const Bill = async () => {
 //  getAllEngagementGrades(1);
 
 // Start loop to go thru every bootcamper in the database
-async function allEngagementGradePatcher(weekNumber: number) {
+export async function allEngagementGradePatcher(weekNumber: number) {
   // get the array of updated records to pat
   const patchArray: any = await getAllEngagementGrades(weekNumber);
   // init loop
