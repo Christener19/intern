@@ -11,37 +11,47 @@ import EngagementLoggerBox from "./eloggerBox";
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import ButtonEngagementCSV from "./buttonEngagmentLoggerCSV";
-import engagementDataResponse from "../dataObjectsForCompProps/eloggerHydration";
+import createEngagementProps from "../dataObjectsForCompProps/eloggerHydration";
 
 // Define the EngagementLogger component
 export default function EngagementLogger() {
   // State to manage the search term
   const [searchTerm, setSearchTerm] = useState("");
   // State to manage engagmentProps
-  const [engagmentProps, setEngagementProps] = useState();
+  const [engagmentProps, setEngagementProps] = useState([
+    {
+      name: "Loading",
+      avgEngagement: "good",
+      image: null,
+      fullData: {},
+    },
+  ]);
+  const [dataLoaded, setDataLoaded] = useState(false);
 
-  // useEffect to fetch data at set intervals
-  useEffect(() => {
-    // Fetch data when component mounds
-    fetchData()
-    // Fetch data every hour (in milliseconds)
-    setInterval(fetchData, 3_600_000);
-    // no dependency needed, all runs off the interval timer 
-  }, []);
-
-  // 3_600_000
-
-  // update database and reGet data
   const fetchData = async () => {
-    try {
-      console.log('getting new engagmentProps')
-      const newEngagementGrades = await engagementDataResponse(1);
-      setEngagementProps(newEngagementGrades);
-    } catch (error) {
-      console.error('Error getting new engagment grades from database', error)
-    }
-  // update database values
+    const data = await createEngagementProps(1);
+
+    // Push to database
+    console.log("fetchData function");
+    setDataLoaded(dataLoaded ? false : true);
   };
+  setInterval(fetchData, 60 * 1000 * 60);
+
+  // // [{ name: "Alice", avgEngagement: "average", image: null, fullData: {} }],
+
+  // useEffect to track changes and re-render component(s)
+  useEffect(() => {
+    // Updates EngagementProps
+    setEngagementProps([
+      {
+        name: "Alice",
+        avgEngagement: "average",
+        image: null,
+        fullData: {},
+      },
+    ]);
+    console.log("dataLoaded");
+  }, [dataLoaded]);
 
   // Event handler for updating the search term
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
