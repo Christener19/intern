@@ -230,7 +230,7 @@ export  async function createEngagementProps(weekNumber: number) {
 
 async function patcherAndFetcher (weekNumber:number) {
   await allEngagementGradePatcher (weekNumber)
-  await createEngagementProps (weekNumber)
-
+  const engagementProps= await createEngagementProps (weekNumber)
+return engagementProps;
 }
 patcherAndFetcher(1)
