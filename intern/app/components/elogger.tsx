@@ -11,8 +11,7 @@ import EngagementLoggerBox from "./eloggerBox";
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import ButtonEngagementCSV from "./buttonEngagmentLoggerCSV";
-import createEngagementProps from "../dataObjectsForCompProps/eloggerHydration";
-import { allEngagementGradePatcher } from "../dataObjectsForCompProps/engagementLoggerPipeline";
+import { patcherAndFetcher } from "../dataObjectsForCompProps/engagementLoggerPipeline";
 
 // Define the EngagementLogger component
 export default function EngagementLogger() {
@@ -51,13 +50,17 @@ export default function EngagementLogger() {
   //   setEngagementProps(data);
   // }, [dataLoaded]);
 
+  const FetchData = async (weekNumber: number) => {
+    const data = await patcherAndFetcher(weekNumber);
+  };
+  const engagementProps = FetchData(1);
   // Event handler for updating the search term
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchTerm(e.target.value);
   };
 
   // Filter the engagementData based on the search term
-  const filteredData = engagmentProps?.filter((person: any) =>
+  const filteredData = engagementProps?.filter((person: any) =>
     person.name.toLowerCase().includes(searchTerm.toLowerCase())
   );
 

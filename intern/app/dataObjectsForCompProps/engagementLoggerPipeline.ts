@@ -228,7 +228,7 @@ export  async function createEngagementProps(weekNumber: number) {
   return engagementData;
 }
 
-async function patcherAndFetcher (weekNumber:number) {
+export async function patcherAndFetcher (weekNumber:number) {
   await allEngagementGradePatcher (weekNumber)
   const engagementProps= await createEngagementProps (weekNumber)
 return engagementProps;
