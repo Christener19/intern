@@ -1,4 +1,5 @@
 // import block
+import throttle from "@/utils/delayCall";
 import * as engagementModel from "../models/engagementModel";
 
 // api request handlers
@@ -104,11 +105,11 @@ export async function patchEngagmentGrade(
   }
 
   // console log to check
-  console.log(`Controller: zoomid = ${zoomId}`);
-  console.log(`Controller: week_number = ${week_number}`);
-  console.log(
-    `Controller: average_engagement_grade = ${average_engagement_grade}`
-  );
+  // console.log(`Controller: zoomid = ${zoomId}`);
+  // console.log(`Controller: week_number = ${week_number}`);
+  // console.log(
+  //   `Controller: average_engagement_grade = ${average_engagement_grade}`
+  // );
 
   try {
     // call getEngagementCardData from model
@@ -276,18 +277,19 @@ export async function getAllScreenData(testCheck: boolean, weekNumber: number) {
     console.log(`attempting fetch ${retryCounter + 1} of ${maxRetries}`);
     try {
       // call functions from model
-      console.log("getting allscreentime");
+      console.log("getting allscreentime: Controller call");
       const allScreenTime = await engagementModel.getAllScreenTime(
         tableName,
         weekNumber
       );
-      console.log("getting allscreenswitch");
+      console.log("getting allscreenswitch: Controller call");
       const allScreenSwitch = await engagementModel.getAllScreenSwitch(
         tableName,
         weekNumber
       );
-      // return both in an object
-      console.log('success fetch allscreentime and allscreenswitch')
+
+      // If both calls succeed, return the data and exit the function
+      console.log('success fetch allscreentime and allscreenswitch');
       return {
         status: "success",
         data: {
@@ -299,15 +301,19 @@ export async function getAllScreenData(testCheck: boolean, weekNumber: number) {
       console.error("Error in getAllScreenData", error);
       // Retry logic, continue to the next iteration of the loop
       retryCounter += 1;
+    } finally {
+      // Add a delay before the next retry to avoid overwhelming the system
+      await throttle(); // Adjust the delay as needed
     }
   }
 
-  // Return an error response after multiple retries
+  // If all retries fail, return an error status
   return {
-    status: 'error',
-    message: 'failed to fetch screen data after multiple retries',
+    status: "error",
+    message: "Max retries reached. Unable to fetch data.",
   };
 }
+
 
 // GET all bootcampers data to engagementGrade
 export async function getBootcampersDataArr(
@@ -351,8 +357,8 @@ export async function getEngagementCardPropsByWeek(
   }
 
   try {
-    const engagementCardProp =
-      await engagementModel.getEngagementCardPropsByWeek(weekNumber, tableName);
+    const engagementCardProp = await engagementModel.getEngagementCardPropsByWeek(weekNumber, tableName);
+    console.log('card props data fetched from database')
     return engagementCardProp;
   } catch (error) {
     console.error("Error in getPollCompletionRate controller", error);

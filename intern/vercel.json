@@ -1,0 +1,7 @@
+{
+    "functions": {
+      "api/elog-schedule.js": {
+        "runtime": "@now/node"
+      }
+    }
+  }

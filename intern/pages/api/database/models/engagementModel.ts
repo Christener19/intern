@@ -139,11 +139,10 @@ export async function patchEngagmentGrade(
 ) {
   // applying delay to avoid rate limit
   await throttle();
-  console.log("delay applied");
 
-  console.log(
-    `Model: patching record ID: ${zoomId}, Week Number: ${week_number}, Grade: ${average_engagement_grade}`
-  );
+  // console.log(
+  //   `Model: patching record ID: ${zoomId}, Week Number: ${week_number}, Grade: ${average_engagement_grade}`
+  // );
   const queryText = `
         UPDATE ${tableName}
             SET
@@ -297,7 +296,8 @@ export async function patchScreenShareSwitchFreq(
     }
   }
 }
-// GET for all screen share switch to use in engagment calc
+
+// GET for all screen share switch to use in engagement calc
 export async function getAllScreenSwitch(
   tableName: string,
   weekNumber: number
@@ -312,10 +312,11 @@ export async function getAllScreenSwitch(
   // query to run
   const queryText = `
     SELECT
-    screen_share_switch_freq
+      screen_share_switch_freq
     FROM ${tabName}
     WHERE week_number = $1
-    `;
+  `;
+
   // try this first
   // set up client variable
   let client: any;
@@ -325,10 +326,10 @@ export async function getAllScreenSwitch(
 
     const result = await client.query(queryText, [weeknum]);
     return result.rows;
-    // if fail throw the error
   } catch (error) {
     console.error(`Error in getAllScreenSwitch:`, error);
-    throw error;
+    // You can either handle the error here or remove the throw statement
+    // throw error; // Only throw if you have specific handling to do at a higher level
   } finally {
     if (client) {
       // release client connection
@@ -336,6 +337,7 @@ export async function getAllScreenSwitch(
     }
   }
 }
+
 
 // GET for all screen time to use in engagment calc
 export async function getAllScreenTime(tableName: string, weekNumber: number) {
@@ -423,7 +425,7 @@ export async function getEngagementCardPropsByWeek(
   // applying delay to avoid rate limit
   await throttle();
 
-  // console.log(`tableName, ${tableName}`);
+  console.log(`Getting data from tableName, ${tableName}`);
   const queryText = `
         SELECT
             name, 

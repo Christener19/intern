@@ -35,17 +35,17 @@ export async function allScreenDataFetcher(weekNumber: number) {
     (singleValue) => singleValue["screen_share_switch_freq"]
   );
   // debug loggers
-  console.log("allScreenTimeArr");
-  console.log(allScreenTimeArr);
-  console.log("allScreenSwitchArr");
-  console.log(allScreenSwitchArr);
+  // console.log("allScreenTimeArr");
+  // console.log(allScreenTimeArr);
+  // console.log("allScreenSwitchArr");
+  // console.log(allScreenSwitchArr);
 
   // Calculate median for each
   const screenShareMedian = findMedian(allScreenTimeArr);
   const screenSwitchMedian = findMedian(allScreenSwitchArr);
   // debug loggers
-  console.log(`screenShareMedian: ${screenShareMedian}`);
-  console.log(`screenSwitchMedian: ${screenSwitchMedian}`);
+  // console.log(`screenShareMedian: ${screenShareMedian}`);
+  // console.log(`screenSwitchMedian: ${screenSwitchMedian}`);
 
   // Calculate the breakpoints () from the medians
   const screenShareBreakPoint = findBreakPoints(0.15, 0.3, screenShareMedian);
@@ -55,10 +55,10 @@ export async function allScreenDataFetcher(weekNumber: number) {
     screenSwitchMedian
   );
   // debug loggers
-  console.log(`screenShareBreakPoint`);
-  console.log(screenShareBreakPoint);
-  console.log(`screenSwitchFreqBreakPoint}`);
-  console.log(screenSwitchFreqBreakPoint);
+  // console.log(`screenShareBreakPoint`);
+  // console.log(screenShareBreakPoint);
+  // console.log(`screenSwitchFreqBreakPoint}`);
+  // console.log(screenSwitchFreqBreakPoint);
 
   // get all bootcampers and clean up into array of objects
   const allBootcampers = await fetch(
@@ -98,10 +98,10 @@ export async function allScreenDataFetcher(weekNumber: number) {
   };
 }
 
-const dave = async () => {
-  const logger = await allScreenDataFetcher(1);
-  console.log(logger);
-};
+// const dave = async () => {
+//   const logger = await allScreenDataFetcher(1);
+//   console.log(logger);
+// };
 
 // dave();
 
@@ -112,7 +112,9 @@ export default async function getAllEngagementGrades(weekNumber: number) {
   //intalising return array
   const CreatedArry = [];
 
+  console.log('before all screenDataFetcher line 115')
   const allBootcamper = await allScreenDataFetcher(weekNumber);
+  console.log('after all screenDataFetcher line 117')
   //console.log(`Number of bootcampers: ${allBootcamper.bootcampers.length}`);
   // console.log("bootcampers 2345");
   // console.log(allBootcamper);
@@ -123,7 +125,7 @@ export default async function getAllEngagementGrades(weekNumber: number) {
   // if data does exist -> patch
 
   for (let i = 0; i < allBootcamper.bootcampers.length; i++) {
-    console.log("loop started to update scores");
+    // console.log("loop started to update scores");
     console.log(
       `Getting score for: ${allBootcamper.bootcampers[i].zoomID} ${i} of ${allBootcamper.bootcampers.length}`
     );
@@ -136,7 +138,7 @@ export default async function getAllEngagementGrades(weekNumber: number) {
       allBootcamper.breakpoints
     );
     // patch record in database by zoomID and weekNumber
-    console.log(`${bootcamperScore}`);
+    // console.log(`${bootcamperScore}`);
     CreatedArry.push({
       zoomID: allBootcamper.bootcampers[i].zoomID,
       bootcamperScore,
@@ -144,15 +146,15 @@ export default async function getAllEngagementGrades(weekNumber: number) {
   }
   // Great return object
   // array of objects of each bootcamper {id, grade, week number}
-  console.log("created array");
-  console.log(CreatedArry);
+  // console.log("created array");
+  // console.log(CreatedArry);
   return CreatedArry;
 }
 
-const Bill = async () => {
-  const logger = await getAllEngagementGrades(1);
-  console.log(logger);
-};
+// const Bill = async () => {
+//   const logger = await getAllEngagementGrades(1);
+//   console.log(logger);
+// };
 
 // Bill();
 //  getAllEngagementGrades(1);
@@ -217,14 +219,15 @@ export  async function createEngagementProps(weekNumber: number) {
   const engagementDataJSON = await engagementDataResponse.text();
   const engagementDataPayload = JSON.parse(engagementDataJSON);
   const engagementDataArray = engagementDataPayload.data;
+  console.log(`mapping data object`)
   const engagementData = engagementDataArray.map((entry) => ({
     name: entry.name,
     avgEngagement: entry.average_engagement_grade,
     image: null,
     fullData: {},
   }));
-  console.log("engagementData")
-  console.log(engagementData)
+  console.log("Engagment Props complete")
+  //console.log(engagementData)
   return engagementData;
 }
 
@@ -233,4 +236,4 @@ export async function patcherAndFetcher (weekNumber:number) {
   const engagementProps= await createEngagementProps (weekNumber)
 return engagementProps;
 }
-patcherAndFetcher(1)
+//patcherAndFetcher(1)

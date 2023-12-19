@@ -31,9 +31,9 @@ async function handlePatchRequest(req: NextApiRequest, res: NextApiResponse) {
     const data = req.body;
 
     // console log to check
-    console.log(`Router: zoomid = ${zoomId}`);
-    console.log(`Router: data = ${data}`);
-    console.log(data);
+    // console.log(`Router: zoomid = ${zoomId}`);
+    // console.log(`Router: data = ${data}`);
+    // console.log(data);
 
     // Call the registerBootcamperAttendance function from the controller
     const register = await engagementController.patchEngagmentGrade(
