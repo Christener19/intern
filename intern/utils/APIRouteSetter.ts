@@ -9,7 +9,7 @@ export const mainRoute = ():string => {
     } else {
         // prod url
         console.log('running in live')
-        return '//https://intern-soc.vercel.app/'
+        return 'https://intern-soc.vercel.app/'
     }
     //https://intern-soc.vercel.app/
 }
