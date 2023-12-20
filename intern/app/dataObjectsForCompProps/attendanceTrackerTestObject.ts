@@ -1,13 +1,26 @@
 import { mainRoute, getRoute } from "@/utils/APIRouteSetter";
+import pool from "../../pages/api/database/dbIndex";
 
 // returns the attendance Percent value 
 export const attendanceDataFetcher = async (): Promise<object> => {
+    
+    // gets a pool connections
+    let client: any
+    client = await pool.connect()
 
     const baseURL = mainRoute()
     // route loggers
     // console.log(`mainRoute = ${mainRoute()}`)
     // console.log(`getRoute = ${getRoute}`)
+
+    client.release()
+
 const cleanAttPercent = async () => {
+
+    // gets a pool connections
+    let client: any
+    client = await pool.connect()
+
     // do call get data
     const bootCampersPresentResponse = await fetch(`${baseURL}${getRoute}getBootcampers`);
     // clean up JSON
@@ -23,7 +36,10 @@ const cleanAttPercent = async () => {
     // Calculate attendance percentage
     const attendancePercentage = (totalPresent / (totalCount) * 100);
 
+    client.release()
+    
     return attendancePercentage.toFixed(0);
+
 
 }
 

@@ -4,11 +4,14 @@ const baseURL = mainRoute();
 import findBreakPoints from "../../utils/engagementAlgo/findBreakPoints";
 import findMedian from "../../utils/engagementAlgo/findMedian";
 import getScoreForBootcamper from "../../utils/engagementAlgo/getScoreForBootcamper";
+import pool from "../../pages/api/database/dbIndex";
 
 // This updates the data that feeds the engagement logger cards
 
 // GET the data points from the database
 export async function allScreenDataFetcher(weekNumber: number) {
+
+  
   // debug loggers
   // console.log(weekNumber)
   // console.log(`allScreen URL: ${baseURL}${getRoute}getAllScreenData?weeknumber=${weekNumber}`)
@@ -84,6 +87,7 @@ export async function allScreenDataFetcher(weekNumber: number) {
     pollCompletionRate: Number(entry.poll_completion_rate),
   }));
 
+
   // console.log("bootcampers - 123456");
   // console.log(bootcampers);
   // Create return object
@@ -111,6 +115,7 @@ export default async function getAllEngagementGrades(weekNumber: number) {
   // const zoomIDs = [23, 24, 56, 67];
   //intalising return array
   const CreatedArry : any = [];
+
 
   console.log('before all screenDataFetcher line 115')
   const allBootcamper: any = await allScreenDataFetcher(weekNumber);
@@ -148,6 +153,8 @@ export default async function getAllEngagementGrades(weekNumber: number) {
   // array of objects of each bootcamper {id, grade, week number}
   // console.log("created array");
   // console.log(CreatedArry);
+
+
   return CreatedArry;
 }
 
@@ -228,6 +235,7 @@ export  async function createEngagementProps(weekNumber: number) {
   }));
   console.log("Engagment Props complete")
   //console.log(engagementData)
+
   return engagementData;
 }
 
@@ -236,4 +244,4 @@ export async function patcherAndFetcher (weekNumber:number) {
   const engagementProps= await createEngagementProps (weekNumber)
 return engagementProps;
 }
-//patcherAndFetcher(1)
+// patcherAndFetcher(1)
