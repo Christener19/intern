@@ -22,7 +22,7 @@ export default async function attendanceZoomToDb() {
         join_leave: [],
       },
       {
-        registrant_id: "123",
+        registrant_id: "98IH-wpWSSCIesZ_SmZ3HQ",
         name: "Ziad Labban",
         user_email: "ziadlabban@hotmail.co.uk",
         day: "2023-12-19T",
@@ -45,7 +45,7 @@ export default async function attendanceZoomToDb() {
       },
       {
         recordid: 11,
-        zoomid: "22000",
+        zoomid: "98IH-wpWSSCIesZ_SmZ3HQ",
         name: "bill",
         todays_attendance_hours: 0,
         total_attendance_hours: 0,
@@ -101,8 +101,7 @@ export default async function attendanceZoomToDb() {
   try {
     console.log("alive at 117");
     const response = await fetch(
-      `${mainURL}${patchRoute}
-registerBootcamperAttendance?zoomId=${currentZoomID}`,
+      `${mainURL}${patchRoute}registerBootcamperAttendance?zoomId=${currentZoomID}`,
       {
         // set header
         method: "PATCH",

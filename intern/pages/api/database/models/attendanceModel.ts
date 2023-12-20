@@ -89,7 +89,7 @@ export async function getAbsentBootcampersID(tableName: string) {
 
 // POST attendance data for a bootcamper
 export async function registerBootcamperAttendance(
-  zoomId: number,
+  zoomId: string,
   updates: any,
   tableName: string
 ) {

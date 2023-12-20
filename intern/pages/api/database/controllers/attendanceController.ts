@@ -79,7 +79,7 @@ export async function getAbsentBootcampers(testCheck: boolean) {
 
 // PATCH register
 export async function registerBootcamperAttendance(
-  zoomId: number,
+  zoomId: string,
   data: object,
   testCheck: boolean
 ) {
@@ -97,7 +97,7 @@ export async function registerBootcamperAttendance(
   // console.log(`Controller: data = ${data}`)
 
   try {
-    // console.log("zoomId", zoomId);
+    console.log("zoomId", zoomId);
     console.log(data);
     // call registerBootcamperAttendance from model
     const register = await attendanceModel.registerBootcamperAttendance(

@@ -61,22 +61,29 @@ export default async function attendanceZoomToDb() {
           );
           iszoomIdMatched = true;
 
-          //patch section
-          const newAttendanceHours = duration / 3600;
-          const newTotalAttendancehours =
-            allParticipants.data[j].total_attendance_hours + newAttendanceHours;
-          const newDays =
-            newAttendanceHours >= 7
-              ? (allParticipants.data[j].total_days_attended += 1)
-              : allParticipants.data[j].total_days_attended;
-          const newMissingStreak =
-            newAttendanceHours < 7
-              ? (allParticipants.data[j].missing_streak += 1)
-              : (allParticipants.data[j].missing_streak = 0);
-          console.log(
-            `new attendance hour: ${newAttendanceHours}, new total attendance : ${newTotalAttendancehours}, amount days attended:  ${newDays}, the missing streak: ${newMissingStreak}`
-          );
+          // log if it errors
+        } catch (error) {
+          console.log("Error:", error);
+        }
 
+        //patch section
+        const newAttendanceHours = duration / 3600;
+        const newTotalAttendancehours =
+          allParticipants.data[j].total_attendance_hours + newAttendanceHours;
+        const newDays =
+          newAttendanceHours >= 7
+            ? (allParticipants.data[j].total_days_attended += 1)
+            : allParticipants.data[j].total_days_attended;
+        const newMissingStreak =
+          newAttendanceHours < 7
+            ? (allParticipants.data[j].missing_streak += 1)
+            : (allParticipants.data[j].missing_streak = 0);
+        console.log(
+          `new attendance hour: ${newAttendanceHours}, new total attendance : ${newTotalAttendancehours}, amount days attended:  ${newDays}, the missing streak: ${newMissingStreak}`
+        );
+        try {
+          console.log("alive at 85");
+          // if doesnt then add bootcamper to database
           const response = await fetch(
             `${mainURL}${patchRoute}registerBootcamperAttendance?zoomId=${currentZoomID}`,
             {
@@ -94,9 +101,8 @@ export default async function attendanceZoomToDb() {
               }),
             }
           );
-
           // log that it works
-          console.log("alive 133");
+          console.log("alive 105");
           // const result = await response;
           const resultJson = await response.text();
           const cleanResult = JSON.parse(resultJson);
@@ -109,35 +115,81 @@ export default async function attendanceZoomToDb() {
     }
     // If iszoomIdMatched wasn't matched then adds it to database
     if (!iszoomIdMatched) {
-      // if doesnt then add bootcamper to database
+      // if zoomID isnt in database, then add bootcamper to database
       console.log(`${currentZoomID} did not match any in database`);
-      const response = await fetch(
-        `${mainURL}${postRoute}postBootcamperAttendance?zoomId='${currentZoomID}'`,
-        {
-          // set header
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          // send name in the body
-          body: JSON.stringify({ name: zoomParticipants.participants[i].name }),
-        }
+
+      try {
+        const response = await fetch(
+          `${mainURL}${postRoute}postBootcamperAttendance?zoomId='${currentZoomID}'`,
+          {
+            // set header
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            // send name in the body
+            body: JSON.stringify({
+              name: zoomParticipants.participants[i].name,
+            }),
+          }
+        );
+        console.log(`currentZoomID: ${currentZoomID}`);
+        console.log(`name: ${zoomParticipants.participants[i].name} `);
+
+        // log that it works
+        // const result = await response.json();
+        const resultJson = await response.text();
+        console.log("response");
+        console.log(response);
+        console.log("resultJson");
+        console.log(resultJson);
+        const cleanResult = JSON.parse(resultJson);
+        console.log("Success:", cleanResult);
+
+        // log if it errors
+      } catch {}
+
+      // then patch current data:
+      //patch section
+      const newAttendanceHours = Number((duration / 3600).toFixed(1));
+      const newTotalAttendancehours = newAttendanceHours;
+      const newDays = newAttendanceHours >= 7 ? 1 : 0;
+      const newMissingStreak = newAttendanceHours < 7 ? 1 : 0;
+      console.log(
+        `new attendance hour: ${newAttendanceHours}, new total attendance : ${newTotalAttendancehours}, amount days attended:  ${newDays}, the missing streak: ${newMissingStreak}`
       );
-      console.log(`currentZoomID: ${currentZoomID}`);
-      console.log(`name: ${zoomParticipants.participants[i].name} `);
+      try {
+        console.log("alive at 162");
+        // if doesnt then add bootcamper to database
+        const response = await fetch(
+          `${mainURL}${patchRoute}registerBootcamperAttendance?zoomId=${currentZoomID}`,
+          {
+            // set header
+            method: "PATCH",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            // send name in the body
+            body: JSON.stringify({
+              todays_attendance_hours: newAttendanceHours,
+              total_attendance_hours: newTotalAttendancehours,
+              total_days_attended: newDays,
+              missing_streak: newMissingStreak,
+            }),
+          }
+        );
+        // log that it works
+        console.log("alive 182");
+        // const result = await response;
+        const resultJson = await response.text();
+        const cleanResult = JSON.parse(resultJson);
+        console.log("Success:", cleanResult);
+        // log if it errors
+      } catch (error) {
+        console.log("Error:", error);
+      }
 
-      // log that it works
-      // const result = await response.json();
-      const resultJson = await response.text();
-      console.log("response");
-      console.log(response);
-      console.log("resultJson");
-      console.log(resultJson);
-      const cleanResult = JSON.parse(resultJson);
-      console.log("Success:", cleanResult);
-      // log if it errors
-
-      iszoomIdMatched = false;
+      let iszoomIdMatched = false;
     }
   }
 }
