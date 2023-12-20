@@ -12,12 +12,20 @@ import EngagementLoggerBox from "./eloggerBox";
 import ButtonEngagementCSV from "./buttonEngagmentLoggerCSV";
 import { createEngagementProps } from "../dataObjectsForCompProps/engagementLoggerPipeline";
 
+// EngagmentData interface for type safety
+interface EngagementData {
+  name: string;
+  avgEngagement: string;
+  image: null;
+  fullData: {};
+}
+
 // Define the EngagementLogger component
 export default function EngagementLogger() {
   // State to manage the search term
   const [searchTerm, setSearchTerm] = useState("");
   // State to manage engagmentProps
-  const [engagementProps, setEngagementProps] = useState<any[]>([] as any[]);
+  const [engagementProps, setEngagementProps] = useState<any[]>([]);
   // explicitly declare engagementProps as any as the promise does resolve to allow filter to work.
   // State to track whether data is being fetched
   const [loading, setLoading] = useState(true);
@@ -27,7 +35,7 @@ export default function EngagementLogger() {
     setLoading(true); // Set loading to true before fetching
     try {
       const data = await createEngagementProps(weekNumber);
-      setEngagementProps(data);
+      setEngagementProps(data as EngagementData[]);
     } finally {
       setLoading(false); // Set loading to false after fetching, even if there's an error
     }
