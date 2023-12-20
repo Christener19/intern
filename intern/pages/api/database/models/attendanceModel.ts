@@ -165,7 +165,7 @@ export async function getBootcamperById(tableName: string, zoomid: string) {
 
 // POST attendance data for a bootcamper
 export async function postBootcamperAttendance(
-  zoomId: number,
+  zoomId: string,
   tableName: string,
   name: string
 ) {

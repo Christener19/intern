@@ -96,8 +96,7 @@ export default async function attendanceZoomToDb() {
           );
           // if doesnt then add bootcamper to database
           const response = await fetch(
-            `${mainURL}${postRoute}
-      postBootcamperAttendance?zoomId=${currentZoomID}`,
+            `${mainURL}${postRoute}postBootcamperAttendance?zoomId=${currentZoomID}`,
             {
               // set header
               method: "POST",
@@ -122,7 +121,7 @@ export default async function attendanceZoomToDb() {
       //patch section
       const newAttendanceHours = duration / 3600;
       const newTotalAttendancehours =
-        allParticipants.data[j].total_attendance_hours + duration / 3600;
+        allParticipants.data[j].total_attendance_hours + newAttendanceHours;
       const newDays =
         newAttendanceHours >= 7
           ? (allParticipants.data[j].total_days_attended += 1)
@@ -138,8 +137,7 @@ export default async function attendanceZoomToDb() {
         console.log("alive at 117");
         // if doesnt then add bootcamper to database
         const response = await fetch(
-          `${mainURL}${patchRoute}
-    registerBootcamperAttendance?zoomId=${currentZoomID}`,
+          `${mainURL}${patchRoute}registerBootcamperAttendance?zoomId=${currentZoomID}`,
           {
             // set header
             method: "PATCH",

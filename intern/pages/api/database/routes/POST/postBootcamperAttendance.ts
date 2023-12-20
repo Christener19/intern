@@ -27,7 +27,7 @@ async function handlePostRequest(req: NextApiRequest, res: NextApiResponse) {
       req.query.testCheck !== null && req.query.testCheck !== undefined;
 
     // Extract parameters from the request
-    const zoomId = Number(req.query.zoomId);
+    const zoomId = String(req.query.zoomId);
     const name = req.body.name;
 
     // console log to check
