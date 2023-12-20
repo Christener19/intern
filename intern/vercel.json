@@ -3,7 +3,7 @@
         {
             "path":
         "/api/cron/elog-schedule.ts",
-        "schedule": "0 6-18 * * 1-5"
+        "schedule": "0 1 * * *"
         }
     ]
 }
