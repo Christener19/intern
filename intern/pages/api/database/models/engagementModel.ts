@@ -6,8 +6,7 @@ import throttle from "@/utils/delayCall";
 
 // GET Poll completion rate from postgres
 export async function getPollCompletionRate(zoomID: number, tableName: string) {
-  // applying delay to avoid rate limit
-  await throttle();
+
 
   const queryText = `
         SELECT
@@ -22,6 +21,7 @@ export async function getPollCompletionRate(zoomID: number, tableName: string) {
 
   try {
     client = await pool.connect(); // get new client from the pool
+    console.log('at model getPollCompletionRate client start')
 
     const result = await client.query(queryText, [zoomID]);
     return result.rows;
@@ -32,14 +32,14 @@ export async function getPollCompletionRate(zoomID: number, tableName: string) {
     if (client) {
       // release client connection
       client.release();
+      console.log('at model registerBootcamperAttendance client end')
     }
   }
 }
 
 // GET screenshare time from postgres
 export async function getScreenShareTime(zoomID: number, tableName: string) {
-  // applying delay to avoid rate limit
-  await throttle();
+
 
   const queryText = `
     SELECT
@@ -53,6 +53,7 @@ export async function getScreenShareTime(zoomID: number, tableName: string) {
 
   try {
     client = await pool.connect(); // get new client from the pool
+    console.log('at model getAllScreenShareTime client start')
 
     const result = await client.query(queryText, [zoomID]);
     return result.rows;
@@ -63,14 +64,14 @@ export async function getScreenShareTime(zoomID: number, tableName: string) {
     if (client) {
       // release client connection
       client.release();
+      console.log('at model getAllScreenShareTime client end')
     }
   }
 }
 
 // GET screenshare freq from postgres
 export async function getScreenShareFreq(zoomID: number, tableName: string) {
-  // applying delay to avoid rate limit
-  await throttle();
+
 
   const queryText = `
     SELECT
@@ -84,6 +85,7 @@ export async function getScreenShareFreq(zoomID: number, tableName: string) {
 
   try {
     client = await pool.connect(); // get new client from the pool
+    console.log('at model getScreenShareFreq client start')
 
     const result = await client.query(queryText, [zoomID]);
     return result.rows;
@@ -94,14 +96,14 @@ export async function getScreenShareFreq(zoomID: number, tableName: string) {
     if (client) {
       // release client connection
       client.release();
+      console.log('at model getScreenShareFreq client end')
     }
   }
 }
 
 // GET engagement card props from postgres - to be called on a loop to get everyone
 export async function getEngagementCardData(zoomID: number, tableName: string) {
-  // applying delay to avoid rate limit
-  await throttle();
+
 
   const queryText = `
         SELECT
@@ -116,6 +118,7 @@ export async function getEngagementCardData(zoomID: number, tableName: string) {
 
   try {
     client = await pool.connect(); // get new client from the pool
+    console.log('at model getEngagementCardData client start')
 
     const result = await client.query(queryText, [zoomID]);
     return result.rows;
@@ -126,6 +129,8 @@ export async function getEngagementCardData(zoomID: number, tableName: string) {
     if (client) {
       // release client connection
       client.release();
+      console.log('at model getEngagementCardData client end')
+
     }
   }
 }
@@ -137,8 +142,7 @@ export async function patchEngagmentGrade(
   average_engagement_grade: string,
   tableName: string
 ) {
-  // applying delay to avoid rate limit
-  await throttle();
+
 
   // console.log(
   //   `Model: patching record ID: ${zoomId}, Week Number: ${week_number}, Grade: ${average_engagement_grade}`
@@ -155,6 +159,8 @@ export async function patchEngagmentGrade(
 
   try {
     client = await pool.connect(); // get new client from the pool
+    console.log('at model patchEngagmentGrade client start')
+
 
     const result = await client.query(queryText, [
       average_engagement_grade,
@@ -170,6 +176,7 @@ export async function patchEngagmentGrade(
     if (client) {
       // release client connection
       client.release();
+      console.log('at model patchEngagmentGrade client end')
     }
   }
 }
@@ -181,8 +188,7 @@ export async function patchPollCompletion(
   poll_completion_rate: number,
   tableName: string
 ) {
-  // applying delay to avoid rate limit
-  await throttle();
+
 
   const queryText = `
         UPDATE ${tableName}
@@ -196,6 +202,7 @@ export async function patchPollCompletion(
 
   try {
     client = await pool.connect(); // get new client from the pool
+    console.log('at model patchPollCompletion client start')
 
     const result = await client.query(queryText, [
       poll_completion_rate,
@@ -211,6 +218,7 @@ export async function patchPollCompletion(
     if (client) {
       // release client connection
       client.release();
+      console.log('at model patchPollCompletion client end')
     }
   }
 }
@@ -222,8 +230,7 @@ export async function patchScreenShareTime(
   screen_share_time: number,
   tableName: string
 ) {
-  // applying delay to avoid rate limit
-  await throttle();
+
 
   const queryText = `
         UPDATE ${tableName}
@@ -237,6 +244,7 @@ export async function patchScreenShareTime(
 
   try {
     client = await pool.connect(); // get new client from the pool
+    console.log('at model patchPollCompletion client patchScreenShareTime')
 
     const result = await client.query(queryText, [
       screen_share_time,
@@ -252,6 +260,7 @@ export async function patchScreenShareTime(
     if (client) {
       // release client connection
       client.release();
+      console.log('at model patchPollCompletion client end')
     }
   }
 }
@@ -263,8 +272,7 @@ export async function patchScreenShareSwitchFreq(
   screen_share_switch_freq: number,
   tableName: string
 ) {
-  // applying delay to avoid rate limit
-  await throttle();
+
 
   const queryText = `
         UPDATE ${tableName}
@@ -278,6 +286,7 @@ export async function patchScreenShareSwitchFreq(
 
   try {
     client = await pool.connect(); // get new client from the pool
+    console.log('at model patchScreenShareSwitchFreq client start')
 
     const result = await client.query(queryText, [
       screen_share_switch_freq,
@@ -293,6 +302,7 @@ export async function patchScreenShareSwitchFreq(
     if (client) {
       // release client connection
       client.release();
+      console.log('at model patchScreenShareSwitchFreq client end')
     }
   }
 }
@@ -302,8 +312,7 @@ export async function getAllScreenSwitch(
   tableName: string,
   weekNumber: number
 ) {
-  // applying delay to avoid rate limit
-  await throttle();
+
 
   console.log("getting all screen switch model");
   const tabName = tableName;
@@ -323,6 +332,7 @@ export async function getAllScreenSwitch(
 
   try {
     client = await pool.connect(); // get new client from the pool
+    console.log('at model getAllScreenSwitch client start')
 
     const result = await client.query(queryText, [weeknum]);
     return result.rows;
@@ -334,6 +344,8 @@ export async function getAllScreenSwitch(
     if (client) {
       // release client connection
       client.release();
+      console.log('at model getAllScreenSwitch client end')
+
     }
   }
 }
@@ -345,8 +357,7 @@ export async function getAllScreenTime(tableName: string, weekNumber: number) {
   const tabName = tableName;
   const weeknum = weekNumber;
 
-  // applying delay to avoid rate limit
-  await throttle();
+
 
   // query to run
   const queryText = `
@@ -361,6 +372,8 @@ export async function getAllScreenTime(tableName: string, weekNumber: number) {
 
   try {
     client = await pool.connect(); // get new client from the pool
+    console.log('at model getAllScreenTime client start')
+
 
     const result = await client.query(queryText, [weeknum]);
     return result.rows;
@@ -372,6 +385,8 @@ export async function getAllScreenTime(tableName: string, weekNumber: number) {
     if (client) {
       // release client connection
       client.release();
+      console.log('at model getAllScreenTime client end')
+
     }
   }
 }
@@ -381,8 +396,7 @@ export async function getBootcampersDataArr(
   tableName: string,
   weekNumber: number
 ) {
-  // applying delay to avoid rate limit
-  await throttle();
+
 
   console.log("Getting all bootcampers in an array of objects");
 
@@ -402,6 +416,8 @@ export async function getBootcampersDataArr(
 
   try {
     client = await pool.connect(); // get new client from the pool
+    console.log('at model getBootcampersDataArr client start')
+
 
     const result = await client.query(queryText, [weeknum]);
     return result.rows;
@@ -413,6 +429,8 @@ export async function getBootcampersDataArr(
     if (client) {
       // release client connection
       client.release();
+      console.log('at model getBootcampersDataArr client end')
+
     }
   }
 }
@@ -422,8 +440,7 @@ export async function getEngagementCardPropsByWeek(
   weekNumber: number,
   tableName: string
 ) {
-  // applying delay to avoid rate limit
-  await throttle();
+
 
   console.log(`Getting data from tableName, ${tableName}`);
   const queryText = `
@@ -435,6 +452,7 @@ export async function getEngagementCardPropsByWeek(
      `;
   // set up client variable
   let client: any;
+  console.log('at model getEngagementCardPropsByWeek client start')
 
   try {
     client = await pool.connect(); // get new client from the pool
@@ -448,6 +466,8 @@ export async function getEngagementCardPropsByWeek(
     if (client) {
       // release client connection
       client.release();
+      console.log('at model getEngagementCardPropsByWeek client end')
+
     }
   }
 }
