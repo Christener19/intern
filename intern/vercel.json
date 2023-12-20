@@ -1,7 +1,6 @@
 {
     "functions": {
       "api/elog-schedule.js": {
-        "runtime": "nodejs18"
       }
     }
   }
