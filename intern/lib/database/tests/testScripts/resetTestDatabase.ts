@@ -54,7 +54,7 @@ export default async function resetTestDatabase() {
     await pool.query(`
         CREATE TABLE test_attendance (
             recordid INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-            zoomid INT,
+            zoomid VARCHAR(255) NOT NULL,
             name VARCHAR(255) NOT NULL,
             todays_attendance_hours REAL,
             total_attendance_hours REAL,
