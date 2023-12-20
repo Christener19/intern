@@ -144,6 +144,47 @@ export async function getListBootcampers(tableName: string) {
   }
 }
 
+// GET all bootcampers attendance
+export async function getBootcamperById(tableName: string, zoomid: string) {
+  const queryText = `
+        SELECT
+            *
+        FROM ${tableName}
+        WHERE
+            zoomid = ${zoomid}
+     `;
+  console.log(queryText);
+  try {
+    const result = await pool.query(queryText);
+    return result.rows;
+  } catch (error) {
+    console.error("Error patching record", error);
+    throw error;
+  }
+}
+
+// POST attendance data for a bootcamper
+export async function postBootcamperAttendance(
+  zoomId: number,
+  tableName: string,
+  name: string
+) {
+  console.log(`zoomid: ${zoomId}`);
+  const queryText = `
+  INSERT INTO ${tableName} (zoomid, name, todays_attendance_hours, total_attendance_hours, total_days_attended, missing_streak)
+  VALUES (${zoomId}, ${name}, 0, 0, 0, 0 )
+  RETURNING *;
+`;
+  try {
+    const result = await pool.query(queryText);
+    // if no bootcamper exists with the specified ID the rows array will be empty
+    return result.rows[0] || null;
+  } catch (error) {
+    console.error("Error updating record", error);
+    throw error;
+  }
+}
+
 // GET CSV from Postgres
 
 // 1. Create a file
