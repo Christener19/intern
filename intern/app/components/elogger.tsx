@@ -17,7 +17,8 @@ export default function EngagementLogger() {
   // State to manage the search term
   const [searchTerm, setSearchTerm] = useState("");
   // State to manage engagmentProps
-  const [engagementProps, setEngagementProps] = useState<any[]>([])
+  const [engagementProps, setEngagementProps] = useState<any[]>([] as any[]);
+  // explicitly declare engagementProps as any as the promise does resolve to allow filter to work.
   // State to track whether data is being fetched
   const [loading, setLoading] = useState(true);
 
