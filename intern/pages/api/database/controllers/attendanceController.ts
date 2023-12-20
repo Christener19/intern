@@ -13,6 +13,8 @@ export async function getBootcampers(testCheck: boolean) {
 
   console.log(`query going to ${tableName}`);
 
+  
+
   try {
     const todaysAttendance = await attendanceModel.getBootcampers(tableName);
     const todaysAbsent = await attendanceModel.getAbsentBootcampersCount(

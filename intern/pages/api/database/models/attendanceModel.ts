@@ -26,6 +26,7 @@ export async function getBootcampers(tableName : string) {
     } finally {
         if (client) {
           // release client connection
+          console.log('Present bootcampers fetch complete, closing connection')
           client.release();
         }
       }
@@ -54,6 +55,7 @@ export async function getAbsentBootcampersCount(tableName : string) {
     } finally {
         if (client) {
           // release client connection
+          console.log('Absent bootcampers fetch complete, closing connection')
           client.release();
         }
       }
