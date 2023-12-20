@@ -109,8 +109,11 @@ export default async function attendanceZoomToDb() {
             }
           );
           // log that it works
-          const result = await response.json();
-          console.log("Success:", result);
+          // const result = await response.json();
+          const resultJson = await response.text();
+          const cleanResult = JSON.parse(resultJson);
+
+          console.log("Success:", cleanResult);
           // log if it errors
         } catch (error) {
           console.log("Error:", error);
@@ -154,8 +157,8 @@ export default async function attendanceZoomToDb() {
         );
         // log that it works
         console.log("alive 133");
-        const result = await response;
-        const resultJson = result.text();
+        // const result = await response;
+        const resultJson = await response.text();
         const cleanResult = JSON.parse(resultJson);
         console.log("Success:", cleanResult);
         // log if it errors
