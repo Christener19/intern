@@ -35,7 +35,8 @@ export default async function Index() {
         <AttendanceTracker attendanceAlert={attendanceData} />
       </div>
       <div className="row-span-2 col-start-3 row-start-1">
-        <EngagementLogger engagementData={testEngagementData} />
+        {" "}
+        <EngagementLogger />
       </div>
       <div className="col-start-1 row-start-2">
         {/* Pass the latest Zoom poll data */}

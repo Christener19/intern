@@ -9,19 +9,19 @@
 // <=74 = 1 pt
 
 // Function code
-export default function getPolls(zoomID: number): number {
+export default function getPolls(zoomID: number, pollCompletionRate:number): number {
   console.log(`Getting poll score for ${zoomID}`);
   let score = 0;
   // Get call to look at Zoom poll completion rate (poll-completion rate)
   // fetch
 
-  let completetionPercentage = 0.74;
+  //let completetionPercentage = 0.74; // hard code for testing
 
   switch (true) {
-    case completetionPercentage >= 0.9:
+    case pollCompletionRate >= 0.9:
       score = 3;
       break;
-    case completetionPercentage <= 0.89 && completetionPercentage >= 0.75:
+    case pollCompletionRate <= 0.89 && pollCompletionRate >= 0.75:
       score = 2;
       break;
     default:
