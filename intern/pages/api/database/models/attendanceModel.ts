@@ -172,7 +172,7 @@ export async function postBootcamperAttendance(
   console.log(`zoomid: ${zoomId}`);
   const queryText = `
   INSERT INTO ${tableName} (zoomid, name, todays_attendance_hours, total_attendance_hours, total_days_attended, missing_streak)
-  VALUES (${zoomId}, ${name}, 0, 0, 0, 0 )
+  VALUES (${zoomId}, '${name}', 0, 0, 0, 0 )
   RETURNING *;
 `;
   try {
