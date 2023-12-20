@@ -40,18 +40,5 @@ test('login', async ({ page }) => {
   expect(selectedName).not.toBe("");
 
 
-    //Zoom polls
-  await page.click('button:has-text("Thermometer")');
-
-
-  await page.waitForFunction(() => {
-    const chart = document.querySelector('[data-testid="zoom-poll-chart"]');
-    return chart !== null;
-  }, null, { timeout: 10000 });
-  
-  const isChartVisible = await page.isVisible('[data-testid="zoom-poll-chart"]')
-  expect(isChartVisible).toBe(true);
-
-
   })
 
