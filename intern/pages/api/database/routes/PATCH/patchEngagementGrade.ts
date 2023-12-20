@@ -23,15 +23,17 @@ export default async function handler(
 async function handlePatchRequest(req: NextApiRequest, res: NextApiResponse) {
   try {
     // check if it's a test (default to true)
-    const testQuery: boolean = req.query.testCheck !== null && req.query.testCheck !== undefined;
+    const testQuery: boolean =
+      req.query.testCheck !== null && req.query.testCheck !== undefined;
 
     // Extract parameters from the request
     const zoomId = Number(req.query.zoomId);
     const data = req.body;
 
     // console log to check
-    console.log(`Router: zoomid = ${zoomId}`)
-    console.log(`Router: data = ${data}`)
+    // console.log(`Router: zoomid = ${zoomId}`);
+    // console.log(`Router: data = ${data}`);
+    // console.log(data);
 
     // Call the registerBootcamperAttendance function from the controller
     const register = await engagementController.patchEngagmentGrade(

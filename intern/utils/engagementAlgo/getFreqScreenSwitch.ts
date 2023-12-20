@@ -12,7 +12,7 @@
 import findMedian from "./findMedian";
 import findBreakPoints from "./findBreakPoints";
 
-export default function getFreqScreenSwitch(zoomID: number): number {
+export default function getFreqScreenSwitch(zoomID: number, breakPoints: any, freqScreenSwitchNum: number): number {
   console.log(`Getting freq screen switch for ${zoomID}`);
   let score = 0;
 
@@ -20,12 +20,12 @@ export default function getFreqScreenSwitch(zoomID: number): number {
   // GET call to look up cohort screen switch arr
 
   // hard code testing vals
-  let freqScreenSwitchNum = 5;
-  let cohortScreenSwitchArr = [5, 9, 2, 10];
+  //let freqScreenSwitchNum = 5;
+  //let cohortScreenSwitchArr = [5, 9, 2, 10];
 
   // calc median and breakpoints
-  let median = findMedian(cohortScreenSwitchArr);
-  let breakPoints = findBreakPoints(0.2, 0.4, median);
+  // let median = findMedian(cohortScreenSwitchArr);
+  // let breakPoints = findBreakPoints(0.2, 0.4, median);
 
   switch (true) {
     // good
@@ -45,7 +45,7 @@ export default function getFreqScreenSwitch(zoomID: number): number {
   return score;
 }
 
-console.log(getFreqScreenSwitch(33));
+// console.log(getFreqScreenSwitch(33));
 // median is 7
 // good is 5.6+
 // average is 4.2+

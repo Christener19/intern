@@ -13,14 +13,23 @@ export async function getBootcampers(tableName : string) {
         WHERE
             missing_streak = 0;
      `  
-    try {
+  // set up client variable
+  let client: any;
+
+  try {
+    client = await pool.connect(); // get new client from the pool
         const result = await pool.query(queryText)
         return result.rows;
     } catch (error) {
         console.error('Error patching record', error);
         throw error;
-    }    
-}
+    } finally {
+        if (client) {
+          // release client connection
+          client.release();
+        }
+      }
+    }
 
 // GET count of absent bootcampers attendance
 export async function getAbsentBootcampersCount(tableName : string) {
@@ -32,14 +41,23 @@ export async function getAbsentBootcampersCount(tableName : string) {
         WHERE
             missing_streak > 0;
      `  
-    try {
+  // set up client variable
+  let client: any;
+
+  try {
+    client = await pool.connect(); // get new client from the pool
         const result = await pool.query(queryText)
         return result.rows;
     } catch (error) {
         console.error('Error patching record', error);
         throw error;
-    }    
-}
+    } finally {
+        if (client) {
+          // release client connection
+          client.release();
+        }
+      }
+    }
 
 // GET missing people
 // GET all bootcampers attendance
@@ -51,14 +69,23 @@ export async function getAbsentBootcampersID(tableName : string) {
         WHERE
             missing_streak > 0;
      `  
-    try {
+  // set up client variable
+  let client: any;
+
+  try {
+    client = await pool.connect(); // get new client from the pool
         const result = await pool.query(queryText)
         return result.rows;
     } catch (error) {
         console.error('Error patching record', error);
         throw error;
-    }    
-}
+    } finally {
+        if (client) {
+          // release client connection
+          client.release();
+        }
+      }
+    }
 
 // POST attendance data for a bootcamper
 export async function registerBootcamperAttendance(zoomId : number, updates : any, tableName : string) {
@@ -72,7 +99,11 @@ export async function registerBootcamperAttendance(zoomId : number, updates : an
             WHERE zoomId = $5
             RETURNING *;
     `
-    try {
+  // set up client variable
+  let client: any;
+
+  try {
+    client = await pool.connect(); // get new client from the pool
     const result = await pool.query(queryText, [
             updates.todays_attendance_hours,
             updates.total_attendance_hours,
@@ -86,8 +117,13 @@ export async function registerBootcamperAttendance(zoomId : number, updates : an
     }  catch (error) {
         console.error('Error updating record', error);
         throw error;
+    } finally {
+        if (client) {
+          // release client connection
+          client.release();
+        }
+      }
     }
-}
 
 
 // GET CSV from Postgres

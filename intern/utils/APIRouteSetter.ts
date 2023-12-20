@@ -1,13 +1,17 @@
-
+import dotenv from 'dotenv'
 // to allow fetch requests to dynamically change between dev and live environment
 export const mainRoute = ():string => {
-    if (process.env.NODE_ENV === 'development') {
+    console.log(`ENV: ${process.env.DEVORLIVE}`)
+    if (process.env.DEVORLIVE! === 'development') {
         // dev/local url
+        console.log('running in dev')
         return 'http://localhost:3000/'
     } else {
         // prod url
+        console.log('running in live')
         return 'https://intern-soc.vercel.app/'
     }
+    //https://intern-soc.vercel.app/
 }
 
 // to allow rapid setting of GET request routes
