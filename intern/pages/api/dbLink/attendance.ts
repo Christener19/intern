@@ -19,13 +19,9 @@ export default async function attendanceZoomToDb() {
     `${mainURL}${getRoute}getListBootcampers`
   );
 
-  //   console.log(ZoomparticipantsJSON);
-
   // //variable/ reponse clean up
   const ZoomparticipantsClean = await ZoomparticipantsJSON.text();
   const zoomParticipants = JSON.parse(ZoomparticipantsClean);
-
-  console.log(zoomParticipants);
 
   // This is an example of how data should look like after we run zoomParticipants
   //   // const parsedData = {
@@ -71,14 +67,14 @@ export default async function attendanceZoomToDb() {
   //   //   ],
   //   // };
 
-  //   const allParticipantsClean = await AllParticipantsJSON.text()
-  //   const allParticipants = JSON.parse(allParticipantsClean)
+  const allParticipantsClean = await AllParticipantsJSON.text();
+  const allParticipants = JSON.parse(allParticipantsClean);
 
-  //   // debug logger
-  //   console.log('zoomParticipants');
-  //   console.log(zoomParticipants);
-  //   console.log('AllParticipants');
-  //   console.log(allParticipants);
+  // debug logger
+  console.log("zoomParticipants");
+  console.log(zoomParticipants);
+  console.log("AllParticipants");
+  console.log(allParticipants);
   // //start loop
 
   // for(let i=0; i < zoomParticipants.participants.length; i++) {
