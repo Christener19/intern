@@ -20,16 +20,22 @@ test("Hi mom!", function () {
 // Get Attendance test
 test("Get attenance test", async function () {
   // Reset db
-  await resetTestDatabase();
+//   await resetTestDatabase();
   // Run API call
   const testReply = await fetch(`${mainURL}${getRoute}getBootcampers`);
+  // clean up response
+    // clean up response json
+    const testReplyJSON = await testReply.text();
+    const testReplyclean = JSON.parse(testReplyJSON);
+    // console.log(testReplyclean)
   // Check response object is type of
-  //   expect(testReply).toHaveProperty("data");
+  expect(testReplyclean).toHaveProperty("data", {"todaysAbsentCount": "3", "todaysAttendanceCount": "7"});
+  // Check success status
+  expect(testReplyclean).toHaveProperty('status', 'success');
+  // Check data object
+  expect(testReplyclean.data).not.toHaveProperty('todays_Attendance_Count', '64')
+  expect(testReplyclean.data).not.toHaveProperty('todays_Absent_Count', 'null')
 
-  expect(isJSON(testReply)).toBe(true);
-  // Check success code
-  // Check attendance array
-  // Check properties of each attendee object (name etc)
 });
 
 // Get Engagement Score test
