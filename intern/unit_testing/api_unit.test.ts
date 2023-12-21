@@ -18,7 +18,7 @@ test("Hi mom!", function () {
 });
 
 // Get Attendance test
-test("Get attenance test", async function () {
+test("Get attendance test", async function () {
   // Reset db
   await resetTestDatabase();
   // Run API call
@@ -55,7 +55,7 @@ test("Get engagement score test", async function () {
   // clean up response json
   const testReplyJSON = await testReply.text();
   const testReplyclean = JSON.parse(testReplyJSON);
-  console.log(testReplyclean);
+//   console.log(testReplyclean);
   // Check response object is type of
   expect(testReplyclean).toHaveProperty("data");
   // Check array 0 is John Doe
@@ -83,7 +83,7 @@ test("Get engagement score test", async function () {
 test('delete from namepicker table',async function () {
     // id to delete 123
   // Reset db
-    await resetTestDatabase();
+    // await resetTestDatabase();
     // Run API call
   const testReply = await fetch(
     `${mainURL}${deleteRoute}deleteName?zoomId=123` , {
@@ -96,9 +96,9 @@ test('delete from namepicker table',async function () {
   // clean up response
   // clean up response json
   const testReplyJSON = await testReply.text();
-  console.log('Raw Response:', testReplyJSON);
+//   console.log('Raw Response:', testReplyJSON);
   const testReplyclean = JSON.parse(testReplyJSON);
-  console.log(testReplyclean);
+//   console.log(testReplyclean);
   // Check response object is type of
   expect(testReplyclean).toHaveProperty("data");
 
@@ -120,6 +120,29 @@ test('delete from namepicker table',async function () {
 })
 
 // Get name from namepicker test
+test("Get name list for namepicker test", async function () {
+    // Reset db
+    // await resetTestDatabase();
+    // Run API call
+    const testReply = await fetch(`${mainURL}${getRoute}getParticipantList`);
+    // clean up response
+    // clean up response json
+    const testReplyJSON = await testReply.text();
+    const testReplyclean = JSON.parse(testReplyJSON);
+    // console.log(testReplyclean)
+    // Check response object is type of
+    expect(testReplyclean).toHaveProperty("data");
+    // Check success status
+    expect(testReplyclean).toHaveProperty("status", "success");
+    // Check length of array
+    expect(testReplyclean.data.length).toBe(10);
+    // Check data object
+    expect(testReplyclean.data).not.toHaveProperty(
+      "todays_Attendance_Count",
+      "64"
+    );
+    expect(testReplyclean.data).not.toHaveProperty("todays_Absent_Count", "null");
+  });
 
 // Patch Engagement record test
 
