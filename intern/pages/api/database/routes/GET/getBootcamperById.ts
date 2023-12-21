@@ -22,15 +22,18 @@ export default async function handler(
 // Function to handle GET request
 async function handleGetRequest(req: NextApiRequest, res: NextApiResponse) {
   try {
+    const zoomid = String(req.query.zoomid);
+
     // check if it's a test (default to true)
     const testQuery: boolean =
       req.query.testCheck !== null && req.query.testCheck !== undefined;
 
     // Call the getBootcampers function from the controller
-    const todaysAttendance = await attendanceController.getBootcampers(
-      testQuery
+    const bootcamper = await attendanceController.getBootcamperById(
+      testQuery,
+      zoomid
     );
-    res.status(200).json({ status: "success", data: todaysAttendance });
+    res.status(200).json({ status: "success", data: bootcamper });
   } catch (error) {
     console.error("Error in getBootcampers:", error);
     res.status(500).json({ status: "error", message: "Internal Server Error" });
@@ -39,6 +42,6 @@ async function handleGetRequest(req: NextApiRequest, res: NextApiResponse) {
 
 // test
 
-// http://localhost:3000/api/database/GET/getBootcampers
+// http://localhost:3000/api/database/routes/GET/getBootcamperById?zoomid=123
 
 // need to break this into seperate files to use the routing function

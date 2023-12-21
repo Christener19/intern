@@ -27,7 +27,7 @@ async function handleGetRequest(req: NextApiRequest, res: NextApiResponse) {
       req.query.testCheck !== null && req.query.testCheck !== undefined;
 
     // Call the getBootcampers function from the controller
-    const todaysAttendance = await attendanceController.getBootcampers(
+    const todaysAttendance = await attendanceController.getListBootcampers(
       testQuery
     );
     res.status(200).json({ status: "success", data: todaysAttendance });

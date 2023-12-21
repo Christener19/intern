@@ -10,17 +10,17 @@ export default async function handler(
   const { method } = req;
 
   // Handle PATCH request
-  if (method === "PATCH") {
-    return handlePatchRequest(req, res);
+  if (method === "POST") {
+    return handlePostRequest(req, res);
   }
 
   // If the method is not allowed, set the appropriate headers and status
-  res.setHeader("Allow", ["PATCH"]);
+  res.setHeader("Allow", ["POST"]);
   res.status(405).end(`Method ${method} Not Allowed`);
 }
 
 // Function to handle PATCH request
-async function handlePatchRequest(req: NextApiRequest, res: NextApiResponse) {
+async function handlePostRequest(req: NextApiRequest, res: NextApiResponse) {
   try {
     // check if it's a test (default to true)
     const testQuery: boolean =
@@ -28,17 +28,17 @@ async function handlePatchRequest(req: NextApiRequest, res: NextApiResponse) {
 
     // Extract parameters from the request
     const zoomId = String(req.query.zoomId);
-    const data = req.body;
+    const name = req.body.name;
 
     // console log to check
     console.log(`Router: zoomid = ${zoomId}`);
-    console.log(`Router: data = ${data}`);
+    // console.log(`Router: data = ${data}`);
 
     // Call the registerBootcamperAttendance function from the controller
-    const register = await attendanceController.registerBootcamperAttendance(
+    const register = await attendanceController.postBootcamperAttendance(
       zoomId,
-      data,
-      testQuery
+      testQuery,
+      name
     );
 
     // If the registration fails, return a 404 response
@@ -52,7 +52,7 @@ async function handlePatchRequest(req: NextApiRequest, res: NextApiResponse) {
     res.status(200).json({ status: "success", data: register });
   } catch (error) {
     // Handle errors and return a 500 response
-    console.error("Error in registerBootcamperAttendance:", error);
+    console.error("Error in postBootcamperAttendance:", error);
     res.status(500).json({ status: "error", message: "Internal Server Error" });
   }
 }
