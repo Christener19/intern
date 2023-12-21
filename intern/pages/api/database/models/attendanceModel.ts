@@ -17,16 +17,21 @@ export async function getBootcampers(tableName: string) {
 
   try {
     client = await pool.connect(); // get new client from the pool
-    const result = await pool.query(queryText);
-    return result.rows;
-  } catch (error) {
-    console.error("Error patching record", error);
-    throw error;
-  } finally {
-    if (client) {
-      // release client connection
-      console.log("Present bootcampers fetch complete, closing connection");
-      client.release();
+
+    console.log('at model getBootcampers client start')
+        const result = await pool.query(queryText)
+        return result.rows;
+    } catch (error) {
+        console.error('Error patching record', error);
+        throw error;
+    } finally {
+        if (client) {
+          // release client connection
+          client.release();
+          console.log('at model getBootcampers client end')
+        }
+      }
+
     }
   }
 }
@@ -44,17 +49,20 @@ export async function getAbsentBootcampersCount(tableName: string) {
   let client: any;
 
   try {
+    console.log('at model getAbsentBootcampersCount client start')
     client = await pool.connect(); // get new client from the pool
-    const result = await pool.query(queryText);
-    return result.rows;
-  } catch (error) {
-    console.error("Error patching record", error);
-    throw error;
-  } finally {
-    if (client) {
-      // release client connection
-      console.log("Absent bootcampers fetch complete, closing connection");
-      client.release();
+        const result = await pool.query(queryText)
+        return result.rows;
+    } catch (error) {
+        console.error('Error patching record', error);
+        throw error;
+    } finally {
+        if (client) {
+          // release client connection
+          client.release();
+          console.log('at model getAbsentBootcampersCount client end')
+        }
+      }
     }
   }
 }
@@ -74,15 +82,19 @@ export async function getAbsentBootcampersID(tableName: string) {
 
   try {
     client = await pool.connect(); // get new client from the pool
-    const result = await pool.query(queryText);
-    return result.rows;
-  } catch (error) {
-    console.error("Error patching record", error);
-    throw error;
-  } finally {
-    if (client) {
-      // release client connection
-      client.release();
+    console.log('at model getAbsentBootcampersID client start')
+        const result = await pool.query(queryText)
+        return result.rows;
+    } catch (error) {
+        console.error('Error patching record', error);
+        throw error;
+    } finally {
+        if (client) {
+          // release client connection
+          client.release();
+          console.log('at model getAbsentBootcampersID client end')
+        }
+      }
     }
   }
 }
@@ -108,6 +120,7 @@ export async function registerBootcamperAttendance(
 
   try {
     client = await pool.connect(); // get new client from the pool
+    console.log('at model registerBootcamperAttendance client start')
     const result = await pool.query(queryText, [
       updates.todays_attendance_hours,
       updates.total_attendance_hours,
@@ -115,15 +128,19 @@ export async function registerBootcamperAttendance(
       updates.missing_streak,
       zoomId,
     ]);
-    // if no bootcamper exists with the specified ID the rows array will be empty
-    return result.rows[0] || null;
-  } catch (error) {
-    console.error("Error updating record", error);
-    throw error;
-  } finally {
-    if (client) {
-      // release client connection
-      client.release();
+        // if no bootcamper exists with the specified ID the rows array will be empty
+        return result.rows[0] || null;
+
+    }  catch (error) {
+        console.error('Error updating record', error);
+        throw error;
+    } finally {
+        if (client) {
+          // release client connection
+          client.release();
+          console.log('at model registerBootcamperAttendance client end')
+        }
+      }
     }
   }
 }

@@ -117,6 +117,7 @@ export async function registerBootcamperAttendance(
     console.error("Error in registerBootcamperAttendance controller", error);
     return { status: "error", message: "Internal server error" };
   }
+
 }
 // Get list Bootcampers
 export async function getListBootcampers(testCheck: boolean) {
