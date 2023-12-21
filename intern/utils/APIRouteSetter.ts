@@ -11,7 +11,7 @@ export const mainRoute = ():string => {
     } else {
         // prod url
         console.log('running in live')
-        return 'https://intern-soc.vercel.app/'
+        return 'http://localhost:3000/'
     }
     //https://intern-soc.vercel.app/
 }

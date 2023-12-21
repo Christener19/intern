@@ -22,9 +22,9 @@ const pool = new pg.Pool({
   connectionString,
   // set the max connections to prevent tripping out the database (max 5)
 
-  max: 3,
-  connectionTimeoutMillis: 40000,
-  idleTimeoutMillis: 40000,
+  max: 2,
+  connectionTimeoutMillis: 60000,
+  idleTimeoutMillis: 60000,
 
 });
 

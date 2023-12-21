@@ -39,6 +39,7 @@ export default function ButtonEngagementCSV() {
 
     return (
         <button
+        data-testid="engage-csv-button"
             className="bg-green-500 hover:bg-green-600 rounded-xl uppercase font-bold py-2 px-4  text-white ml-auto mr-auto"
             onClick={handleDownloadClick}
         >
