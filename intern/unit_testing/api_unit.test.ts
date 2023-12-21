@@ -20,7 +20,7 @@ test("Hi mom!", function () {
 // Get Attendance test
 test("Get attenance test", async function () {
   // Reset db
-  //   await resetTestDatabase();
+  await resetTestDatabase();
   // Run API call
   const testReply = await fetch(`${mainURL}${getRoute}getBootcampers`);
   // clean up response
@@ -80,6 +80,44 @@ test("Get engagement score test", async function () {
 });
 
 // Delete name from namepicker test
+test('delete from namepicker table',async function () {
+    // id to delete 123
+  // Reset db
+    await resetTestDatabase();
+    // Run API call
+  const testReply = await fetch(
+    `${mainURL}${deleteRoute}deleteName?zoomId=123` , {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
+    }
+  );
+  // clean up response
+  // clean up response json
+  const testReplyJSON = await testReply.text();
+  console.log('Raw Response:', testReplyJSON);
+  const testReplyclean = JSON.parse(testReplyJSON);
+  console.log(testReplyclean);
+  // Check response object is type of
+  expect(testReplyclean).toHaveProperty("data");
+
+  // Check array 0 is John Doe
+  // Check success status
+  expect(testReplyclean).toHaveProperty("status", "success");
+
+  // Failing conditions
+  expect(testReplyclean.data).not.toHaveProperty(
+    "todays_Attendance_Count",
+    "64"
+  );
+  expect(testReplyclean.data[1]).not.toEqual({
+    name: "John Doe",
+    average_engagement_grade: "Ungraded",
+  });
+  // put the database back like we found it
+  await resetTestDatabase();
+})
 
 // Get name from namepicker test
 
