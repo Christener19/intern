@@ -12,14 +12,27 @@ export async function getParticpantsList(tableName : string) {
             zoomid
         FROM ${tableName};
             `  
-    try {
+  // set up client variable
+  let client: any;
+  console.log('at model getParticpantsList client start')
+
+
+  try {
+    client = await pool.connect(); // get new client from the pool
         const nameList = await pool.query(queryText)
         return nameList.rows;
     } catch (error) {
         console.error('Error getting name list results', error);
         throw error;
-    }    
-}
+    } finally {
+        if (client) {
+          // release client connection
+          client.release();
+          console.log('at model getParticpantsList client start')
+
+        }
+      }
+    }
 
 // Delete participant by zoom ID
 export async function deleteName(zoomID: number, tableName : string) {
@@ -29,14 +42,27 @@ export async function deleteName(zoomID: number, tableName : string) {
         WHERE zoomid = $1
         RETURNING *;
      `  
-    try {
+  // set up client variable
+  let client: any;
+  console.log('at model deleteName client start')
+
+
+  try {
+    client = await pool.connect(); // get new client from the pool
         const nameList = await pool.query(queryText [zoomID])
         return nameList.rows;
     } catch (error) {
         console.error('Error getting name list results', error);
         throw error;
-    }    
-}
+    } finally {
+        if (client) {
+          // release client connection
+          client.release();
+          console.log('at model deleteName client end')
+
+        }
+      }
+    }
 
 // reset name picker table
     // going to need a list of all the people 

@@ -20,14 +20,26 @@ export async function getLatestPollResult(tableName: string) {
         LIMIT 1;
     `;
 
-    try {
+  // set up client variable
+  let client: any;
+  console.log('at model getLatestPollResult client start')
+
+
+  try {
+    client = await pool.connect(); // get new client from the pool
         const result = await pool.query(queryText);
         return result.rows[0] || null;
     } catch (error) {
         console.error('Error getting the latest poll results', error);
         throw error;
-    }    
-}
+    } finally {
+        if (client) {
+          // release client connection
+          client.release();
+          console.log('at model getLatestPollResult client end')
+        }
+      }
+    }
 
 
 // GET Poll results from postgres
@@ -41,14 +53,27 @@ export async function getPollResults(zoomPollID: number, tableName : string) {
         FROM ${tableName}
             WHERE zoom_poll_id = $1;
      `  
-    try {
+  // set up client variable
+  let client: any;
+  console.log('at model getPollResults client start')
+
+
+  try {
+    client = await pool.connect(); // get new client from the pool
         const result = await pool.query(queryText, [zoomPollID])
         return result.rows;
     } catch (error) {
         console.error('Error getting poll results', error);
         throw error;
-    }    
-}
+    } finally {
+        if (client) {
+          // release client connection
+          client.release();
+          console.log('at model getPollResults client end')
+
+        }
+      }
+    }
 
 // interface to set the types for the results
 export interface ResultsType {
@@ -78,7 +103,12 @@ export async function postNewPollResults(zoomPollID : number, results : ResultsT
 
             RETURNING *;
     `
-    try {
+  // set up client variable
+  let client: any;
+
+  try {
+    client = await pool.connect(); // get new client from the pool
+    console.log('at model postNewPollResults client start')
     const result = await pool.query(queryText, [
             zoomPollID,
             zoom_poll_date,
@@ -96,9 +126,14 @@ export async function postNewPollResults(zoomPollID : number, results : ResultsT
     }  catch (error) {
         console.error('Error updating record', error);
         throw error;
+    } finally {
+        if (client) {
+          // release client connection
+          client.release();
+          console.log('at model postNewPollResults client end')
+        }
+      }
     }
-}
-
 // Patch poll results
 export async function patchPollResults(ZoomPollID : number, patchResults : ResultsType, tableName : string) {
 
@@ -120,7 +155,12 @@ export async function patchPollResults(ZoomPollID : number, patchResults : Resul
         WHERE
             zoom_poll_id = $10
     `
-    try {
+  // set up client variable
+  let client: any;
+
+  try {
+    client = await pool.connect(); // get new client from the pool
+    console.log('at model patchPollResults client start')
     const result = await pool.query(queryText, [
             ZoomPollID,
             zoom_poll_date,
@@ -139,5 +179,11 @@ export async function patchPollResults(ZoomPollID : number, patchResults : Resul
     }  catch (error) {
         console.error('Error updating record', error);
         throw error;
+    } finally {
+        if (client) {
+          // release client connection
+          client.release();
+          console.log('at model patchPollResults client end')
+        }
+      }
     }
-}
