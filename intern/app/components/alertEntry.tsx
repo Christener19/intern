@@ -41,7 +41,7 @@ export default function AlertEntry({ infoalert } : any) {
     <>
       <div className="flex flex-row justify-between">
         {/* boot camper name */}
-        <p>{name}</p>
+        <p className='font-serif'>{name}</p>
         {/* alert level */}
         <p>{alertEmoji}</p>
       </div>

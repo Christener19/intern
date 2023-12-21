@@ -31,28 +31,41 @@ export default function EngagementLoggerCard({ cardObject }: any) {
         break;
     }
   }, [avgEngagement]);
-  
+
   // conditionally render image
-  const imageNotNullChecker = () => 
-  {
+  const imageNotNullChecker = () => {
     if (image) {
-      return <Image src={image} height={64} width={64} alt={`profile image for ${name}`}/>
+      return (
+        <Image
+          src={image}
+          height={64}
+          width={64}
+          alt={`profile image for ${name}`}
+        />
+      );
     } else {
-      return <Image src='/defaultUserImage.svg' height={64} width={64}  alt="default profile image"/>
+      return (
+        <Image
+          src="/defaultUserImage.svg"
+          height={64}
+          width={64}
+          alt="default profile image"
+        />
+      );
     }
   };
 
   return (
     <div className={`${bgColor} rounded-lg`}>
-    <div className="mt-3">
-      <div className="CardContent flex p-2">
-       {imageNotNullChecker()}
-        <div className="cardTextContent flex flex-col justify-between pl-4">
-          <p>{name}</p>
-          <p>Average Engagement: {avgEngagement}</p>
+      <div className="mt-3">
+        <div className="CardContent flex p-2">
+          {imageNotNullChecker()}
+          <div className="cardTextContent flex flex-col justify-between pl-4">
+            <p className="font-sans">{name}</p>
+            <p className="font-serif">Average Engagement: {avgEngagement}</p>
+          </div>
         </div>
       </div>
-    </div>
     </div>
   );
 }

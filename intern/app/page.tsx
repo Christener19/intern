@@ -4,7 +4,7 @@ import { redirect } from "next/navigation";
 import AttendanceTracker from "./components/attendance";
 import EngagementLogger from "./components/elogger";
 import NamePicker from "./components/randomNamePicker";
-import { Montserrat } from "next/font/google";
+import { Montserrat, Hind } from "next/font/google";
 import ZoomPolls from "./components/zoomPoll";
 
 import { attendanceDataFetcher } from "./dataObjectsForCompProps/attendanceTrackerTestObject";
@@ -13,6 +13,13 @@ import { fetchZoomPollResults } from "./dataObjectsForCompProps/zoompollTestObje
 const montserratFont = Montserrat({
   weight: ["600", "400"], // Add the desired weights
   style: ["normal", "italic"], // Add the desired styles
+  display: "swap", // Optional: font-display strategy
+  subsets: ["latin"],
+});
+
+const hindFont = Hind({
+  weight: ["600", "400"], // Add the desired weights
+  style: ["normal"], // Add the desired styles
   display: "swap", // Optional: font-display strategy
   subsets: ["latin"],
 });
