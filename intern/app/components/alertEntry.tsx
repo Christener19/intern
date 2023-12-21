@@ -25,15 +25,15 @@ export default function AlertEntry({ infoalert } : any) {
       break;
     case 2:
       // level 2 - full day missing alert
-      alertEmoji = "⚠️⚠️📧";
+      alertEmoji = "⚠️⚠️";
       break;
     case 3:
       // level 3 - 1.5 day missing alert
-      alertEmoji = "⚠️⚠️⚠️📧";
+      alertEmoji = "⚠️⚠️⚠️";
       break;
     default:
       // level 4 2 day missing alert
-      alertEmoji = "⚠️⚠️⚠️⚠️📧‼️";
+      alertEmoji = "⚠️⚠️⚠️⚠️";
       break;
   }
 
