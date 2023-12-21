@@ -87,7 +87,7 @@ export default async function attendanceZoomToDb() {
 
           // updates entry with zoomAPI data
           const response = await fetch(
-            `${mainURL}${patchRoute}registerBootcamperAttendance?zoomId=${currentZoomID}?testCheck=false`,
+            `${mainURL}${patchRoute}registerBootcamperAttendance?zoomId=${currentZoomID}&testCheck=false`,
             {
               // set header
               method: "PATCH",
@@ -173,7 +173,7 @@ export default async function attendanceZoomToDb() {
         console.log("alive at 162");
         // if doesnt then add bootcamper to database
         const response = await fetch(
-          `${mainURL}${patchRoute}registerBootcamperAttendance?zoomId=${currentZoomID}?testCheck=false`,
+          `${mainURL}${patchRoute}registerBootcamperAttendance?zoomId=${currentZoomID}&testCheck=false`,
           {
             // set header
             method: "PATCH",
