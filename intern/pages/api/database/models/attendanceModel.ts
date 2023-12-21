@@ -18,6 +18,7 @@ export async function getBootcampers(tableName : string) {
 
   try {
     client = await pool.connect(); // get new client from the pool
+    console.log('at model getBootcampers client start')
         const result = await pool.query(queryText)
         return result.rows;
     } catch (error) {
@@ -27,6 +28,7 @@ export async function getBootcampers(tableName : string) {
         if (client) {
           // release client connection
           client.release();
+          console.log('at model getBootcampers client end')
         }
       }
     }
@@ -45,6 +47,7 @@ export async function getAbsentBootcampersCount(tableName : string) {
   let client: any;
 
   try {
+    console.log('at model getAbsentBootcampersCount client start')
     client = await pool.connect(); // get new client from the pool
         const result = await pool.query(queryText)
         return result.rows;
@@ -55,6 +58,8 @@ export async function getAbsentBootcampersCount(tableName : string) {
         if (client) {
           // release client connection
           client.release();
+          console.log('at model getAbsentBootcampersCount client end')
+
         }
       }
     }
@@ -74,6 +79,8 @@ export async function getAbsentBootcampersID(tableName : string) {
 
   try {
     client = await pool.connect(); // get new client from the pool
+    console.log('at model getAbsentBootcampersID client start')
+
         const result = await pool.query(queryText)
         return result.rows;
     } catch (error) {
@@ -83,6 +90,7 @@ export async function getAbsentBootcampersID(tableName : string) {
         if (client) {
           // release client connection
           client.release();
+          console.log('at model getAbsentBootcampersID client end')
         }
       }
     }
@@ -104,6 +112,7 @@ export async function registerBootcamperAttendance(zoomId : number, updates : an
 
   try {
     client = await pool.connect(); // get new client from the pool
+    console.log('at model registerBootcamperAttendance client start')
     const result = await pool.query(queryText, [
             updates.todays_attendance_hours,
             updates.total_attendance_hours,
@@ -121,6 +130,7 @@ export async function registerBootcamperAttendance(zoomId : number, updates : an
         if (client) {
           // release client connection
           client.release();
+          console.log('at model registerBootcamperAttendance client end')
         }
       }
     }
