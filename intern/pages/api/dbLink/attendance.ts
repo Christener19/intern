@@ -129,7 +129,7 @@ export default async function attendanceZoomToDb() {
 
       try {
         const response = await fetch(
-          `${mainURL}${postRoute}postBootcamperAttendance?zoomId='${currentZoomID}&testCheck=false'`,
+          `${mainURL}${postRoute}postBootcamperAttendance?zoomId='${currentZoomID}'&testCheck=false`,
           {
             // set header
             method: "POST",
