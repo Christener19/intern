@@ -33,8 +33,7 @@ export async function getBootcampers(tableName: string) {
       }
 
     }
-  }
-}
+
 
 // GET count of absent bootcampers attendance
 export async function getAbsentBootcampersCount(tableName: string) {
@@ -64,8 +63,7 @@ export async function getAbsentBootcampersCount(tableName: string) {
         }
       }
     }
-  }
-}
+
 
 // GET missing people
 // GET all bootcampers attendance
@@ -96,8 +94,7 @@ export async function getAbsentBootcampersID(tableName: string) {
         }
       }
     }
-  }
-}
+
 
 // POST attendance data for a bootcamper
 export async function registerBootcamperAttendance(
@@ -142,8 +139,7 @@ export async function registerBootcamperAttendance(
         }
       }
     }
-  }
-}
+
 
 // GET list of bootcampers attendance
 export async function getListBootcampers(tableName: string) {
