@@ -21,7 +21,7 @@ const pool = new pg.Pool({
   // pass the connection string
   connectionString,
   // set the max connections to prevent tripping out the database (max 5)
-  max: 2,
+  max: 5,
 });
 
 export default pool;
