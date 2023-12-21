@@ -31,9 +31,9 @@ const ZoomPolls: React.FC<ZoomPollsProps> = ({ zoomPollData }) => {
         average: zoomPollData.average,
         poor: zoomPollData.poor,
       });
-      setShowResults(false);
-    } else {
       setShowResults(true);
+    } else {
+      setShowResults(false);
     }
   }, [zoomPollData]);
 
@@ -55,6 +55,13 @@ const ZoomPolls: React.FC<ZoomPollsProps> = ({ zoomPollData }) => {
     }
   };
 
+  // Function to calculate the delay for each bar
+  const barDelay = (context) => {
+    const index = context.dataIndex;
+    // 10 seconds delay progressively for each bar
+    return index * 7000;
+  };
+
   const chartData = {
     labels: ["Good", "Average", "Poor"],
     datasets: [
@@ -68,6 +75,9 @@ const ZoomPolls: React.FC<ZoomPollsProps> = ({ zoomPollData }) => {
   };
 
   const options = {
+    animation: {
+      delay: barDelay, // Set the delay function for the animation
+    },
     plugins: {
       legend: {
         labels: {
@@ -88,7 +98,7 @@ const ZoomPolls: React.FC<ZoomPollsProps> = ({ zoomPollData }) => {
         },
         cornerRadius: 4,
         displayColors: true,
-        mode: "index" as const,
+        mode: "index",
         intersect: false,
       },
     },
@@ -115,8 +125,11 @@ const ZoomPolls: React.FC<ZoomPollsProps> = ({ zoomPollData }) => {
       <div className="text-center text-xl text-blue-500 font-bold mb-4">
         <h2>ZOOM POLLS</h2>
       </div>
-      <div className="bg-gray-200 p-4 flex justify-around items-end h-52 rounded-xl" data-testid="zoom-poll-chart">
-        {showResults ? (
+      <div
+        className="bg-gray-200 p-4 flex justify-around items-end h-52 rounded-xl"
+        data-testid="zoom-poll-chart"
+      >
+        {showResults && pollResults ? (
           <Bar data={chartData} options={options} />
         ) : (
           <div className="text-center w-full text-black mb-20 uppercase font-semibold">
