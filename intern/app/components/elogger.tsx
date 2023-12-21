@@ -46,7 +46,6 @@ export default function EngagementLogger() {
     fetchData(1);
   }, []); // Run the fetchData function only once on component mount
 
-
   // Event handler for updating the search term
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchTerm(e.target.value);
@@ -67,8 +66,8 @@ export default function EngagementLogger() {
 
       {/* Search input */}
       <div className="mt-3">
-      <input
-          className="w-full border-2 border-blue-400 rounded-lg mt-2 mb-2 pl-2 pr-2"
+        <input
+          className="font-serif w-full border-2 border-blue-400 rounded-lg mt-2 mb-2 pl-2 pr-2"
           type="text"
           placeholder=" Search"
           value={searchTerm}

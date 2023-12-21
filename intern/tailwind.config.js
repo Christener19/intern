@@ -7,10 +7,11 @@ module.exports = {
   theme: {
     extend: {
       screens: {
-        'trueHD': '1920px'
+        trueHD: "1920px",
       },
       fontFamily: {
         sans: ["var(--font-montserrat)"],
+        serif: ["var(--font-hind)"],
       },
       colors: {
         background: "hsl(var(--background))",
