@@ -38,28 +38,7 @@ test('login and download', async ({ browser }) => {
   const engagementLoggerBoxExists = await page.isVisible('selector-for-EngagementLoggerBox');
   // expect(engagementLoggerBoxExists).toBeTruthy();
 
-
-  // Click the button to trigger the download
-  const [download] = await Promise.all([
-    page.waitForEvent('download'), 
-    page.click('[data-testid="engage-csv-button"]') 
-  ]);
-
-  // Wait for the download process to complete and get the path
-  const path = await download.path();
-
-
-
 });
 
 
 
-  //     //Zoom polls
-//     await page.click('[data-testid="thermometer-button"]');
-//     await page.waitForFunction(() => {
-//       const chart = document.querySelector('[data-testid="zoom-poll-chart"]');
-//       return chart?.textContent?.trim() !== '';
-//     }, { timeout: 20000 });
-// // Check that the chart is visible
-// const isChartVisible = await page.isVisible('[data-testid="zoom-poll-chart"]');
-// expect(isChartVisible).toBe(true);
