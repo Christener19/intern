@@ -9,7 +9,7 @@ import { mainRoute, getRoute } from "@/utils/APIRouteSetter";
 
 
 
-export default function AttendanceTracker({ attendanceAlert: initialAttendanceAlert }) {
+export default function AttendanceTracker({ attendanceAlert: initialAttendanceAlert }: any) {
   const [attendanceAlert, setAttendanceAlert] = useState(initialAttendanceAlert);
 
   const baseURL = mainRoute()
