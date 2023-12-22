@@ -46,7 +46,7 @@ const ZoomPolls: React.FC = () => {
       clearInterval(intervalId);
       setIntervalId(null);
     } else {
-      const newIntervalId = setInterval(fetchData, 1000);
+      const newIntervalId = setInterval(fetchData, 1500);
       setIntervalId(newIntervalId);
     }
   };

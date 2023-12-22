@@ -17,7 +17,7 @@ export async function getLatestPollResult(tableName: string) {
             zoom_poll_time 
         FROM ${tableName}
         ORDER BY zoom_poll_date DESC, zoom_poll_time DESC
-        LIMIT 10;
+        LIMIT 1;
     `;
 
   // set up client variable
