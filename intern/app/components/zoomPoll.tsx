@@ -12,16 +12,21 @@ import {
 ChartJS.register(CategoryScale, LinearScale, BarElement, Tooltip);
 
 const hardcodedData = [
-  { good: 5, average: 3, poor: 7 },
-  { good: 10, average: 6, poor: 13 },
-  { good: 12, average: 9, poor: 17 },
-  { good: 17, average: 10, poor: 21 },
-  { good: 21, average: 12, poor: 23 },
-  { good: 24, average: 17, poor: 26 },
-  { good: 27, average: 22, poor: 30 },
-  { good: 35, average: 24, poor: 31 },
-  { good: 45, average: 27, poor: 32 },
-  { good: 55, average: 29, poor: 33 },
+  { good: 1, average: 0, poor: 0 },
+  { good: 5, average: 3, poor: 1 },
+  { good: 10, average: 6, poor: 3 },
+  { good: 12, average: 9, poor: 4 },
+  { good: 17, average: 10, poor: 5 },
+  { good: 21, average: 12, poor: 7 },
+  { good: 24, average: 17, poor: 9 },
+  { good: 27, average: 22, poor: 14 },
+  { good: 35, average: 24, poor: 15 },
+  { good: 45, average: 27, poor: 22 },
+  { good: 55, average: 29, poor: 27 },
+  { good: 65, average: 29, poor: 27 },
+  { good: 66, average: 33, poor: 29 },
+  { good: 68, average: 35, poor: 31 },
+  { good: 70, average: 29, poor: 32 },
 ];
 
 const ZoomPolls: React.FC = () => {
@@ -52,9 +57,15 @@ const ZoomPolls: React.FC = () => {
       return prevIndex + 1;
     });
   };
-
+  // This function is triggered when the 'Thumbmometer' button is clicked.
+  // If the dataIndex is at the end of the hardcodedData array,
+  // reset dataIndex to 0 and set hasStarted to false to restart the data cycle.
+  // If the polling has not started, start the interval for fetching data.
   const handleButtonClick = () => {
-    if (!intervalId && dataIndex < hardcodedData.length) {
+    if (dataIndex >= hardcodedData.length - 1) {
+      setDataIndex(0);
+      setHasStarted(false);
+    } else if (!hasStarted) {
       setHasStarted(true);
       const newIntervalId = setInterval(fetchData, 1000);
       setIntervalId(newIntervalId);
@@ -128,7 +139,7 @@ const ZoomPolls: React.FC = () => {
         {hasStarted ? (
           <Bar data={chartData} options={options} />
         ) : (
-          <div className="text-center text-lg text-gray-500 mb-14">
+          <div className="text-center w-full text-black mb-20 uppercase font-semibold">
             NO RESULTS
           </div>
         )}
@@ -138,7 +149,7 @@ const ZoomPolls: React.FC = () => {
           className="bg-green-500 hover:bg-green-600 text-white py-2 px-4 border-none cursor-pointer rounded-xl shadow-sm uppercase font-bold mt-4"
           onClick={handleButtonClick}
         >
-          {intervalId ? "Stop Refresh" : "Thumbmometer"}
+          Thumbmometer
         </button>
       </div>
     </div>
