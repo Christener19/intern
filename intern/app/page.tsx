@@ -55,7 +55,7 @@ export default async function Index() {
         </div>
         <div className="col-start-1 row-start-2">
           {/* Pass the latest Zoom poll data */}
-          <ZoomPolls zoomPollData={zoomPollData} />
+          <ZoomPolls />
         </div>
         <div className="col-start-2 row-start-2">
           <NamePicker />
