@@ -12,16 +12,16 @@ import {
 ChartJS.register(CategoryScale, LinearScale, BarElement, Tooltip);
 
 const hardcodedData = [
-  { good: 1, average: 5, poor: 10 },
-  { good: 10, average: 2, poor: 7 },
-  { good: 8, average: 3, poor: 10 },
-  { good: 4, average: 10, poor: 9 },
-  { good: 5, average: 7, poor: 10 },
-  { good: 3, average: 10, poor: 2 },
-  { good: 7, average: 10, poor: 9 },
-  { good: 6, average: 1, poor: 10 },
-  { good: 1, average: 3, poor: 10 },
-  { good: 6, average: 10, poor: 1 },
+  { good: 5, average: 3, poor: 7 },
+  { good: 10, average: 6, poor: 13 },
+  { good: 12, average: 9, poor: 17 },
+  { good: 17, average: 10, poor: 21 },
+  { good: 21, average: 12, poor: 23 },
+  { good: 24, average: 17, poor: 26 },
+  { good: 27, average: 22, poor: 30 },
+  { good: 35, average: 24, poor: 31 },
+  { good: 45, average: 27, poor: 32 },
+  { good: 55, average: 29, poor: 33 },
 ];
 
 const ZoomPolls: React.FC = () => {
@@ -32,21 +32,31 @@ const ZoomPolls: React.FC = () => {
   });
   const [dataIndex, setDataIndex] = useState(0);
   const [intervalId, setIntervalId] = useState<NodeJS.Timeout | null>(null);
+  const [hasStarted, setHasStarted] = useState(false);
 
   useEffect(() => {
-    setPollResults(hardcodedData[dataIndex]);
-  }, [dataIndex]);
+    if (hasStarted) {
+      setPollResults(hardcodedData[dataIndex]);
+    }
+  }, [dataIndex, hasStarted]);
 
   const fetchData = () => {
-    setDataIndex((prevIndex) => (prevIndex + 1) % hardcodedData.length);
+    setDataIndex((prevIndex) => {
+      if (prevIndex >= hardcodedData.length - 1) {
+        if (intervalId) {
+          clearInterval(intervalId);
+          setIntervalId(null);
+        }
+        return prevIndex;
+      }
+      return prevIndex + 1;
+    });
   };
 
   const handleButtonClick = () => {
-    if (intervalId) {
-      clearInterval(intervalId);
-      setIntervalId(null);
-    } else {
-      const newIntervalId = setInterval(fetchData, 1500);
+    if (!intervalId && dataIndex < hardcodedData.length) {
+      setHasStarted(true);
+      const newIntervalId = setInterval(fetchData, 1000);
       setIntervalId(newIntervalId);
     }
   };
@@ -115,7 +125,13 @@ const ZoomPolls: React.FC = () => {
         className="bg-gray-200 p-4 flex justify-around items-end h-52 rounded-xl"
         data-testid="zoom-poll-chart"
       >
-        <Bar data={chartData} options={options} />
+        {hasStarted ? (
+          <Bar data={chartData} options={options} />
+        ) : (
+          <div className="text-center text-lg text-gray-500 mb-14">
+            NO RESULTS
+          </div>
+        )}
       </div>
       <div className="flex justify-center mt-4">
         <button
@@ -130,6 +146,7 @@ const ZoomPolls: React.FC = () => {
 };
 
 export default ZoomPolls;
+
 // code conected to SQL database test table -------------------------------------------------------------------------------------------
 // "use client";
 // import React, { useState, useEffect } from "react";
