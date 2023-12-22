@@ -22,7 +22,7 @@ export async function getParticpantsList(testCheck : boolean) {
 }
 
 // Delete participant by zoomID
-export async function deleteName(ZoomPollID : number, testCheck : boolean) {
+export async function deleteName(zoomID : number, testCheck : boolean) {
 
     // table to run call on
     let tableName : string = 'name_picker'
@@ -30,12 +30,12 @@ export async function deleteName(ZoomPollID : number, testCheck : boolean) {
     if (!testCheck) {
       tableName = 'test_' + tableName
     }
-
-
+    console.log(`running query on table: ${tableName}`)
   try {
     // call getEngagementCardData from model
+    console.log(`zoomPollID = ${zoomID}`)
     const nameToDelete = await namePickerModel.deleteName(
-      ZoomPollID,
+      zoomID,
       tableName,
     );
 

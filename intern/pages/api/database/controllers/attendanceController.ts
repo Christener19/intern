@@ -151,14 +151,14 @@ export async function postBootcamperAttendance(
     tableName = "test_" + tableName;
   }
 
-  console.log("Calling postBootcamperAttendance controller");
+  console.log(`Posting to ${tableName}`);
 
   // console log to check
   // console.log(`Controller: zoomid = ${zoomId}`)
   // console.log(`Controller: data = ${data}`)
 
   try {
-    console.log("alive at 159");
+    // console.log("alive at 159");
     // call registerBootcamperAttendance from model
     const register = await attendanceModel.postBootcamperAttendance(
       zoomId,
