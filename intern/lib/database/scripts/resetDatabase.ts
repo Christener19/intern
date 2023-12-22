@@ -17,14 +17,13 @@ import pool from "../../../pages/api/database/dbIndex";
 // 5. (Bootcampers)
 // recordid, zoomid, name, (profile picture)
 
-
 async function resetDatabase() {
-    try {
-        // table dropping
+  try {
+    // table dropping
 
-        console.log("delete tables if they exist")
-        // Drop existing tables if they exist
-        await pool.query(`
+    console.log("delete tables if they exist");
+    // Drop existing tables if they exist
+    await pool.query(`
             DROP TABLE IF EXISTS engagement_logger CASCADE;
             DROP TABLE IF EXISTS attendance CASCADE;
             DROP TABLE IF EXISTS zoom_polls CASCADE;
@@ -32,14 +31,13 @@ async function resetDatabase() {
             DROP TABLE IF EXISTS bootcampers CASCADE;
         `);
 
-
-        // table creation
-        console.log("creating engagement_logger table")
-        // Create the engagement_logger table
-        await pool.query(`
+    // table creation
+    console.log("creating engagement_logger table");
+    // Create the engagement_logger table
+    await pool.query(`
             CREATE TABLE engagement_logger (
               recordid INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-              zoomid INT,
+              zoomid int,
               name VARCHAR(255) NOT NULL,
               poll_completion_rate REAL,
               screen_share_time REAL,
@@ -49,12 +47,12 @@ async function resetDatabase() {
             );
         `);
 
-        console.log("creating attendance table")
-        // Create the Attendance table
-        await pool.query(`
+    console.log("creating attendance table");
+    // Create the Attendance table
+    await pool.query(`
         CREATE TABLE attendance (
             recordid INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-            zoomid INT,
+            zoomid VARCHAR(255) NOT NULL,
             name VARCHAR(255) NOT NULL,
             todays_attendance_hours REAL,
             total_attendance_hours REAL,
@@ -63,9 +61,9 @@ async function resetDatabase() {
             );
         `);
 
-        console.log("creating zoom polls table")
-        // Create the zoom polls table
-        await pool.query(`
+    console.log("creating zoom polls table");
+    // Create the zoom polls table
+    await pool.query(`
         CREATE TABLE zoom_polls (
             recordid INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
             zoom_poll_id INT,
@@ -80,36 +78,35 @@ async function resetDatabase() {
             );
         `);
 
-        console.log("creating name_picker table")
-        // Create the name picker table
-        await pool.query(`
+    console.log("creating name_picker table");
+    // Create the name picker table
+    await pool.query(`
             CREATE TABLE name_picker (
               recordid INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
               zoomid INT,
               name VARCHAR(255) NOT NULL
               );
 
-        `)
+        `);
 
-        console.log("creating bootcampers table")
-        // Create the name bootcampers
-        await pool.query(`
+    console.log("creating bootcampers table");
+    // Create the name bootcampers
+    await pool.query(`
             CREATE TABLE bootcampers (
               recordid INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
               zoomid INT,
               name VARCHAR(255) NOT NULL
               );
-        `)  
-console.log("all tables created db reset complete")
-
-
-    } catch (error) {
-        console.error("Database reset failed: ", error);
-    } finally {
-      // End the pool
-      await pool.end();
-    }
-    
+        `);
+    console.log("all tables created db reset complete");
+  } catch (error) {
+    console.error("Database reset failed: ", error);
+  } finally {
+    // End the pool
+    await pool.end();
+  }
 }
 
-(async () => { await resetDatabase(); })()
+(async () => {
+  await resetDatabase();
+})();

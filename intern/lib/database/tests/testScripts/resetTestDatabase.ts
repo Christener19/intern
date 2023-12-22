@@ -20,23 +20,26 @@ import pool from "../../../../pages/api/database/dbIndex";
 // written as one long function as attempts to make this run as sequential asyncs was not working and taking too much time.
 
 export default async function resetTestDatabase() {
+
+  let client = await pool.connect()
+
   try {
-    // drop tables
-    console.log("delete tables if they exist");
+
+    // console.log("delete tables if they exist");
     // Drop existing tables if they exist
-    await pool.query(`
+    await client.query(`
             DROP TABLE IF EXISTS test_engagement_logger CASCADE;
             DROP TABLE IF EXISTS test_attendance CASCADE;
             DROP TABLE IF EXISTS test_zoom_polls CASCADE;
             DROP TABLE IF EXISTS test_name_picker CASCADE;
             DROP TABLE IF EXISTS test_bootcampers CASCADE
         `);
-    console.log("tables dropped succesfully");
+    // console.log("tables dropped succesfully");
 
     // create tables
-    console.log("creating engagement_logger table");
+    // console.log("creating engagement_logger table");
     // Create the engagement_logger table
-    await pool.query(`
+    await client.query(`
             CREATE TABLE test_engagement_logger (
               recordid INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
               zoomid INT,
@@ -49,9 +52,9 @@ export default async function resetTestDatabase() {
             );
         `);
 
-    console.log("creating attendance table");
+    // console.log("creating attendance table");
     // Create the Attendance table
-    await pool.query(`
+    await client.query(`
         CREATE TABLE test_attendance (
             recordid INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
             zoomid VARCHAR(255) NOT NULL,
@@ -63,9 +66,9 @@ export default async function resetTestDatabase() {
             );
         `);
 
-    console.log("creating zoom polls table");
+    // console.log("creating zoom polls table");
     // Create the zoom polls table
-    await pool.query(`
+    await client.query(`
         CREATE TABLE test_zoom_polls (
             recordid INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
             zoom_poll_id INT,
@@ -80,9 +83,9 @@ export default async function resetTestDatabase() {
             );
         `);
 
-    console.log("creating name_picker table");
+    // console.log("creating name_picker table");
     // Create the name picker table
-    await pool.query(`
+    await client.query(`
             CREATE TABLE test_name_picker (
               recordid INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
               zoomid INT,
@@ -90,19 +93,19 @@ export default async function resetTestDatabase() {
             );
         `);
 
-    console.log("creating bootcampers table");
+    // console.log("creating bootcampers table");
     // Create the name bootcampers
-    await pool.query(`
+    await client.query(`
             CREATE TABLE test_bootcampers (
               recordid INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
               zoomid INT,
               name VARCHAR(255) NOT NULL
               );
         `);
-    console.log("all tables created db reset complete");
+    // console.log("all tables created db reset complete");
     // seed tables
-    console.log("engagement logger table seeded");
-    await pool.query(`
+    // console.log("engagement logger table seeded");
+    await client.query(`
             INSERT INTO test_engagement_logger (zoomid, name, poll_completion_rate, screen_share_time, screen_share_switch_freq, average_engagement_grade, week_number)
             VALUES
             (123, 'John Doe', 0.99, 300, 300, 'Ungraded', 1),
@@ -117,8 +120,8 @@ export default async function resetTestDatabase() {
             (999, 'Sophia Harris', 0.95, 14.2, 8, 'Ungraded', 3);
         `);
 
-    console.log("attendance table seeded");
-    await pool.query(`
+    // console.log("attendance table seeded");
+    await client.query(`
             INSERT INTO test_attendance (zoomid, name, todays_attendance_hours, total_attendance_hours, total_days_attended, missing_streak)
             VALUES
             (123, 'John Doe', 4.5, 50.2, 30, 0),
@@ -133,8 +136,8 @@ export default async function resetTestDatabase() {
             (999, 'Sophia Harris', 6.7, 40.1, 25, 0);
         `);
 
-    console.log("zoom polls table seeded");
-    await pool.query(`
+    // console.log("zoom polls table seeded");
+    await client.query(`
             INSERT INTO test_zoom_polls (zoom_poll_id, zoom_poll_date, zoom_poll_time, poor, average, good, response_rate, respondants, non_respondants)
             VALUES
             (101, '2023-01-01', 14.5, 2, 5, 3, 0.85, ARRAY[123, 456, 789], ARRAY[98]),
@@ -149,8 +152,8 @@ export default async function resetTestDatabase() {
             (110, '2023-01-10', 12.2, 1, 4, 5, 0.93, ARRAY[888, 777, 654], ARRAY[1]);
         `);
 
-    console.log("name picker table seeded");
-    await pool.query(`
+    // console.log("name picker table seeded");
+    await client.query(`
             INSERT INTO test_name_picker (zoomid, name)
             VALUES
             (123, 'John Doe'),
@@ -165,8 +168,8 @@ export default async function resetTestDatabase() {
             (999, 'Sophia Harris');
         `);
 
-    console.log("bootcampers table seeded");
-    await pool.query(`
+    // console.log("bootcampers table seeded");
+    await client.query(`
             INSERT INTO test_bootcampers (zoomid, name)
             VALUES
             (123, 'John Doe'),
@@ -182,12 +185,13 @@ export default async function resetTestDatabase() {
         `);
   } catch (error) {
     console.error("Database reset failed: ", error);
-  } finally {
-    // End the pool
-    await pool.end();
+} finally {
+  console.log('database reset complete')
+  if (client) {
+    client.release()
   }
 }
-
+}
 (async () => {
   await resetTestDatabase();
 })();

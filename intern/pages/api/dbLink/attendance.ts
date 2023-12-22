@@ -15,7 +15,7 @@ export default async function attendanceZoomToDb() {
     `${mainURL}${oauthRoute}getMeetingParticipants`
   );
   const AllParticipantsJSON = await fetch(
-    `${mainURL}${getRoute}getListBootcampers`
+    `${mainURL}${getRoute}getListBootcampers?testCheck=false`
   );
 
   //variable/ reponse clean up
@@ -87,7 +87,7 @@ export default async function attendanceZoomToDb() {
 
           // updates entry with zoomAPI data
           const response = await fetch(
-            `${mainURL}${patchRoute}registerBootcamperAttendance?zoomId=${currentZoomID}`,
+            `${mainURL}${patchRoute}registerBootcamperAttendance?zoomId=${currentZoomID}&testCheck=false`,
             {
               // set header
               method: "PATCH",
@@ -104,6 +104,12 @@ export default async function attendanceZoomToDb() {
             }
           );
           // log that it works
+          // {
+          //   "todays_attendance_hours": "10",
+          //   "total_attendance_hours": "10",
+          //  "total_days_attended":"10" ,
+          //   "missing_streak": "10",
+          // }
           console.log("alive 105");
           // const result = await response;
           const resultJson = await response.text();
@@ -123,7 +129,7 @@ export default async function attendanceZoomToDb() {
 
       try {
         const response = await fetch(
-          `${mainURL}${postRoute}postBootcamperAttendance?zoomId='${currentZoomID}'`,
+          `${mainURL}${postRoute}postBootcamperAttendance?zoomId='${currentZoomID}'&testCheck=false`,
           {
             // set header
             method: "POST",
@@ -167,7 +173,7 @@ export default async function attendanceZoomToDb() {
         console.log("alive at 162");
         // if doesnt then add bootcamper to database
         const response = await fetch(
-          `${mainURL}${patchRoute}registerBootcamperAttendance?zoomId=${currentZoomID}`,
+          `${mainURL}${patchRoute}registerBootcamperAttendance?zoomId=${currentZoomID}&testCheck=false`,
           {
             // set header
             method: "PATCH",

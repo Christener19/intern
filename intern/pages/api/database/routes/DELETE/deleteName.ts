@@ -26,8 +26,8 @@ async function handleDeleteRequest(req: NextApiRequest, res: NextApiResponse) {
     const testQuery: boolean = req.query.testCheck !== null && req.query.testCheck !== undefined;
 
     // Call the function from the controller
-    const screenShareFreq = await name_picker.deleteName(zoomId, testQuery)
-    res.status(200).json({ status: 'success', data: screenShareFreq });
+    const deleteData = await name_picker.deleteName(zoomId, testQuery)
+    res.status(200).json({ status: 'success', data: deleteData });
   } catch (error) {
     console.error('Error in deleteName Route:', error);
     res.status(500).json({ status: 'error', message: 'Internal Server Error' });

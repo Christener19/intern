@@ -19,7 +19,7 @@ export async function getBootcampers(tableName: string) {
     client = await pool.connect(); // get new client from the pool
 
     console.log('at model getBootcampers client start')
-        const result = await pool.query(queryText)
+        const result = await client.query(queryText)
         return result.rows;
     } catch (error) {
         console.error('Error patching record', error);

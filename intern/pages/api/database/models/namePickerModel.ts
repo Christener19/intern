@@ -36,7 +36,7 @@ export async function getParticpantsList(tableName : string) {
 
 // Delete participant by zoom ID
 export async function deleteName(zoomID: number, tableName : string) {
-
+  console.log(`zoomid: ${zoomID}, table:${tableName}`)
     const queryText = `
         DELETE FROM ${tableName}
         WHERE zoomid = $1
@@ -47,9 +47,9 @@ export async function deleteName(zoomID: number, tableName : string) {
   console.log('at model deleteName client start')
 
 
+  client = await pool.connect(); // get new client from the pool
   try {
-    client = await pool.connect(); // get new client from the pool
-        const nameList = await pool.query(queryText [zoomID])
+        const nameList = await client.query(queryText, [zoomID])
         return nameList.rows;
     } catch (error) {
         console.error('Error getting name list results', error);

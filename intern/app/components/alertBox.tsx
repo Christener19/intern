@@ -2,6 +2,7 @@ import uuid from "react-uuid";
 import AlertEntry from "./alertEntry";
 import React from "react";
 
+
 export default function AlertBox({
   alertInformation,
 }: {
