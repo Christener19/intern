@@ -20,9 +20,9 @@ if (!connectionString) {
 const pool = new pg.Pool({
   // pass the connection string
   connectionString,
-  // set the max connections to prevent tripping out the database (max 5)
+  // set the max connections to prevent tripping out the database (max 60 on supabase)
 
-  max: 3,
+  max: 10,
   connectionTimeoutMillis: 40000,
   idleTimeoutMillis: 40000,
 
