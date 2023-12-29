@@ -4,7 +4,6 @@ const baseURL = mainRoute();
 import findBreakPoints from "../../utils/engagementAlgo/findBreakPoints";
 import findMedian from "../../utils/engagementAlgo/findMedian";
 import getScoreForBootcamper from "../../utils/engagementAlgo/getScoreForBootcamper";
-import pool from "../../pages/api/database/dbIndex";
 
 // This updates the data that feeds the engagement logger cards
 
@@ -115,14 +114,14 @@ export default async function getAllEngagementGrades(weekNumber: number) {
   // const zoomIDs = [23, 24, 56, 67];
   //intalising return array
   const CreatedArry : any = [];
-
-
-  console.log('before all screenDataFetcher line 115')
   const allBootcamper: any = await allScreenDataFetcher(weekNumber);
-  console.log('after all screenDataFetcher line 117')
+
+  // debug loggers
   //console.log(`Number of bootcampers: ${allBootcamper.bootcampers.length}`);
-  // console.log("bootcampers 2345");
   // console.log(allBootcamper);
+
+
+  // loop plan
   // start for loop
   // Get score for ID
   // check if there is any data
@@ -134,10 +133,11 @@ export default async function getAllEngagementGrades(weekNumber: number) {
     console.log(
       `Getting score for: ${allBootcamper.bootcampers[i].zoomID} ${i} of ${allBootcamper.bootcampers.length}`
     );
-    console.log(
-      `details of bootcamper: zoomID: ${allBootcamper.bootcampers[i].zoomID} screenShare: ${allBootcamper.bootcampers[i].screenShareTotal}, screenShareSwitch: ${allBootcamper.bootcampers[i].screenSwitchTotal}
-      pollCompletionRate: ${allBootcamper.bootcampers[i].pollCompletionRate}`
-    );
+    // debug loggers
+    // console.log(
+    //   `details of bootcamper: zoomID: ${allBootcamper.bootcampers[i].zoomID} screenShare: ${allBootcamper.bootcampers[i].screenShareTotal}, screenShareSwitch: ${allBootcamper.bootcampers[i].screenSwitchTotal}
+    //   pollCompletionRate: ${allBootcamper.bootcampers[i].pollCompletionRate}`
+    // );
     let bootcamperScore : any = await getScoreForBootcamper(
       allBootcamper.bootcampers[i],
       allBootcamper.breakpoints
@@ -149,7 +149,7 @@ export default async function getAllEngagementGrades(weekNumber: number) {
       bootcamperScore,
     });
   }
-  // Great return object
+  // create return object
   // array of objects of each bootcamper {id, grade, week number}
   // console.log("created array");
   // console.log(CreatedArry);
@@ -157,14 +157,6 @@ export default async function getAllEngagementGrades(weekNumber: number) {
 
   return CreatedArry;
 }
-
-// const Bill = async () => {
-//   const logger = await getAllEngagementGrades(1);
-//   console.log(logger);
-// };
-
-// Bill();
-//  getAllEngagementGrades(1);
 
 // Start loop to go thru every bootcamper in the database
 export async function allEngagementGradePatcher(weekNumber: number) {
@@ -178,6 +170,7 @@ export async function allEngagementGradePatcher(weekNumber: number) {
       week_number: weekNumber,
       average_engagement_grade: patchArray[i].bootcamperScore,
     };
+
     // debug logger
     // console.log('data object')
     // console.log(data)
@@ -220,13 +213,14 @@ export  async function createEngagementProps(weekNumber: number) {
   // Patch database with latest engagement grades
   // await allScreenDataFetcher(weekNumber);
 
+  console.log(`fetching from: ${baseURL}${getRoute}getEngagementScoreByWeek?weekNumber=${weekNumber}`)
   const engagementDataResponse = await fetch(
     `${baseURL}${getRoute}getEngagementScoreByWeek?weekNumber=${weekNumber}`
   );
   const engagementDataJSON = await engagementDataResponse.text();
   const engagementDataPayload = JSON.parse(engagementDataJSON);
   const engagementDataArray = engagementDataPayload.data;
-  console.log(`mapping data object`)
+  // console.log(`mapping data object`) // debug logger
   const engagementData = engagementDataArray.map((entry) => ({
     name: entry.name,
     avgEngagement: entry.average_engagement_grade,
@@ -234,7 +228,7 @@ export  async function createEngagementProps(weekNumber: number) {
     fullData: {},
   }));
   console.log("Engagment Props complete")
-  //console.log(engagementData)
+  //console.log(engagementData) // debug logger
 
   return engagementData;
 }
@@ -244,4 +238,4 @@ export async function patcherAndFetcher (weekNumber:number) {
   const engagementProps= await createEngagementProps (weekNumber)
 return engagementProps;
 }
- ///patcherAndFetcher(1)
+ ///patcherAndFetcher(1) // debugger to run function for testing

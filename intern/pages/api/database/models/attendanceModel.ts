@@ -18,7 +18,7 @@ export async function getBootcampers(tableName: string) {
   try {
     client = await pool.connect(); // get new client from the pool
 
-    console.log('at model getBootcampers client start')
+    // console.log('at model getBootcampers client start') // debug logger
         const result = await client.query(queryText)
         return result.rows;
     } catch (error) {
@@ -28,7 +28,7 @@ export async function getBootcampers(tableName: string) {
         if (client) {
           // release client connection
           client.release();
-          console.log('at model getBootcampers client end')
+          // console.log('at model getBootcampers client end') // debug logger
         }
       }
 
@@ -48,7 +48,7 @@ export async function getAbsentBootcampersCount(tableName: string) {
   let client: any;
 
   try {
-    console.log('at model getAbsentBootcampersCount client start')
+    // console.log('at model getAbsentBootcampersCount client start') // debug logger
     client = await pool.connect(); // get new client from the pool
         const result = await pool.query(queryText)
         return result.rows;
@@ -59,7 +59,7 @@ export async function getAbsentBootcampersCount(tableName: string) {
         if (client) {
           // release client connection
           client.release();
-          console.log('at model getAbsentBootcampersCount client end')
+          // console.log('at model getAbsentBootcampersCount client end') // debug logger
         }
       }
     }
@@ -80,7 +80,7 @@ export async function getAbsentBootcampersID(tableName: string) {
 
   try {
     client = await pool.connect(); // get new client from the pool
-    console.log('at model getAbsentBootcampersID client start')
+    // console.log('at model getAbsentBootcampersID client start') // debug logger
         const result = await pool.query(queryText)
         return result.rows;
     } catch (error) {
@@ -90,7 +90,7 @@ export async function getAbsentBootcampersID(tableName: string) {
         if (client) {
           // release client connection
           client.release();
-          console.log('at model getAbsentBootcampersID client end')
+          // console.log('at model getAbsentBootcampersID client end') // debug logger
         }
       }
     }
@@ -117,7 +117,7 @@ export async function registerBootcamperAttendance(
 
   try {
     client = await pool.connect(); // get new client from the pool
-    console.log('at model registerBootcamperAttendance client start')
+    // console.log('at model registerBootcamperAttendance client start') // debug logger
     const result = await pool.query(queryText, [
       updates.todays_attendance_hours,
       updates.total_attendance_hours,
@@ -135,7 +135,7 @@ export async function registerBootcamperAttendance(
         if (client) {
           // release client connection
           client.release();
-          console.log('at model registerBootcamperAttendance client end')
+          // console.log('at model registerBootcamperAttendance client end') // debug logger
         }
       }
     }
@@ -197,8 +197,3 @@ export async function postBootcamperAttendance(
     throw error;
   }
 }
-
-// GET CSV from Postgres
-
-// 1. Create a file
-// 2. Copy CSV data to file

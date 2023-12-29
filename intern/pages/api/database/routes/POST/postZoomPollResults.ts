@@ -29,9 +29,9 @@ async function handlePostRequest(req: NextApiRequest, res: NextApiResponse) {
     const zoomPollID = Number(req.query.zoomPollID);
     const data = req.body;
 
-    // console log to check
-    console.log(`Router: zoomid = ${zoomPollID}`)
-    console.log(`Router: data = ${data}`)
+    // debug loggers to check
+    // console.log(`Router: zoomid = ${zoomPollID}`)
+    // console.log(`Router: data = ${data}`)
 
     // Call the registerBootcamperAttendance function from the controller
     const postPollData = await zoomPollsController.patchPollResults(

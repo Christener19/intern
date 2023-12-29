@@ -26,10 +26,10 @@ export default async function attendanceZoomToDb() {
   const allParticipants = JSON.parse(allParticipantsClean);
 
   // debug logger
-  console.log("zoomParticipants");
-  console.log(zoomParticipants);
-  console.log("AllParticipants");
-  console.log(allParticipants);
+  // console.log("zoomParticipants");
+  // console.log(zoomParticipants);
+  // console.log("AllParticipants");
+  // console.log(allParticipants);
 
   // //start loop
 
@@ -50,9 +50,9 @@ export default async function attendanceZoomToDb() {
     //see if zoom id exists
 
     for (let j = 0; j < allParticipants.data.length; j++) {
-      console.log(
-        `running inner loop ${j + 1} of ${allParticipants.data.length}`
-      );
+      // console.log(
+      //   `running inner loop ${j + 1} of ${allParticipants.data.length}`
+      // ); // debug logger
 
       //Goes through database looking for currentZoomID. If match, then will make variable iszoomIdMatched true
       if (currentZoomID === allParticipants.data[j].zoomid) {
@@ -83,8 +83,6 @@ export default async function attendanceZoomToDb() {
           `new attendance hour: ${newAttendanceHours}, new total attendance : ${newTotalAttendancehours}, amount days attended:  ${newDays}, the missing streak: ${newMissingStreak}`
         );
         try {
-          console.log("alive at 85");
-
           // updates entry with zoomAPI data
           const response = await fetch(
             `${mainURL}${patchRoute}registerBootcamperAttendance?zoomId=${currentZoomID}&testCheck=false`,
@@ -110,7 +108,6 @@ export default async function attendanceZoomToDb() {
           //  "total_days_attended":"10" ,
           //   "missing_streak": "10",
           // }
-          console.log("alive 105");
           // const result = await response;
           const resultJson = await response.text();
           const cleanResult = JSON.parse(resultJson);
@@ -142,8 +139,10 @@ export default async function attendanceZoomToDb() {
             }),
           }
         );
-        console.log(`currentZoomID: ${currentZoomID}`);
-        console.log(`name: ${zoomParticipants.participants[i].name} `);
+
+        // debug loggers
+        // console.log(`currentZoomID: ${currentZoomID}`);
+        // console.log(`name: ${zoomParticipants.participants[i].name} `);
 
         // log that it works
         // const result = await response.json();
@@ -170,7 +169,6 @@ export default async function attendanceZoomToDb() {
         `new attendance hour: ${newAttendanceHours}, new total attendance : ${newTotalAttendancehours}, amount days attended:  ${newDays}, the missing streak: ${newMissingStreak}`
       );
       try {
-        console.log("alive at 162");
         // if doesnt then add bootcamper to database
         const response = await fetch(
           `${mainURL}${patchRoute}registerBootcamperAttendance?zoomId=${currentZoomID}&testCheck=false`,
@@ -189,8 +187,6 @@ export default async function attendanceZoomToDb() {
             }),
           }
         );
-        // log that it works
-        console.log("alive 182");
         // const result = await response;
         const resultJson = await response.text();
         const cleanResult = JSON.parse(resultJson);

@@ -11,7 +11,7 @@ export async function getBootcampers(testCheck: boolean) {
     tableName = "test_" + tableName;
   }
 
-  console.log(`query going to ${tableName}`);
+  // console.log(`query going to ${tableName}`); // debug logger
 
   try {
     const todaysAttendance = await attendanceModel.getBootcampers(tableName);
@@ -46,7 +46,7 @@ export async function getBootcamperById(testCheck: boolean, zoomid: string) {
     tableName = "test_" + tableName;
   }
 
-  console.log(`query going to ${tableName}`);
+  // console.log(`query going to ${tableName}`); // debug logger
 
   try {
     const bootcamper = await attendanceModel.getBootcamperById(
@@ -128,7 +128,7 @@ export async function getListBootcampers(testCheck: boolean) {
     tableName = "test_" + tableName;
   }
 
-  console.log(`query going to ${tableName} getListBootcampers`);
+  // console.log(`query going to ${tableName} getListBootcampers`); // debug logger
 
   try {
     const bootcampers = await attendanceModel.getListBootcampers(tableName);
@@ -158,7 +158,6 @@ export async function postBootcamperAttendance(
   // console.log(`Controller: data = ${data}`)
 
   try {
-    // console.log("alive at 159");
     // call registerBootcamperAttendance from model
     const register = await attendanceModel.postBootcamperAttendance(
       zoomId,

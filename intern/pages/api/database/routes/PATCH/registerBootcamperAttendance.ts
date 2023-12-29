@@ -30,9 +30,9 @@ async function handlePatchRequest(req: NextApiRequest, res: NextApiResponse) {
     const zoomId = String(req.query.zoomId);
     const data = req.body;
 
-    // console log to check
-    console.log(`Router: zoomid = ${zoomId}`);
-    console.log(`Router: data = ${data}`);
+    // debug loggers to check
+    // console.log(`Router: zoomid = ${zoomId}`);
+    // console.log(`Router: data = ${data}`);
 
     // Call the registerBootcamperAttendance function from the controller
     const register = await attendanceController.registerBootcamperAttendance(

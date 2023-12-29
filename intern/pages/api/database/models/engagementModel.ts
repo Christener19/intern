@@ -21,7 +21,7 @@ export async function getPollCompletionRate(zoomID: number, tableName: string) {
 
   try {
     client = await pool.connect(); // get new client from the pool
-    console.log('at model getPollCompletionRate client start')
+    // console.log('at model getPollCompletionRate client start') // debug logger
 
     const result = await client.query(queryText, [zoomID]);
     return result.rows;
@@ -32,7 +32,7 @@ export async function getPollCompletionRate(zoomID: number, tableName: string) {
     if (client) {
       // release client connection
       client.release();
-      console.log('at model registerBootcamperAttendance client end')
+      // console.log('at model registerBootcamperAttendance client end') debug logger
     }
   }
 }
@@ -53,7 +53,7 @@ export async function getScreenShareTime(zoomID: number, tableName: string) {
 
   try {
     client = await pool.connect(); // get new client from the pool
-    console.log('at model getAllScreenShareTime client start')
+    // console.log('at model getAllScreenShareTime client start') // debug logger
 
     const result = await client.query(queryText, [zoomID]);
     return result.rows;
@@ -64,7 +64,7 @@ export async function getScreenShareTime(zoomID: number, tableName: string) {
     if (client) {
       // release client connection
       client.release();
-      console.log('at model getAllScreenShareTime client end')
+      // console.log('at model getAllScreenShareTime client end') // debug logger
     }
   }
 }
@@ -85,7 +85,7 @@ export async function getScreenShareFreq(zoomID: number, tableName: string) {
 
   try {
     client = await pool.connect(); // get new client from the pool
-    console.log('at model getScreenShareFreq client start')
+    // console.log('at model getScreenShareFreq client start') // debug logger
 
     const result = await client.query(queryText, [zoomID]);
     return result.rows;
@@ -96,7 +96,7 @@ export async function getScreenShareFreq(zoomID: number, tableName: string) {
     if (client) {
       // release client connection
       client.release();
-      console.log('at model getScreenShareFreq client end')
+      // console.log('at model getScreenShareFreq client end') // debug logger
     }
   }
 }
@@ -118,7 +118,7 @@ export async function getEngagementCardData(zoomID: number, tableName: string) {
 
   try {
     client = await pool.connect(); // get new client from the pool
-    console.log('at model getEngagementCardData client start')
+    // console.log('at model getEngagementCardData client start') // debug logger
 
     const result = await client.query(queryText, [zoomID]);
     return result.rows;
@@ -129,7 +129,7 @@ export async function getEngagementCardData(zoomID: number, tableName: string) {
     if (client) {
       // release client connection
       client.release();
-      console.log('at model getEngagementCardData client end')
+      // console.log('at model getEngagementCardData client end') debug logger
 
     }
   }
@@ -202,7 +202,7 @@ export async function patchPollCompletion(
 
   try {
     client = await pool.connect(); // get new client from the pool
-    console.log('at model patchPollCompletion client start')
+    // console.log('at model patchPollCompletion client start') // debug logger
 
     const result = await client.query(queryText, [
       poll_completion_rate,
@@ -218,7 +218,7 @@ export async function patchPollCompletion(
     if (client) {
       // release client connection
       client.release();
-      console.log('at model patchPollCompletion client end')
+      // console.log('at model patchPollCompletion client end') // debug logger
     }
   }
 }
@@ -244,7 +244,7 @@ export async function patchScreenShareTime(
 
   try {
     client = await pool.connect(); // get new client from the pool
-    console.log('at model patchPollCompletion client patchScreenShareTime')
+    // console.log('at model patchPollCompletion client patchScreenShareTime') // debug logger
 
     const result = await client.query(queryText, [
       screen_share_time,
@@ -260,7 +260,7 @@ export async function patchScreenShareTime(
     if (client) {
       // release client connection
       client.release();
-      console.log('at model patchPollCompletion client end')
+      // console.log('at model patchPollCompletion client end') // debug logger
     }
   }
 }
@@ -286,7 +286,7 @@ export async function patchScreenShareSwitchFreq(
 
   try {
     client = await pool.connect(); // get new client from the pool
-    console.log('at model patchScreenShareSwitchFreq client start')
+    // console.log('at model patchScreenShareSwitchFreq client start') // debug logger
 
     const result = await client.query(queryText, [
       screen_share_switch_freq,
@@ -302,7 +302,7 @@ export async function patchScreenShareSwitchFreq(
     if (client) {
       // release client connection
       client.release();
-      console.log('at model patchScreenShareSwitchFreq client end')
+      // console.log('at model patchScreenShareSwitchFreq client end') // debug logger
     }
   }
 }
@@ -314,7 +314,7 @@ export async function getAllScreenSwitch(
 ) {
 
 
-  console.log("getting all screen switch model");
+  // console.log("getting all screen switch model"); // debug logger
   const tabName = tableName;
   const weeknum = weekNumber;
 
@@ -332,7 +332,7 @@ export async function getAllScreenSwitch(
 
   try {
     client = await pool.connect(); // get new client from the pool
-    console.log('at model getAllScreenSwitch client start')
+    // console.log('at model getAllScreenSwitch client start') // debug logger
 
     const result = await client.query(queryText, [weeknum]);
     return result.rows;
@@ -344,7 +344,7 @@ export async function getAllScreenSwitch(
     if (client) {
       // release client connection
       client.release();
-      console.log('at model getAllScreenSwitch client end')
+      // console.log('at model getAllScreenSwitch client end') // debug logger
 
     }
   }
@@ -353,7 +353,7 @@ export async function getAllScreenSwitch(
 
 // GET for all screen time to use in engagment calc
 export async function getAllScreenTime(tableName: string, weekNumber: number) {
-  console.log("getting all screen time model");
+  // console.log("getting all screen time model"); // debug logger
   const tabName = tableName;
   const weeknum = weekNumber;
 
@@ -372,7 +372,7 @@ export async function getAllScreenTime(tableName: string, weekNumber: number) {
 
   try {
     client = await pool.connect(); // get new client from the pool
-    console.log('at model getAllScreenTime client start')
+    // console.log('at model getAllScreenTime client start') // debug logger
 
 
     const result = await client.query(queryText, [weeknum]);
@@ -385,7 +385,7 @@ export async function getAllScreenTime(tableName: string, weekNumber: number) {
     if (client) {
       // release client connection
       client.release();
-      console.log('at model getAllScreenTime client end')
+      // console.log('at model getAllScreenTime client end') debug logger
 
     }
   }
@@ -416,7 +416,7 @@ export async function getBootcampersDataArr(
 
   try {
     client = await pool.connect(); // get new client from the pool
-    console.log('at model getBootcampersDataArr client start')
+    // console.log('at model getBootcampersDataArr client start') // debug logger
 
 
     const result = await client.query(queryText, [weeknum]);
@@ -429,7 +429,7 @@ export async function getBootcampersDataArr(
     if (client) {
       // release client connection
       client.release();
-      console.log('at model getBootcampersDataArr client end')
+      // console.log('at model getBootcampersDataArr client end') // debug logger
 
     }
   }
@@ -452,7 +452,7 @@ export async function getEngagementCardPropsByWeek(
      `;
   // set up client variable
   let client: any;
-  console.log('at model getEngagementCardPropsByWeek client start')
+  // console.log('at model getEngagementCardPropsByWeek client start') // debug logger
 
   try {
     client = await pool.connect(); // get new client from the pool
@@ -466,7 +466,7 @@ export async function getEngagementCardPropsByWeek(
     if (client) {
       // release client connection
       client.release();
-      console.log('at model getEngagementCardPropsByWeek client end')
+      // console.log('at model getEngagementCardPropsByWeek client end') // debug logger
 
     }
   }

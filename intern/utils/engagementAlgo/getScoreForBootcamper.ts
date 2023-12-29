@@ -36,27 +36,27 @@ export default function getScoreForBootcamper(
   ): string {
   // console.log(`$(breakPoints)`);
   // console.log(`$(bootcamperData)`);
-  console.log("Started function getScoreForBootcamper");
+  // console.log("Started function getScoreForBootcamper"); // debug logger
   // deconstruct objects for use
   // zoomID
   const zoomID = bootcamperData.zoomID;
-  console.log(`zoomID ${zoomID}`);
+  // console.log(`zoomID ${zoomID}`); // debug logger
   // screen share data values
   const bootcamperScreenShareTotal: number = bootcamperData.screenShareTotal;
-  console.log(`SreenShare: ${bootcamperScreenShareTotal}`);
+  // console.log(`ScreenShare: ${bootcamperScreenShareTotal}`); // debug logger
   // screen share breakpoint
   const screenShareBreakPoint: object = breakPoints.screenShareBreakPoint;
-  console.log(`screenShareBreakPoint: ${screenShareBreakPoint}`);
+  // console.log(`screenShareBreakPoint: ${screenShareBreakPoint}`); // debug logger
   // Switch freq data values
   const bootcamperScreenSwitchFreqTotal: number =
     bootcamperData.screenSwitchTotal;
-  console.log(`ScreenShareSwitch: ${bootcamperScreenSwitchFreqTotal}`);
+  // console.log(`ScreenShareSwitch: ${bootcamperScreenSwitchFreqTotal}`); // debug logger
   // switch freq breakpoint
   const switchFreqBreakPoint: object = breakPoints.screenSwitchFreqBreakPoint;
-  console.log(`switch Freq BP: ${switchFreqBreakPoint}`);
+  // console.log(`switch Freq BP: ${switchFreqBreakPoint}`); // debug logger
   // poll completetion rate
   const pollCompletionRate: number = bootcamperData.pollCompletionRate;
-  console.log(`pollCompletionRate: ${pollCompletionRate}`);
+  // console.log(`pollCompletionRate: ${pollCompletionRate}`); // debug logger
 
   let total =
     getPolls(zoomID, pollCompletionRate) +

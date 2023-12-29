@@ -7,7 +7,7 @@ export default function AlertEntry({ infoalert } : any) {
     const { name, alert } = infoalert;
 
 
-    console.log(`name: ${name} alertlevel: ${alert}`); // debug logger
+    // console.log(`name: ${name} alertlevel: ${alert}`); // debug logger
 
 
     // set alert level
@@ -48,5 +48,3 @@ export default function AlertEntry({ infoalert } : any) {
     </>
   );
 }
-
-// Removed form line 35 className="flex flex-row text-lg"

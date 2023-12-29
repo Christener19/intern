@@ -30,7 +30,7 @@ export async function deleteName(zoomID : number, testCheck : boolean) {
     if (!testCheck) {
       tableName = 'test_' + tableName
     }
-    console.log(`running query on table: ${tableName}`)
+    // console.log(`running query on table: ${tableName}`) // debug logger
   try {
     // call getEngagementCardData from model
     console.log(`zoomPollID = ${zoomID}`)

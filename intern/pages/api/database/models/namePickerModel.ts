@@ -14,7 +14,7 @@ export async function getParticpantsList(tableName : string) {
             `  
   // set up client variable
   let client: any;
-  console.log('at model getParticpantsList client start')
+  // console.log('at model getParticpantsList client start') // debug logger
 
 
   try {
@@ -28,7 +28,7 @@ export async function getParticpantsList(tableName : string) {
         if (client) {
           // release client connection
           client.release();
-          console.log('at model getParticpantsList client start')
+          // console.log('at model getParticpantsList client start') // debug logger
 
         }
       }
@@ -44,7 +44,7 @@ export async function deleteName(zoomID: number, tableName : string) {
      `  
   // set up client variable
   let client: any;
-  console.log('at model deleteName client start')
+  // console.log('at model deleteName client start') // debug logger
 
 
   client = await pool.connect(); // get new client from the pool
@@ -58,7 +58,7 @@ export async function deleteName(zoomID: number, tableName : string) {
         if (client) {
           // release client connection
           client.release();
-          console.log('at model deleteName client end')
+          // console.log('at model deleteName client end') // debug logger
 
         }
       }

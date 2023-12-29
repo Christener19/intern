@@ -104,6 +104,7 @@ export async function patchEngagmentGrade(
     tableName = "test_" + tableName;
   }
 
+  // debug logger
   // console log to check
   // console.log(`Controller: zoomid = ${zoomId}`);
   // console.log(`Controller: week_number = ${week_number}`);
@@ -267,7 +268,7 @@ export async function getAllScreenData(testCheck: boolean, weekNumber: number) {
     tableName = "test_" + tableName;
   }
 
-  console.log(`running query on ${tableName}`);
+  // console.log(`running query on ${tableName}`); debug logger
 
   // retry function
   let retryCounter = 0;
@@ -327,7 +328,7 @@ export async function getBootcampersDataArr(
     tableName = "test_" + tableName;
   }
 
-  console.log(`running query on ${tableName}`);
+  // console.log(`running query on ${tableName}`); // debug logger
 
   try {
     // call functions from model

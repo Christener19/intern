@@ -22,7 +22,7 @@ export async function getLatestPollResult(tableName: string) {
 
   // set up client variable
   let client: any;
-  console.log("at model getLatestPollResult client start");
+  // console.log("at model getLatestPollResult client start"); // debug logger
 
   try {
     client = await pool.connect(); // get new client from the pool
@@ -35,7 +35,7 @@ export async function getLatestPollResult(tableName: string) {
     if (client) {
       // release client connection
       client.release();
-      console.log("at model getLatestPollResult client end");
+      // console.log("at model getLatestPollResult client end");  // debug logger
     }
   }
 }
@@ -52,7 +52,7 @@ export async function getPollResults(zoomPollID: number, tableName: string) {
      `;
   // set up client variable
   let client: any;
-  console.log("at model getPollResults client start");
+  // console.log("at model getPollResults client start"); // debug logger
 
   try {
     client = await pool.connect(); // get new client from the pool
@@ -65,7 +65,7 @@ export async function getPollResults(zoomPollID: number, tableName: string) {
     if (client) {
       // release client connection
       client.release();
-      console.log("at model getPollResults client end");
+      // console.log("at model getPollResults client end"); // debug logger
     }
   }
 }
@@ -115,7 +115,7 @@ export async function postNewPollResults(
 
   try {
     client = await pool.connect(); // get new client from the pool
-    console.log("at model postNewPollResults client start");
+    // console.log("at model postNewPollResults client start"); // debug logger
     const result = await pool.query(queryText, [
       zoomPollID,
       zoom_poll_date,
@@ -136,7 +136,7 @@ export async function postNewPollResults(
     if (client) {
       // release client connection
       client.release();
-      console.log("at model postNewPollResults client end");
+      // console.log("at model postNewPollResults client end"); // debug logger
     }
   }
 }
@@ -178,7 +178,7 @@ export async function patchPollResults(
 
   try {
     client = await pool.connect(); // get new client from the pool
-    console.log("at model patchPollResults client start");
+    // console.log("at model patchPollResults client start"); // debug logger
     const result = await pool.query(queryText, [
       ZoomPollID,
       zoom_poll_date,
@@ -200,7 +200,7 @@ export async function patchPollResults(
     if (client) {
       // release client connection
       client.release();
-      console.log("at model patchPollResults client end");
+      // console.log("at model patchPollResults client end"); // debug logger
     }
   }
 }

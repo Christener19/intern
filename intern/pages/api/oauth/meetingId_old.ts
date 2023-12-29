@@ -137,11 +137,12 @@ export default async function handler(
       }
       newParticipantArr.push(newParticipantObj);
 
-      console.log("new Array:", newParticipantArr);
-      console.log("Join_leave Array:");
-      console.log(newParticipantArr[0].join_leave[0]);
-      console.log(newParticipantArr[0].join_leave[1]);
-      console.log(newParticipantArr[0].join_leave[2]);
+      // debug loggers
+      // console.log("new Array:", newParticipantArr);
+      // console.log("Join_leave Array:");
+      // console.log(newParticipantArr[0].join_leave[0]);
+      // console.log(newParticipantArr[0].join_leave[1]);
+      // console.log(newParticipantArr[0].join_leave[2]);
     }
 
     // Send the participants data in the response

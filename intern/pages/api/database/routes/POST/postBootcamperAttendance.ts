@@ -30,8 +30,8 @@ async function handlePostRequest(req: NextApiRequest, res: NextApiResponse) {
     const zoomId = String(req.query.zoomId);
     const name = req.body.name;
 
-    // console log to check
-    console.log(`Router: zoomid = ${zoomId}`);
+    // debug loggers to check
+    // console.log(`Router: zoomid = ${zoomId}`);
     // console.log(`Router: data = ${data}`);
 
     // Call the registerBootcamperAttendance function from the controller
