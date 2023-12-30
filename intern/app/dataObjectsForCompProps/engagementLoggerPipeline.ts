@@ -10,8 +10,6 @@ import pool from "../../pages/api/database/dbIndex";
 
 // GET the data points from the database
 export async function allScreenDataFetcher(weekNumber: number) {
-
-  
   // debug loggers
   // console.log(weekNumber)
   // console.log(`allScreen URL: ${baseURL}${getRoute}getAllScreenData?weeknumber=${weekNumber}`)
@@ -32,10 +30,10 @@ export async function allScreenDataFetcher(weekNumber: number) {
 
   // deconstruct json object into the two arrays
   const allScreenTimeArr: number[] = allScreenDataPayload.allScreenTime.map(
-    (singleValue) => singleValue["screen_share_time"]
+    (singleValue: any) => singleValue["screen_share_time"]
   );
   const allScreenSwitchArr: number[] = allScreenDataPayload.allScreenSwitch.map(
-    (singleValue) => singleValue["screen_share_switch_freq"]
+    (singleValue: any) => singleValue["screen_share_switch_freq"]
   );
   // debug loggers
   // console.log("allScreenTimeArr");
@@ -80,13 +78,14 @@ export async function allScreenDataFetcher(weekNumber: number) {
   //console.log(allBootcampersPayload);
 
   // restructure it into the right format
-  const bootcampers: bootcamperData = allBootcampersPayload.map((entry) => ({
-    zoomID: Number(entry.zoomid),
-    screenShareTotal: Number(entry.screen_share_time),
-    screenSwitchTotal: Number(entry.screen_share_switch_freq),
-    pollCompletionRate: Number(entry.poll_completion_rate),
-  }));
-
+  const bootcampers: bootcamperData = allBootcampersPayload.map(
+    (entry: any) => ({
+      zoomID: Number(entry.zoomid),
+      screenShareTotal: Number(entry.screen_share_time),
+      screenSwitchTotal: Number(entry.screen_share_switch_freq),
+      pollCompletionRate: Number(entry.poll_completion_rate),
+    })
+  );
 
   // console.log("bootcampers - 123456");
   // console.log(bootcampers);
@@ -114,12 +113,11 @@ export default async function getAllEngagementGrades(weekNumber: number) {
   // fetch all zoomIDs
   // const zoomIDs = [23, 24, 56, 67];
   //intalising return array
-  const CreatedArry : any = [];
+  const CreatedArry: any = [];
 
-
-  console.log('before all screenDataFetcher line 115')
+  console.log("before all screenDataFetcher line 115");
   const allBootcamper: any = await allScreenDataFetcher(weekNumber);
-  console.log('after all screenDataFetcher line 117')
+  console.log("after all screenDataFetcher line 117");
   //console.log(`Number of bootcampers: ${allBootcamper.bootcampers.length}`);
   // console.log("bootcampers 2345");
   // console.log(allBootcamper);
@@ -138,7 +136,7 @@ export default async function getAllEngagementGrades(weekNumber: number) {
       `details of bootcamper: zoomID: ${allBootcamper.bootcampers[i].zoomID} screenShare: ${allBootcamper.bootcampers[i].screenShareTotal}, screenShareSwitch: ${allBootcamper.bootcampers[i].screenSwitchTotal}
       pollCompletionRate: ${allBootcamper.bootcampers[i].pollCompletionRate}`
     );
-    let bootcamperScore : any = await getScoreForBootcamper(
+    let bootcamperScore: any = await getScoreForBootcamper(
       allBootcamper.bootcampers[i],
       allBootcamper.breakpoints
     );
@@ -153,7 +151,6 @@ export default async function getAllEngagementGrades(weekNumber: number) {
   // array of objects of each bootcamper {id, grade, week number}
   // console.log("created array");
   // console.log(CreatedArry);
-
 
   return CreatedArry;
 }
@@ -184,7 +181,9 @@ export async function allEngagementGradePatcher(weekNumber: number) {
 
     // tracking logger
     console.log(
-      `patching zoomID: ${zoomId}, grade: ${patchArray[i].bootcamperScore} record ${i +1} of ${patchArray.length}`
+      `patching zoomID: ${zoomId}, grade: ${
+        patchArray[i].bootcamperScore
+      } record ${i + 1} of ${patchArray.length}`
     );
     // PATCH the Average engagment value by ID
     await fetch(
@@ -211,12 +210,12 @@ export async function allEngagementGradePatcher(weekNumber: number) {
 // test runner - real thing needs to work on an onclick function
 // allEngagementGradePatcher(1);
 
-//patch db then fatching new results 
+//patch db then fatching new results
 // Function provides data props to be used in elogger react component
 
 // Data provided in this shape (example):
 // [{ name: "Alice", avgEngagement: "average", image: null, fullData: {} }],
-export  async function createEngagementProps(weekNumber: number) {
+export async function createEngagementProps(weekNumber: number) {
   // Patch database with latest engagement grades
   // await allScreenDataFetcher(weekNumber);
 
@@ -226,22 +225,22 @@ export  async function createEngagementProps(weekNumber: number) {
   const engagementDataJSON = await engagementDataResponse.text();
   const engagementDataPayload = JSON.parse(engagementDataJSON);
   const engagementDataArray = engagementDataPayload.data;
-  console.log(`mapping data object`)
-  const engagementData = engagementDataArray.map((entry) => ({
+  console.log(`mapping data object`);
+  const engagementData = engagementDataArray.map((entry: any) => ({
     name: entry.name,
     avgEngagement: entry.average_engagement_grade,
     image: null,
     fullData: {},
   }));
-  console.log("Engagment Props complete")
+  console.log("Engagment Props complete");
   //console.log(engagementData)
 
   return engagementData;
 }
 
-export async function patcherAndFetcher (weekNumber:number) {
-  await allEngagementGradePatcher (weekNumber)
-  const engagementProps= await createEngagementProps (weekNumber)
-return engagementProps;
+export async function patcherAndFetcher(weekNumber: number) {
+  await allEngagementGradePatcher(weekNumber);
+  const engagementProps = await createEngagementProps(weekNumber);
+  return engagementProps;
 }
- ///patcherAndFetcher(1)
+///patcherAndFetcher(1)
