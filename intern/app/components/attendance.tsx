@@ -14,9 +14,6 @@ export default function AttendanceTracker({
     initialAttendanceAlert
   );
 
-export default function AttendanceTracker({ attendanceAlert: initialAttendanceAlert }: any) {
-  const [attendanceAlert, setAttendanceAlert] = useState(initialAttendanceAlert);
-
   const baseURL = mainRoute()
 
   useEffect(() => {
