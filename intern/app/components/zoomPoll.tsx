@@ -112,10 +112,13 @@ const ZoomPolls: React.FC<ZoomPollsProps> = ({ zoomPollData }) => {
 
   return (
     <div className="border-2 border-blue-500 p-4 rounded-xl shadow-sm w-full h-full mt-1 mr-2">
-      <div className="text-center text-xl text-blue-500 font-bold mb-4">
+      <div className="text-center text-xl text-blue-700 font-bold mb-4">
         <h2>ZOOM POLLS</h2>
       </div>
-      <div className="bg-gray-200 p-4 flex justify-around items-end h-52 rounded-xl" data-testid="zoom-poll-chart">
+      <div
+        className="bg-gray-200 p-4 flex justify-around items-end h-52 rounded-xl"
+        data-testid="zoom-poll-chart"
+      >
         {showResults ? (
           <Bar data={chartData} options={options} />
         ) : (
@@ -126,7 +129,7 @@ const ZoomPolls: React.FC<ZoomPollsProps> = ({ zoomPollData }) => {
       </div>
       <div className="flex justify-center mt-4">
         <button
-          className="bg-green-500 hover:bg-green-600 text-white py-2 px-4 border-none cursor-pointer rounded-xl shadow-sm uppercase font-bold mt-4"
+          className="bg-green-700 hover:bg-green-600 text-white py-2 px-4 border-none cursor-pointer rounded-xl shadow-sm uppercase font-bold mt-4"
           onClick={handleButtonClick}
         >
           Thermometer

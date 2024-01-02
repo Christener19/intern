@@ -39,7 +39,7 @@ export default function AttendanceTracker({
 
   return (
     <div className="flex flex-col text-center w-full  h-full rounded-xl border-2 border-blue-500 p-4 ">
-      <h1 className="w-full text-2xl  text-blue-500 text-center uppercase font-bold rounded-md h-fit mb-5">
+      <h1 className="w-full text-2xl  text-blue-700 text-center uppercase font-bold rounded-md h-fit mb-5">
         {" "}
         Attendance tracking
       </h1>
@@ -52,13 +52,13 @@ export default function AttendanceTracker({
           id="todays attendance div"
           className="mr-2 w-1/2 border-2 rounded-xl border-blue-500"
         >
-          <h2 className=" text-xl text-blue-500 uppercase font-bold m-3">
+          <h2 className=" text-xl text-blue-700 uppercase font-bold m-3">
             {" "}
             Todays attendance
           </h2>
           <div
             id="attendance figure"
-            className="rounded-xl ml-4 mr-4 mb-b bg-blue-500"
+            className="rounded-xl ml-4 mr-4 mb-b bg-blue-700"
           >
             {" "}
             <p className="text-white text-9xl">
@@ -79,7 +79,7 @@ export default function AttendanceTracker({
         >
           {/* // div for alerts */}
           <div className="flex flex-row justify-center">
-            <h2 className="text-xl text-blue-500 mb-3 mt-2 mr-2 font-bold uppercase ">
+            <h2 className="text-xl text-blue-700 mb-3 mt-2 mr-2 font-bold uppercase ">
               {" "}
               Alerts
             </h2>
