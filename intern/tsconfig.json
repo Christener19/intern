@@ -4,47 +4,39 @@
     "transpileOnly": true,
     "files": true,
     "compilerOptions": {
-      "module": "CommonJS",
+      "module": "CommonJS"
     }
   },
-"compilerOptions": {
-  "target": "es2022",
-  "lib": [
-    "dom",
-    "dom.iterable",
-    "esnext"
-  ],
-  "allowJs": true,
-  "skipLibCheck": true,
-  "strict": false,
-  "noEmit": true,
-  "incremental": true,
-  "esModuleInterop": true,
-  "module": "esnext",
-  "moduleResolution": "node",
-  "resolveJsonModule": true,
-  "isolatedModules": true,
-  "jsx": "preserve",
-  "plugins": [
-    {
-      "name": "next"
-    }
-  ],
-  "paths": {
-    "@/*": [
-      "./*"
-    ]
+  "compilerOptions": {
+    "target": "es2022",
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "noEmit": true,
+    "incremental": true,
+    "esModuleInterop": true,
+    "module": "esnext",
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "jsx": "preserve",
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ],
+    "paths": {
+      "@/*": ["./*"]
+    },
+    "strictNullChecks": true
   },
-  "strictNullChecks": true
-},
-"include": [
-  "next-env.d.ts",
-  "**/*.ts",
-  "**/*.tsx",
-  ".next/types/**/*.ts",
-  "app/components/randomNamePicker.tsx"
-],
-"exclude": [
-  "node_modules"
-]
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts",
+    "app/components/randomNamePicker.tsx"
+  ],
+  "exclude": ["node_modules"]
 }

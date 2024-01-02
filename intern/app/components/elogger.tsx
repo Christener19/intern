@@ -60,7 +60,7 @@ export default function EngagementLogger() {
   return (
     <div className="rounded-xl border-2 border-blue-500 p-4 w-full h-full">
       {/* Heading */}
-      <h1 className=" text-xl text-center w-full font-bold text-blue-500">
+      <h1 className=" text-xl text-center w-full font-bold text-blue-700">
         ENGAGEMENT LOGGER
       </h1>
 

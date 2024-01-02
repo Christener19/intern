@@ -129,7 +129,7 @@ const ZoomPolls: React.FC = () => {
 
   return (
     <div className="border-2 border-blue-500 p-4 rounded-xl shadow-sm w-full h-full mt-1 mr-2">
-      <div className="text-center text-xl text-blue-500 font-bold mb-4">
+      <div className="text-center text-xl text-blue-700 font-bold mb-4">
         <h2>ZOOM POLLS</h2>
       </div>
       <div
@@ -146,7 +146,7 @@ const ZoomPolls: React.FC = () => {
       </div>
       <div className="flex justify-center mt-4">
         <button
-          className="bg-green-500 hover:bg-green-600 text-white py-2 px-4 border-none cursor-pointer rounded-xl shadow-sm uppercase font-bold mt-4"
+          className="bg-green-800 hover:bg-green-600 text-white py-2 px-4 border-none cursor-pointer rounded-xl shadow-sm uppercase font-bold mt-4"
           onClick={handleButtonClick}
         >
           Thumbmometer
