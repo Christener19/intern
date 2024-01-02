@@ -129,7 +129,7 @@ const ZoomPolls: React.FC<ZoomPollsProps> = ({ zoomPollData }) => {
       </div>
       <div className="flex justify-center mt-4">
         <button
-          className="bg-green-700 hover:bg-green-600 text-white py-2 px-4 border-none cursor-pointer rounded-xl shadow-sm uppercase font-bold mt-4"
+          className="bg-green-800 hover:bg-green-600 text-white py-2 px-4 border-none cursor-pointer rounded-xl shadow-sm uppercase font-bold mt-4"
           onClick={handleButtonClick}
         >
           Thermometer
