@@ -22,9 +22,11 @@ const pool = new pg.Pool({
   connectionString,
   // set the max connections to prevent tripping out the database (max 60 on supabase)
 
-  max: 10,
+
+  max: 5,
   connectionTimeoutMillis: 40000,
   idleTimeoutMillis: 40000,
+
 
 });
 

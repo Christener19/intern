@@ -8,50 +8,67 @@ import {
   BarElement,
   Tooltip,
 } from "chart.js";
-import { fetchZoomPollResults } from "../dataObjectsForCompProps/zoompollTestObject";
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, Tooltip);
 
-type ZoomPollsProps = {
-  zoomPollData?: { good: number; average: number; poor: number };
-};
+const hardcodedData = [
+  { good: 1, average: 0, poor: 0 },
+  { good: 5, average: 3, poor: 1 },
+  { good: 10, average: 6, poor: 3 },
+  { good: 12, average: 9, poor: 4 },
+  { good: 17, average: 10, poor: 5 },
+  { good: 21, average: 12, poor: 7 },
+  { good: 24, average: 17, poor: 9 },
+  { good: 27, average: 22, poor: 14 },
+  { good: 35, average: 24, poor: 15 },
+  { good: 45, average: 27, poor: 22 },
+  { good: 55, average: 29, poor: 27 },
+  { good: 65, average: 29, poor: 27 },
+  { good: 66, average: 33, poor: 29 },
+  { good: 68, average: 35, poor: 31 },
+  { good: 70, average: 29, poor: 32 },
+];
 
-const ZoomPolls: React.FC<ZoomPollsProps> = ({ zoomPollData }) => {
+const ZoomPolls: React.FC = () => {
   const [pollResults, setPollResults] = useState({
     good: 0,
     average: 0,
     poor: 0,
   });
-  const [showResults, setShowResults] = useState(false);
+  const [dataIndex, setDataIndex] = useState(0);
+  const [intervalId, setIntervalId] = useState<NodeJS.Timeout | null>(null);
+  const [hasStarted, setHasStarted] = useState(false);
 
   useEffect(() => {
-    if (zoomPollData) {
-      setPollResults({
-        good: zoomPollData.good,
-        average: zoomPollData.average,
-        poor: zoomPollData.poor,
-      });
-      setShowResults(false);
-    } else {
-      setShowResults(true);
+    if (hasStarted) {
+      setPollResults(hardcodedData[dataIndex]);
     }
-  }, [zoomPollData]);
+  }, [dataIndex, hasStarted]);
 
-  // Function to fetch data
-  const fetchData = async () => {
-    const data = await fetchZoomPollResults(); // Replace with your actual fetch call
-    setPollResults(data);
+  const fetchData = () => {
+    setDataIndex((prevIndex) => {
+      if (prevIndex >= hardcodedData.length - 1) {
+        if (intervalId) {
+          clearInterval(intervalId);
+          setIntervalId(null);
+        }
+        return prevIndex;
+      }
+      return prevIndex + 1;
+    });
   };
-
+  // This function is triggered when the 'Thumbmometer' button is clicked.
+  // If the dataIndex is at the end of the hardcodedData array,
+  // reset dataIndex to 0 and set hasStarted to false to restart the data cycle.
+  // If the polling has not started, start the interval for fetching data.
   const handleButtonClick = () => {
-    setShowResults(!showResults);
-
-    if (!showResults) {
-      // Start fetching data every 10 seconds
-      const interval = setInterval(fetchData, 10000);
-
-      // Stop fetching after 3 minutes
-      setTimeout(() => clearInterval(interval), 180000);
+    if (dataIndex >= hardcodedData.length - 1) {
+      setDataIndex(0);
+      setHasStarted(false);
+    } else if (!hasStarted) {
+      setHasStarted(true);
+      const newIntervalId = setInterval(fetchData, 1000);
+      setIntervalId(newIntervalId);
     }
   };
 
@@ -59,7 +76,7 @@ const ZoomPolls: React.FC<ZoomPollsProps> = ({ zoomPollData }) => {
     labels: ["Good", "Average", "Poor"],
     datasets: [
       {
-        label: "Thermometer",
+        label: "Poll Results",
         data: [pollResults.good, pollResults.average, pollResults.poor],
         backgroundColor: ["#4ADE80", "#FACC15", "#F87171"],
         borderRadius: 8,
@@ -119,7 +136,7 @@ const ZoomPolls: React.FC<ZoomPollsProps> = ({ zoomPollData }) => {
         className="bg-gray-200 p-4 flex justify-around items-end h-52 rounded-xl"
         data-testid="zoom-poll-chart"
       >
-        {showResults ? (
+        {hasStarted ? (
           <Bar data={chartData} options={options} />
         ) : (
           <div className="text-center w-full text-black mb-20 uppercase font-semibold">
@@ -132,7 +149,7 @@ const ZoomPolls: React.FC<ZoomPollsProps> = ({ zoomPollData }) => {
           className="bg-green-800 hover:bg-green-600 text-white py-2 px-4 border-none cursor-pointer rounded-xl shadow-sm uppercase font-bold mt-4"
           onClick={handleButtonClick}
         >
-          Thermometer
+          Thumbmometer
         </button>
       </div>
     </div>
@@ -140,3 +157,156 @@ const ZoomPolls: React.FC<ZoomPollsProps> = ({ zoomPollData }) => {
 };
 
 export default ZoomPolls;
+
+// code conected to SQL database test table -------------------------------------------------------------------------------------------
+// "use client";
+// import React, { useState, useEffect } from "react";
+// import { Bar } from "react-chartjs-2";
+// import {
+//   Chart as ChartJS,
+//   CategoryScale,
+//   LinearScale,
+//   BarElement,
+//   Tooltip,
+// } from "chart.js";
+// import { fetchZoomPollResults } from "../dataObjectsForCompProps/zoompollTestObject";
+
+// ChartJS.register(CategoryScale, LinearScale, BarElement, Tooltip);
+
+// type ZoomPollsProps = {
+//   zoomPollData?: { good: number; average: number; poor: number };
+// };
+
+// const ZoomPolls: React.FC<ZoomPollsProps> = ({ zoomPollData }) => {
+//   const [pollResults, setPollResults] = useState({
+//     good: 0,
+//     average: 0,
+//     poor: 0,
+//   });
+//   const [showResults, setShowResults] = useState(false);
+
+//   useEffect(() => {
+//     if (zoomPollData) {
+//       setPollResults({
+//         good: zoomPollData.good,
+//         average: zoomPollData.average,
+//         poor: zoomPollData.poor,
+//       });
+//       setShowResults(false);
+//     } else {
+//       setShowResults(true);
+//     }
+//   }, [zoomPollData]);
+
+//   // Function to fetch data
+//   const fetchData = async () => {
+//     const data = await fetchZoomPollResults(); // Replace with your actual fetch call
+//     setPollResults(data);
+//   };
+
+//   const handleButtonClick = () => {
+//     setShowResults(!showResults);
+
+//     if (!showResults) {
+//       // Start fetching data every 10 seconds
+//       const interval = setInterval(fetchData, 10000);
+
+//       // Stop fetching after 3 minutes
+//       setTimeout(() => clearInterval(interval), 180000);
+//     }
+//   };
+//   // Function to calculate the delay for each bar
+//   const barDelay = (context) => {
+//     const index = context.dataIndex;
+//     // 10 seconds delay progressively for each bar
+//     return index * 7000;
+//   };
+
+//   const chartData = {
+//     labels: ["Good", "Average", "Poor"],
+//     datasets: [
+//       {
+//         label: "Thermometer",
+//         data: [pollResults.good, pollResults.average, pollResults.poor],
+//         backgroundColor: ["#4ADE80", "#FACC15", "#F87171"],
+//         borderRadius: 8,
+//       },
+//     ],
+//   };
+
+//   const options = {
+//     animation: {
+//       delay: barDelay, // Set the delay function for the animation
+//     },
+//     plugins: {
+//       legend: {
+//         labels: {
+//           font: {
+//             size: 20, // Legend font size
+//           },
+//         },
+//       },
+//       tooltip: {
+//         backgroundColor: "rgba(0, 0, 0, 0.8)",
+//         titleFont: {
+//           size: 16,
+//           family: "Arial, sans-serif",
+//         },
+//         bodyFont: {
+//           size: 14,
+//           family: "Arial, sans-serif",
+//         },
+//         cornerRadius: 4,
+//         displayColors: true,
+//         mode: "index" as const,
+//         intersect: false,
+//       },
+//     },
+//     scales: {
+//       x: {
+//         ticks: {
+//           font: {
+//             size: 20, // X-axis labels font size
+//           },
+//         },
+//       },
+//       y: {
+//         ticks: {
+//           font: {
+//             size: 16, // Y-axis labels font size
+//           },
+//         },
+//       },
+//     },
+//   };
+
+//   return (
+//     <div className="border-2 border-blue-500 p-4 rounded-xl shadow-sm w-full h-full mt-1 mr-2">
+//       <div className="text-center text-xl text-blue-500 font-bold mb-4">
+//         <h2>ZOOM POLLS</h2>
+//       </div>
+//       <div
+//         className="bg-gray-200 p-4 flex justify-around items-end h-52 rounded-xl"
+//         data-testid="zoom-poll-chart"
+//       >
+//         {showResults ? (
+//           <Bar data={chartData} options={options} />
+//         ) : (
+//           <div className="text-center w-full text-black mb-20 uppercase font-semibold">
+//             NO RESULTS
+//           </div>
+//         )}
+//       </div>
+//       <div className="flex justify-center mt-4">
+//         <button
+//           className="bg-green-500 hover:bg-green-600 text-white py-2 px-4 border-none cursor-pointer rounded-xl shadow-sm uppercase font-bold mt-4"
+//           onClick={handleButtonClick}
+//         >
+//           Thermometer
+//         </button>
+//       </div>
+//     </div>
+//   );
+// };
+
+// export default ZoomPolls;
