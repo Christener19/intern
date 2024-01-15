@@ -7,6 +7,7 @@ Called Intern. Simply because interns do all the grunt work so the main team can
 ## Development
 
 You can view our deployment here: https://intern-soc.vercel.app/
+(username: shifthappens.intern.demo@gmail.com, password: interndemo123)
 
 ## Contributors
 
